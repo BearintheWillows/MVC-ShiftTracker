@@ -14,8 +14,7 @@ namespace ShiftTracker.Areas.Shifts.Models
         public TimeSpan TotalWorkTime { get; set; } = TimeSpan.Zero;
         public TimeSpan TotalOtherWorkTime { get; set; } = TimeSpan.Zero;
 
-        public UserId { get; set; }
-    public ICollection<Break> Breaks { get; set; }
+        public ICollection<Break> Breaks { get; set; }
 
-}
+    }
 }
