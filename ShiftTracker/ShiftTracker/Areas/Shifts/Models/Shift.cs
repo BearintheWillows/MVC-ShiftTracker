@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Identity;
+using ShiftTracker.Areas.Identity.Models;
+
 namespace ShiftTracker.Areas.Shifts.Models
 {
     public class Shift
@@ -14,6 +17,11 @@ namespace ShiftTracker.Areas.Shifts.Models
         public TimeSpan TotalWorkTime { get; set; } = TimeSpan.Zero;
         public TimeSpan TotalOtherWorkTime { get; set; } = TimeSpan.Zero;
 
+        // Navigation properties
+
+        public string UserId { get; set; }
+
+        public ApplicationUser User { get; set; }
         public ICollection<Break> Breaks { get; set; }
 
     }

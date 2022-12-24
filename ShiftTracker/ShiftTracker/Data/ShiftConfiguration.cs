@@ -19,7 +19,8 @@ namespace ShiftTracker.Data
             builder.Property(s => s.TotalOtherWorkTime).IsRequired();
             builder.Property(s => s.TotalWorkTime).IsRequired();
             builder.HasMany(s => s.Breaks).WithOne(b => b.Shift).HasForeignKey(b => b.ShiftId);
-
+            //has one identity user
+            builder.HasOne(s => s.User).WithMany(u => u.Shifts).HasForeignKey(s => s.UserId);
         }
     }
 }
