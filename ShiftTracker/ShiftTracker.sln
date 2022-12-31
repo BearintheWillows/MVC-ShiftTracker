@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShiftTracker", "ShiftTracker\ShiftTracker.csproj", "{E3A823ED-BFDF-4F53-BE2E-8E86901C8170}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShiftTracker", "ShiftTracker\ShiftTracker.csproj", "{7C653CD3-7C8F-44A0-878E-49F8A7DB8883}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E3A823ED-BFDF-4F53-BE2E-8E86901C8170}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E3A823ED-BFDF-4F53-BE2E-8E86901C8170}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E3A823ED-BFDF-4F53-BE2E-8E86901C8170}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E3A823ED-BFDF-4F53-BE2E-8E86901C8170}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C653CD3-7C8F-44A0-878E-49F8A7DB8883}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C653CD3-7C8F-44A0-878E-49F8A7DB8883}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C653CD3-7C8F-44A0-878E-49F8A7DB8883}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C653CD3-7C8F-44A0-878E-49F8A7DB8883}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
