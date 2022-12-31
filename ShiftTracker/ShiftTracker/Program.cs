@@ -1,9 +1,16 @@
+using Microsoft.EntityFrameworkCore;
 using Serilog;
+using ShiftTracker.Data;
 
 var builder = WebApplication.CreateBuilder( args );
 
+
 // Add services to the container.
+builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+
+builder.Services.AddDbContext<ApplicationDbContext>( options =>
+	options.UseSqlServer( builder.Configuration.GetConnectionString( "DefaultConnection" ) ) );
 
 Log.Logger = new LoggerConfiguration()
 	.WriteTo.File( 
@@ -29,7 +36,10 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.MapControllerRoute(
+	name: "Areas",
+	pattern: "{area:exist}/{controller=Home}/{action=Index}/{id?}" );
 
+app.MapDefaultControllerRoute();
 app.MapRazorPages();
-
 app.Run();

@@ -1,0 +1,22 @@
+﻿@page
+@model ShiftTracker.Pages.Areas.Shifts.Pages.Index
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<div>
+    @foreach(var shift in Model.Shifts)
+    {
+        <div>
+            <h3>Id: @shift.Id</h3>
+            <p>Shift Length: @shift.TotalWorkLength</p>
+        </div>
+    }
+</div>
+</body>
+</html>
