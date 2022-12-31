@@ -5,5 +5,9 @@
 }
 
 <div class="text-center">
-    <h1>Working...</h1>
+     <div id="message"></div>
+        <div>
+            Compiler: <input id="compiler" value="TypeScript" onkeyup="document.getElementById('message').innerText = sayHello()" /><br />
+            Framework: <input id="framework" value="ASP.NET" onkeyup="document.getElementById('message').innerText = sayHello()" />
+        </div>
 </div>
