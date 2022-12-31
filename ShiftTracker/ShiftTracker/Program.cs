@@ -1,7 +1,16 @@
+using Serilog;
+
 var builder = WebApplication.CreateBuilder( args );
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+Log.Logger = new LoggerConfiguration()
+	.WriteTo.File( 
+	             "log-.txt", 
+	             rollingInterval: RollingInterval.Day,
+	             outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}"
+	             ).CreateLogger();
 
 var app = builder.Build();
 
