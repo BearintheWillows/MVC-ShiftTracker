@@ -4,6 +4,8 @@ public class Shift
 {
 
 	public int      Id               { get; set; }
+	
+	public DateTime  Date       { get; set; }
 	public int      RunId            { get; set; }
 	public DateTime StartTime        { get; set; }
 	public DateTime EndTime          { get; set; }

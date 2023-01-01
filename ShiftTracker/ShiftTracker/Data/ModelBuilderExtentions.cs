@@ -14,6 +14,7 @@ public static class ModelBuilderExtentions
 		            .HasData( 
 			             new Shift {
 				             Id = -1,
+				             Date = new DateTime(2023,1,1),
 				             RunId = 68,
 				             StartTime = DateTime.Parse("2019-1-1 8:00:00"),
 				             EndTime = DateTime.Parse("2019-1-1 16:00:00"),
