@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShiftTracker.Data;
 
@@ -11,9 +12,11 @@ using ShiftTracker.Data;
 namespace ShiftTracker.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230101115712_AddDateToShift")]
+    partial class AddDateToShift
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -72,9 +75,6 @@ namespace ShiftTracker.Migrations
                     b.Property<TimeSpan>("TotalDriveLength")
                         .HasColumnType("time");
 
-                    b.Property<TimeSpan>("TotalOtherWorkLength")
-                        .HasColumnType("time");
-
                     b.Property<TimeSpan>("TotalShiftLength")
                         .HasColumnType("time");
 
@@ -90,14 +90,37 @@ namespace ShiftTracker.Migrations
                         {
                             Id = -1,
                             Date = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EndTime = new DateTime(2019, 10, 1, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2019, 1, 1, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             RunId = 68,
-                            StartTime = new DateTime(2019, 10, 1, 8, 0, 0, 0, DateTimeKind.Unspecified),
-                            TotalBreakLength = new TimeSpan(0, 0, 30, 0, 0),
-                            TotalDriveLength = new TimeSpan(0, 3, 30, 0, 0),
-                            TotalOtherWorkLength = new TimeSpan(0, 0, 30, 0, 0),
-                            TotalShiftLength = new TimeSpan(0, 8, 0, 0, 0),
-                            TotalWorkLength = new TimeSpan(0, 4, 0, 0, 0)
+                            StartTime = new DateTime(2019, 1, 1, 8, 0, 0, 0, DateTimeKind.Unspecified),
+                            TotalBreakLength = new TimeSpan(30),
+                            TotalDriveLength = new TimeSpan(4),
+                            TotalShiftLength = new TimeSpan(8),
+                            TotalWorkLength = new TimeSpan(0, 3, 30, 0, 0)
+                        },
+                        new
+                        {
+                            Id = -2,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2019, 1, 1, 14, 0, 0, 0, DateTimeKind.Unspecified),
+                            RunId = 68,
+                            StartTime = new DateTime(2019, 1, 1, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            TotalBreakLength = new TimeSpan(15),
+                            TotalDriveLength = new TimeSpan(1),
+                            TotalShiftLength = new TimeSpan(4),
+                            TotalWorkLength = new TimeSpan(0, 2, 45, 0, 0)
+                        },
+                        new
+                        {
+                            Id = -3,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2019, 1, 1, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            RunId = 68,
+                            StartTime = new DateTime(2019, 1, 1, 7, 0, 0, 0, DateTimeKind.Unspecified),
+                            TotalBreakLength = new TimeSpan(0, 1, 0, 0, 0),
+                            TotalDriveLength = new TimeSpan(6),
+                            TotalShiftLength = new TimeSpan(12),
+                            TotalWorkLength = new TimeSpan(0, 5, 0, 0, 0)
                         });
                 });
 
