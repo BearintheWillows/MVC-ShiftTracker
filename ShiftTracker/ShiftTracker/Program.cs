@@ -8,6 +8,11 @@ var builder = WebApplication.CreateBuilder( args );
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.AddCors(options =>
+{
+	options.AddPolicy("AllowSpecificOrigin",
+	                  builder => builder.WithOrigins("http://localhost:44392"));
+});
 
 builder.Services.AddDbContext<ApplicationDbContext>( options =>
 	options.UseSqlServer( builder.Configuration.GetConnectionString( "DefaultConnection" ) ) );
