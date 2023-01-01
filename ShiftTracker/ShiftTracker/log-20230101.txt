@@ -1,0 +1,314 @@
+2023-01-01 07:40:06.753 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 07:40:06.788 +00:00 [INF] Shift collection count: System.Collections.Generic.List`1[ShiftTracker.Areas.Shifts.Models.Shift]
+2023-01-01 07:46:11.527 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 07:46:11.527 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 07:46:11.553 +00:00 [INF] Shift collection count: System.Collections.Generic.List`1[ShiftTracker.Areas.Shifts.Models.Shift]
+2023-01-01 07:50:00.286 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 07:50:00.286 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 07:50:00.348 +00:00 [INF] Shift collection count: System.Collections.Generic.List`1[ShiftTracker.Areas.Shifts.Models.Shift]
+2023-01-01 10:42:27.093 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 10:42:27.093 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 10:42:27.120 +00:00 [INF] Shift collection count: System.Collections.Generic.List`1[ShiftTracker.Areas.Shifts.Models.Shift]
+2023-01-01 10:42:27.233 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 10:42:27.233 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 10:42:27.233 +00:00 [INF] Shift collection count: System.Collections.Generic.List`1[ShiftTracker.Areas.Shifts.Models.Shift]
+2023-01-01 10:43:05.161 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 10:43:05.161 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 10:43:05.189 +00:00 [INF] Shift collection count: System.Collections.Generic.List`1[ShiftTracker.Areas.Shifts.Models.Shift]
+2023-01-01 10:45:26.236 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 10:45:26.236 +00:00 [INF] Shift collection count: System.Collections.Generic.List`1[ShiftTracker.Areas.Shifts.Models.Shift]
+2023-01-01 10:47:40.665 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 10:47:40.665 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 10:47:40.705 +00:00 [INF] Shift collection count: System.Collections.Generic.List`1[ShiftTracker.Areas.Shifts.Models.Shift]
+2023-01-01 11:50:52.578 +00:00 [ERR] Shift could not be found in database.
+2023-01-01 11:50:52.594 +00:00 [ERR] Shift could not be found in database.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Date'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__208_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ShiftTracker.Controllers.BaseApiController`1.GetAll() in C:\Users\SJWil\RiderProjects\MVC-ShiftTracker\ShiftTracker\ShiftTracker\Controllers\BaseApiController.cs:line 24
+ClientConnectionId:826f3a97-af98-47bb-b156-2d2572b882df
+Error Number:207,State:1,Class:16
+2023-01-01 11:50:52.629 +00:00 [ERR] Invalid column name 'Date'.
+2023-01-01 11:52:13.079 +00:00 [ERR] Shift could not be found in database.
+2023-01-01 11:52:13.085 +00:00 [ERR] Shift could not be found in database.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Date'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__208_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ShiftTracker.Controllers.BaseApiController`1.GetAll() in C:\Users\SJWil\RiderProjects\MVC-ShiftTracker\ShiftTracker\ShiftTracker\Controllers\BaseApiController.cs:line 24
+ClientConnectionId:d4abcf53-a11a-404e-b2a2-37e4905f0186
+Error Number:207,State:1,Class:16
+2023-01-01 11:52:13.127 +00:00 [ERR] Invalid column name 'Date'.
+2023-01-01 11:59:06.690 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 11:59:06.690 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 11:59:06.719 +00:00 [INF] Shift collection count: System.Collections.Generic.List`1[ShiftTracker.Areas.Shifts.Models.Shift]
+2023-01-01 11:59:53.638 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 11:59:53.638 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 11:59:53.639 +00:00 [INF] Shift collection count: System.Collections.Generic.List`1[ShiftTracker.Areas.Shifts.Models.Shift]
+2023-01-01 12:04:22.289 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 12:04:22.289 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 12:04:22.315 +00:00 [INF] Shift collection count: System.Collections.Generic.List`1[ShiftTracker.Areas.Shifts.Models.Shift]
+2023-01-01 12:04:27.096 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 12:04:27.096 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 12:04:27.097 +00:00 [INF] Shift collection count: System.Collections.Generic.List`1[ShiftTracker.Areas.Shifts.Models.Shift]
+2023-01-01 12:04:56.775 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 12:04:56.776 +00:00 [INF] Shift collection count: System.Collections.Generic.List`1[ShiftTracker.Areas.Shifts.Models.Shift]
+2023-01-01 12:07:22.973 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 12:07:22.973 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 12:07:23.003 +00:00 [INF] Shift collection count: System.Collections.Generic.List`1[ShiftTracker.Areas.Shifts.Models.Shift]
+2023-01-01 12:07:29.599 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 12:07:29.599 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 12:07:29.599 +00:00 [INF] Shift collection count: System.Collections.Generic.List`1[ShiftTracker.Areas.Shifts.Models.Shift]
+2023-01-01 12:09:46.830 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 12:09:46.830 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 12:09:46.854 +00:00 [INF] Shift collection count: System.Collections.Generic.List`1[ShiftTracker.Areas.Shifts.Models.Shift]
+2023-01-01 12:11:00.286 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 12:11:00.286 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 12:11:00.314 +00:00 [INF] Shift collection count: System.Collections.Generic.List`1[ShiftTracker.Areas.Shifts.Models.Shift]
+2023-01-01 12:13:03.258 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 12:13:03.258 +00:00 [INF] Successfully retrieved Shift from database.
+2023-01-01 12:13:03.281 +00:00 [INF] Shift collection count: System.Collections.Generic.List`1[ShiftTracker.Areas.Shifts.Models.Shift]
+2023-01-01 19:25:21.992 +00:00 [ERR] Error getting shifts
+System.InvalidOperationException: The seed entity for entity type 'Shift' cannot be added because the value provided for the property 'StartTime' is not compatible with the property type 'System.DateTime'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the involved property value.
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.ValidateData(IModel model, IDiagnosticsLogger`1 logger)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.Validate(IModel model, IDiagnosticsLogger`1 logger)
+   at Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.Validate(IModel model, IDiagnosticsLogger`1 logger)
+   at Microsoft.EntityFrameworkCore.SqlServer.Infrastructure.Internal.SqlServerModelValidator.Validate(IModel model, IDiagnosticsLogger`1 logger)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelRuntimeInitializer.Initialize(IModel model, Boolean designTime, IDiagnosticsLogger`1 validationLogger)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelSource.GetModel(DbContext context, ModelCreationDependencies modelCreationDependencies, Boolean designTime)
+   at Microsoft.EntityFrameworkCore.Internal.DbContextServices.CreateModel(Boolean designTime)
+   at Microsoft.EntityFrameworkCore.Internal.DbContextServices.get_Model()
+   at Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkServicesBuilder.<>c.<TryAddCoreServices>b__8_4(IServiceProvider p)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(Type serviceType, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Microsoft.EntityFrameworkCore.DbContext.get_DbContextDependencies()
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_Model()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_EntityType()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.CheckState()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_EntityQueryable()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.System.Collections.Generic.IAsyncEnumerable<TEntity>.GetAsyncEnumerator(CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.ConfiguredCancelableAsyncEnumerable`1.GetAsyncEnumerator()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ShiftTracker.Controllers.ShiftsApiController.GetAll() in C:\Users\SJWil\RiderProjects\MVC-ShiftTracker\ShiftTracker\ShiftTracker\Controllers\ShiftsApiController.cs:line 26
+2023-01-01 19:25:22.061 +00:00 [ERR] Error getting shift
+System.InvalidOperationException: The seed entity for entity type 'Shift' cannot be added because the value provided for the property 'StartTime' is not compatible with the property type 'System.DateTime'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the involved property value.
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.ValidateData(IModel model, IDiagnosticsLogger`1 logger)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator.Validate(IModel model, IDiagnosticsLogger`1 logger)
+   at Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator.Validate(IModel model, IDiagnosticsLogger`1 logger)
+   at Microsoft.EntityFrameworkCore.SqlServer.Infrastructure.Internal.SqlServerModelValidator.Validate(IModel model, IDiagnosticsLogger`1 logger)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelRuntimeInitializer.Initialize(IModel model, Boolean designTime, IDiagnosticsLogger`1 validationLogger)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelSource.GetModel(DbContext context, ModelCreationDependencies modelCreationDependencies, Boolean designTime)
+   at Microsoft.EntityFrameworkCore.Internal.DbContextServices.CreateModel(Boolean designTime)
+   at Microsoft.EntityFrameworkCore.Internal.DbContextServices.get_Model()
+   at Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkServicesBuilder.<>c.<TryAddCoreServices>b__8_4(IServiceProvider p)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(Type serviceType, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Microsoft.EntityFrameworkCore.DbContext.get_DbContextDependencies()
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_Model()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_EntityType()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.CheckState()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_EntityQueryable()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   at ShiftTracker.Controllers.ShiftsApiController.Get(Int32 id) in C:\Users\SJWil\RiderProjects\MVC-ShiftTracker\ShiftTracker\ShiftTracker\Controllers\ShiftsApiController.cs:line 43
+2023-01-01 19:29:40.194 +00:00 [ERR] Error getting shift
+System.InvalidOperationException: The LINQ expression 'MaterializeCollectionNavigation(
+    Navigation: Shift.Breaks,
+    subquery: NavigationExpansionExpression
+        Source: DbSet<Break>()
+            .Where(b => EF.Property<int?>(s, "Id") != null && object.Equals(
+                objA: (object)EF.Property<int?>(s, "Id"), 
+                objB: (object)EF.Property<int?>(b, "ShiftId")))
+        PendingSelector: b => NavigationTreeExpression
+            Value: EntityReference: Break
+            Expression: b
+        .Where(i => EF.Property<int?>(NavigationTreeExpression
+            Value: EntityReference: Shift | IncludePaths: 
+                Root
+                \-> Breaks
+            Expression: s, "Id") != null && object.Equals(
+            objA: (object)EF.Property<int?>(NavigationTreeExpression
+                Value: EntityReference: Shift | IncludePaths: 
+                    Root
+                    \-> Breaks
+                Expression: s, "Id"), 
+            objB: (object)EF.Property<int?>(i, "ShiftId"))))
+    .Where(b => b.Id == NavigationTreeExpression
+        Value: EntityReference: Shift | IncludePaths: 
+            Root
+            \-> Breaks
+        Expression: s.Id)' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+   at Microsoft.EntityFrameworkCore.Query.Internal.NavigationExpandingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.NavigationExpandingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.NavigationExpandingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at System.Linq.Expressions.ExpressionVisitor.VisitMemberAssignment(MemberAssignment node)
+   at System.Linq.Expressions.ExpressionVisitor.VisitMemberBinding(MemberBinding node)
+   at System.Linq.Expressions.ExpressionVisitor.Visit[T](ReadOnlyCollection`1 nodes, Func`2 elementVisitor)
+   at System.Linq.Expressions.ExpressionVisitor.VisitMemberInit(MemberInitExpression node)
+   at Microsoft.EntityFrameworkCore.Query.Internal.NavigationExpandingExpressionVisitor.PendingSelectorExpandingExpressionVisitor.Visit(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.NavigationExpandingExpressionVisitor.Expand(Expression query)
+   at Microsoft.EntityFrameworkCore.Query.QueryTranslationPreprocessor.Process(Expression query)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutor[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Storage.Database.CompileQuery[TResult](Expression query, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.CompileQueryCore[TResult](IDatabase database, Expression query, IModel model, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass12_0`1.<ExecuteAsync>b__0()
+   at Microsoft.EntityFrameworkCore.Query.Internal.CompiledQueryCache.GetOrAddQuery[TResult](Object cacheKey, Func`1 compiler)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteAsync[TResult](Expression query, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.ExecuteAsync[TResult](Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.FirstOrDefaultAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ShiftTracker.Controllers.ShiftsApiController.Get(Int32 id) in C:\Users\SJWil\RiderProjects\MVC-ShiftTracker\ShiftTracker\ShiftTracker\Controllers\ShiftsApiController.cs:line 43
+2023-01-01 20:37:01.254 +00:00 [ERR] Error getting shift
+System.InvalidOperationException: The query contains a projection 'shift => shift.Breaks
+    .Where(b => b.Id == shift.Id)
+    .Select(b => new BreakDTO{ 
+        Id = b.Id, 
+        StartTime = b.StartTime, 
+        EndTime = b.EndTime 
+    }
+    )
+    .ToList()
+    .OrderBy(b => b.StartTime)' of type 'IOrderedEnumerable<BreakDTO>'. Collections in the final projection must be an 'IEnumerable<T>' type such as 'List<T>'. Consider using 'ToList' or some other mechanism to convert the 'IQueryable<T>' or 'IOrderedEnumerable<T>' into an 'IEnumerable<T>'.
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryableMethodNormalizingExpressionVisitor.VerifyReturnType(Expression expression, ParameterExpression lambdaParameter)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryableMethodNormalizingExpressionVisitor.VerifyReturnType(Expression expression, ParameterExpression lambdaParameter)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryableMethodNormalizingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)
+   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryableMethodNormalizingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryableMethodNormalizingExpressionVisitor.Normalize(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.QueryTranslationPreprocessor.NormalizeQueryableMethod(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryTranslationPreprocessor.NormalizeQueryableMethod(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.QueryTranslationPreprocessor.Process(Expression query)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutor[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Storage.Database.CompileQuery[TResult](Expression query, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.CompileQueryCore[TResult](IDatabase database, Expression query, IModel model, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass12_0`1.<ExecuteAsync>b__0()
+   at Microsoft.EntityFrameworkCore.Query.Internal.CompiledQueryCache.GetOrAddQuery[TResult](Object cacheKey, Func`1 compiler)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteAsync[TResult](Expression query, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.ExecuteAsync[TResult](Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.FirstOrDefaultAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ShiftTracker.Controllers.ShiftsApiController.GetShiftByIdWithBreaks(Int32 id) in C:\Users\SJWil\RiderProjects\MVC-ShiftTracker\ShiftTracker\ShiftTracker\Controllers\ShiftsApiController.cs:line 43
+2023-01-01 20:37:07.552 +00:00 [ERR] Error getting shift
+System.InvalidOperationException: The query contains a projection 'shift => shift.Breaks
+    .Where(b => b.Id == shift.Id)
+    .Select(b => new BreakDTO{ 
+        Id = b.Id, 
+        StartTime = b.StartTime, 
+        EndTime = b.EndTime 
+    }
+    )
+    .ToList()
+    .OrderBy(b => b.StartTime)' of type 'IOrderedEnumerable<BreakDTO>'. Collections in the final projection must be an 'IEnumerable<T>' type such as 'List<T>'. Consider using 'ToList' or some other mechanism to convert the 'IQueryable<T>' or 'IOrderedEnumerable<T>' into an 'IEnumerable<T>'.
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryableMethodNormalizingExpressionVisitor.VerifyReturnType(Expression expression, ParameterExpression lambdaParameter)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryableMethodNormalizingExpressionVisitor.VerifyReturnType(Expression expression, ParameterExpression lambdaParameter)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryableMethodNormalizingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)
+   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryableMethodNormalizingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryableMethodNormalizingExpressionVisitor.Normalize(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.QueryTranslationPreprocessor.NormalizeQueryableMethod(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryTranslationPreprocessor.NormalizeQueryableMethod(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.QueryTranslationPreprocessor.Process(Expression query)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutor[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Storage.Database.CompileQuery[TResult](Expression query, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.CompileQueryCore[TResult](IDatabase database, Expression query, IModel model, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass12_0`1.<ExecuteAsync>b__0()
+   at Microsoft.EntityFrameworkCore.Query.Internal.CompiledQueryCache.GetOrAddQuery[TResult](Object cacheKey, Func`1 compiler)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteAsync[TResult](Expression query, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.ExecuteAsync[TResult](Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.FirstOrDefaultAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ShiftTracker.Controllers.ShiftsApiController.GetShiftByIdWithBreaks(Int32 id) in C:\Users\SJWil\RiderProjects\MVC-ShiftTracker\ShiftTracker\ShiftTracker\Controllers\ShiftsApiController.cs:line 43

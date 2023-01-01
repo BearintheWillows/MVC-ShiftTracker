@@ -14,10 +14,10 @@ public class ShiftConfiguration : IEntityTypeConfiguration<Shift>
 		builder.Property( s => s.Date ).IsRequired();
 		builder.Property( s => s.StartTime ).IsRequired();
 		builder.Property( s => s.EndTime ).IsRequired();
-		builder.Property( s => s.TotalBreakLength ).IsRequired();
-		builder.Property( s => s.TotalDriveLength ).IsRequired();
-		builder.Property( s => s.TotalShiftLength ).IsRequired();
-		builder.Property( s => s.TotalWorkLength ).IsRequired();
-		builder.HasMany<Break>(s => s.Breaks).WithOne(b => b.Shift).HasForeignKey(b => b.ShiftId).OnDelete( DeleteBehavior.Cascade );
+		builder.Property( s => s.BreakDuration ).IsRequired();
+		builder.Property( s => s.DriveTime ).IsRequired();
+		builder.Property( s => s.ShiftDuration ).IsRequired();
+		builder.Property( s => s.WorkTime ).IsRequired();
+
 	}
 }
