@@ -2,7 +2,7 @@
 
 using Microsoft.EntityFrameworkCore;
 using Areas.Shifts.Models;
-
+using Migrations;
 
 public class ApplicationDbContext : DbContext
 {
@@ -17,7 +17,7 @@ public class ApplicationDbContext : DbContext
 		modelBuilder.ApplyConfiguration( new BreakConfiguration() );
 		modelBuilder.ApplyConfiguration( new RunConfiguration() );
 		modelBuilder.ApplyConfiguration( new ShopConfiguration() );
-		// modelBuilder.Seed();
+		modelBuilder.Seed();
 	}
 
 	public DbSet<Shift> Shifts { get; set; } 
