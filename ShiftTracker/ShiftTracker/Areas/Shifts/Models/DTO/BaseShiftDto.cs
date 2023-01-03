@@ -8,8 +8,8 @@ public class BaseShiftDto
 	public int?      Id            { get; set; }
 	public DateTime? Date          { get; set; }
 	public int?      RunId         { get; set; }
-
+	public RunDto Run { get; set; }
 	// Navigation properties
-	public ICollection<Break> Breaks { get; set; }
+	public ICollection<BreakDto> Breaks { get; set; }
 	
 }
