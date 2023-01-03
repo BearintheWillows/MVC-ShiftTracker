@@ -1,11 +1,11 @@
-﻿namespace ShiftTracker.Data;
+﻿namespace ShiftTracker.Data.Configuration;
 
-using Areas.Shifts.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Models;
+using ShiftTracker.Areas.Shifts.Models;
 
-
-	public class RunConfiguration : IEntityTypeConfiguration<Run>
+public class RunConfiguration : IEntityTypeConfiguration<Run>
 	{
 		public void Configure(EntityTypeBuilder<Run> builder)
 		{

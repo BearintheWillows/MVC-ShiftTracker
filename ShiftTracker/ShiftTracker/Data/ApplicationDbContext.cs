@@ -2,7 +2,9 @@
 
 using Microsoft.EntityFrameworkCore;
 using Areas.Shifts.Models;
+using Configuration;
 using Migrations;
+using Models;
 
 public class ApplicationDbContext : DbContext
 {

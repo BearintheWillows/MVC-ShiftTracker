@@ -1,8 +1,9 @@
-﻿namespace ShiftTracker.Data;
+﻿namespace ShiftTracker.Data.Configuration;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Areas.Shifts.Models;
+using Models;
+using ShiftTracker.Areas.Shifts.Models;
 
 public class ShiftConfiguration : IEntityTypeConfiguration<Shift>
 {

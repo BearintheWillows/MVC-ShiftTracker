@@ -3,6 +3,7 @@
 namespace ShiftTracker.Migrations;
 
 using System.Runtime.InteropServices.JavaScript;
+using Data.Models;
 using Microsoft.EntityFrameworkCore;
 
 public static class ModelBuilderExtentions

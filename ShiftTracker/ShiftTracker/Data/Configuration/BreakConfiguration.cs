@@ -1,8 +1,9 @@
-﻿namespace ShiftTracker.Data;
+﻿namespace ShiftTracker.Data.Configuration;
 
-using Areas.Shifts.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Models;
+using ShiftTracker.Areas.Shifts.Models;
 
 public class BreakConfiguration : IEntityTypeConfiguration<Break>
 {
