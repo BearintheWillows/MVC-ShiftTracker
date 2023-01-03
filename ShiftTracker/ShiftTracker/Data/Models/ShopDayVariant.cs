@@ -1,4 +1,4 @@
-﻿namespace ShiftTracker.Areas.Shifts.Models;
+﻿namespace ShiftTracker.Data.Models;
 
 public class ShopDayVariant
 {

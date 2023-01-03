@@ -1,14 +1,16 @@
-﻿namespace ShiftTracker.Areas.Shifts.Models;
+﻿namespace ShiftTracker.Data.Models;
+
+using Areas.Shifts.Models;
 
 public class Shop
 {
-	public int    Id          { get; set; }
-	public string Street      { get; set; } = string.Empty;
-	public string Street2     { get; set; } = string.Empty;
-	public string City        { get; set; } = string.Empty;
-	public string County      { get; set; } = string.Empty;
-	public string Postcode    { get; set; } = string.Empty;
-	public int    PhoneNumber { get; set; } = 0;
+	public int     Id          { get; set; }
+	public string  Street      { get; set; } = string.Empty;
+	public string? Street2     { get; set; } = string.Empty;
+	public string  City        { get; set; } = string.Empty;
+	public string  County      { get; set; } = string.Empty;
+	public string  Postcode    { get; set; } = string.Empty;
+	public int     PhoneNumber { get; set; } = 0;
 
 	
 	public ICollection<ShopDayVariant> DayVariants { get; set; }

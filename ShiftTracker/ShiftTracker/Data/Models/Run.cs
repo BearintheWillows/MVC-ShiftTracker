@@ -1,4 +1,6 @@
-﻿namespace ShiftTracker.Areas.Shifts.Models;
+﻿namespace ShiftTracker.Data.Models;
+
+using Areas.Shifts.Models;
 
 public class Run
 {
