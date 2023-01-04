@@ -31,76 +31,38 @@ public class ShiftsApiController : ControllerBase
 	[HttpGet, Route( "base" )]
 	public async Task<IActionResult> GetAllBaseShifts([FromQuery] bool includeRun = false, bool includeBreaks = false)
 	{
-		var shifts = new List<BaseShiftDto>();
 		try
 		{
-			if ( includeRun == false && includeBreaks == false )
-				shifts = await _dbContext.Shifts
-				                         .Select( s => new BaseShiftDto { Id = s.Id, Date = s.Date, RunId = s.RunId } )
-				                         .ToListAsync();
-			else if ( includeRun == true && includeBreaks == false )
-				shifts = await _dbContext.Shifts
-				                         .Include( s => s.Run )
-				                         .Select( s => new BaseShiftDto
-						                          {
-						                          Id = s.Id,
-						                          Date = s.Date,
-						                          RunId = s.RunId,
-						                          Run = new RunDto
-							                          {
-							                          Id = s.Run.Id, Number = s.Run.Number, StartTime = s.Run.StartTime,
-							                          },
-						                          }
-				                          ).ToListAsync();
-			else if ( includeRun == false && includeBreaks == true )
-				shifts = await _dbContext.Shifts
-				                         .Include( s => s.Breaks )
-				                         .Select( s => new BaseShiftDto
-						                          {
-						                          Id = s.Id,
-						                          Date = s.Date,
-						                          RunId = s.RunId,
-						                          Breaks = s.Breaks.Select( b => new BreakDto
-								                          {
-								                          Id = b.Id,
-								                          StartTime = b.StartTime,
-								                          EndTime = b.EndTime,
-								                          Duration = s.EndTime - s.StartTime,
-								                          }
-						                          ).ToList(),
-						                          }
-				                          )
-				                         .ToListAsync();
-			else
-				shifts = await _dbContext.Shifts
-				                         .Include( s => s.Run )
-				                         .Include( s => s.Breaks )
-				                         .Select( s => new BaseShiftDto
-						                          {
-						                          Id = s.Id,
-						                          Date = s.Date,
-						                          RunId = s.RunId,
-						                          Run = new RunDto
-							                          {
-							                          Id = s.Run.Id, Number = s.Run.Number, StartTime = s.Run.StartTime,
-							                          },
-						                          Breaks = s.Breaks.Select( b => new BreakDto
-								                          {
-								                          Id = b.Id,
-								                          StartTime = b.StartTime,
-								                          EndTime = b.EndTime,
-								                          Duration = s.EndTime - s.StartTime,
-								                          }
-						                          ).ToList(),
-						                          }
-				                          ).ToListAsync();
+			Task<List<Shift>> shiftResultAsync = Task.FromResult( await _dbContext.Shifts.AsQueryable()
+				                                                     .IncludeBreaksCheck( includeBreaks )
+				                                                     .InccludeRunCheck( includeRun )
+				                                                     .ToListAsync()
+			);
+			while ( !shiftResultAsync.IsCompletedSuccessfully )
+			{ }
+
+			var shifts = shiftResultAsync.Result.Select( s => new BaseShiftDto
+					{
+					Id = s.Id,
+					Date = s.Date,
+					RunId = s.RunId,
+					Breaks = includeBreaks
+						? s.Breaks.Select( b => new BreakDto
+								{
+								Id = b.Id, ShiftId = b.ShiftId, StartTime = b.StartTime, EndTime = b.EndTime,
+								}
+						).ToList()
+						: null,
+					Run = includeRun ? new RunDto { Id = s.Run.Id, Number = s.Run.Number } : null,
+					}
+			).ToList();
 			return Ok( shifts );
 		}
 		catch ( Exception e )
 		{
 			Log.Error( e, "Error getting shifts" );
 			Console.WriteLine( e );
-			return BadRequest( shifts );
+			return BadRequest();
 		}
 	}
 }
