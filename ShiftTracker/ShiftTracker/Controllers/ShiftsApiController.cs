@@ -36,38 +36,16 @@ public class ShiftsApiController : ControllerBase
 	{
 		try
 		{
-			Task<List<Shift>> shiftResultAsync = Task.FromResult( await _dbContext.Shifts.AsQueryable()
-				                                                     .IncludeExtraData(
-					                                                      includeBreaks,
-					                                                      includeRun,
-					                                                      includeTimeData
-				                                                      )
-				                                                     .ToListAsync()
-			);
-			while ( !shiftResultAsync.IsCompletedSuccessfully )
-			{ }
-
-			var type = shiftResultAsync.Result.GetType();
-
-			var shifts = shiftResultAsync.Result.Select( s => new
+			List<Shift> shiftResultAsync = _dbContext.Shifts.AsQueryable()
+			                                               .IncludeExtraData( includeBreaks,
+			                                                                  includeRun,
+			                                                                  includeTimeData
+			                                                )
+			                                               .ToList();
+			
+			var shifts = shiftResultAsync.Select( s => new 
 					{
-					Id = s.Id,
-					Date = s.Date,
-					RunId = s.RunId,
-					Breaks = includeBreaks
-						? s.Breaks.Select( b => new BreakDto
-								{
-								Id = b.Id, ShiftId = b.ShiftId, StartTime = b.StartTime, EndTime = b.EndTime,
-								}
-						).ToList()
-						: null,
-					Run = includeRun ? new RunDto { Id = s.Run.Id, Number = s.Run.Number } : null,
-					StartTime = includeTimeData ? s.StartTime : new TimeSpan( 00, 00, 00 ),
-					EndTime = includeTimeData ? s.EndTime : new TimeSpan( 00, 00, 00 ),
-					ShiftDuration = includeTimeData ? s.ShiftDuration : new TimeSpan( 00, 00, 00 ),
-					BreakDuration = includeTimeData ? s.BreakDuration : new TimeSpan( 00, 00, 00 ),
-					OtherWorkTime = includeTimeData ? s.OtherWorkTime : new TimeSpan( 00, 00, 00 ),
-					WorkTime = includeTimeData ? s.WorkTime : new TimeSpan( 00, 00, 00 ),
+					_ = ShiftDto.CreateDto(s, (includeBreaks, includeRun,  includeTimeData))
 					}
 			).ToList();
 			return Ok( shifts );
@@ -117,7 +95,7 @@ public class ShiftsApiController : ControllerBase
 	/// <param name="shiftDto"></param>
 	/// <returns></returns>
 	[HttpPost]
-	public async Task<ActionResult?> CreateShift([FromBody] ShiftDto shiftDto)
+	public async Task<ActionResult?> AddShift([FromBody] ShiftDto shiftDto)
 	{
 		if ( !ShiftValidator.TimeEntryValidation( shiftDto ) )
 		{
@@ -152,5 +130,57 @@ public class ShiftsApiController : ControllerBase
 		}
 	}
 	
+	[HttpDelete("delete/{id}")]
+	public async Task<ActionResult> DeleteShift(int id)
+	{
+		try
+		{
+			var shift = await _dbContext.Shifts.FindAsync( id );
+			if (shift == null)
+				return NotFound("Shift not found");
+			_dbContext.Shifts.Remove( shift );
+			await _dbContext.SaveChangesAsync();
+			return Ok("Shift Deleted Successfully");
+		}
+		catch ( Exception e )
+		{
+			Log.Error( e, "Error deleting shift" );
+			Console.WriteLine( e );
+			return BadRequest("Error deleting shift");
+		}
+	}
 	
+	[HttpPut]
+	public async Task<IActionResult> UpdateShift([FromBody] ShiftDto shiftDto)
+	{
+		if ( !ShiftValidator.TimeEntryValidation( shiftDto ) )
+		{
+			return BadRequest("Time entries do not add up to shift duration total") ;
+		}
+		
+		try
+		{
+			var shift = await _dbContext.Shifts.FindAsync( shiftDto.Id );
+			if (shift == null)
+				return NotFound("Shift not found");
+			shift.Date = shiftDto.Date;
+			shift.RunId = shiftDto.RunId;
+			shift.StartTime = shiftDto.StartTime;
+			shift.EndTime = shiftDto.EndTime;
+			shift.BreakDuration = shiftDto.BreakDuration;
+			shift.DriveTime = shiftDto.DriveTime;
+			shift.ShiftDuration = shiftDto.ShiftDuration;
+			shift.OtherWorkTime = shiftDto.OtherWorkTime;
+			shift.WorkTime = shiftDto.WorkTime;
+			_dbContext.Shifts.Update( shift );
+			await _dbContext.SaveChangesAsync();
+			return Ok("Shift Updated Successfully");
+		}
+		catch ( Exception e )
+		{
+			Log.Error( e, "Error updating shift" );
+			Console.WriteLine( e );
+			return BadRequest("Error updating shift");
+		}
+	}
 }
