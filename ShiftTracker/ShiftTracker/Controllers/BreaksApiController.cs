@@ -2,11 +2,8 @@
 
 namespace ShiftTracker.Controllers;
 
-public class BreaksApiController : Controller
+[ApiController, Route("api/breaks")]
+public class BreaksApiController : ControllerBase
 {
-	// GET
-	public IActionResult Index()
-	{
-		return View();
-	}
+	
 }
