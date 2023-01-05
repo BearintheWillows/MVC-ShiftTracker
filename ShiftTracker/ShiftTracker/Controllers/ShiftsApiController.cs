@@ -37,12 +37,11 @@ public class ShiftsApiController : ControllerBase
 		try
 		{
 			List<Shift> shiftResultAsync = _dbContext.Shifts.AsQueryable()
-			                                               .IncludeExtraData( includeBreaks,
+			                                               .IncludeExtraShiftData( includeBreaks,
 			                                                                  includeRun,
 			                                                                  includeTimeData
 			                                                )
 			                                               .ToList();
-			
 			var shifts = shiftResultAsync.Select( s => new 
 					{
 					_ = ShiftDto.CreateDto(s, (includeBreaks, includeRun,  includeTimeData))
@@ -72,7 +71,7 @@ public class ShiftsApiController : ControllerBase
 		try
 		{
 			var shift = _dbContext.Shifts.AsQueryable()
-			                            .IncludeExtraData( includeBreaks, includeRun, includeTimeData )
+			                            .IncludeExtraShiftData( includeBreaks, includeRun, includeTimeData )
 			                            .FirstOrDefault( s => s.Id == id );
 			if (shift != null)
 				return await ShiftDto.CreateDto(shift, (includeBreaks, includeRun, includeTimeData));

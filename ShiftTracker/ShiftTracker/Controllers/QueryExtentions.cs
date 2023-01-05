@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 public static class QueryExtentions
 {
-	public static IQueryable<Shift> IncludeExtraData(
+	public static IQueryable<Shift> IncludeExtraShiftData(
 		this IQueryable<Shift> query,
 		bool                   includeBreaks,
 		bool                   includeRun,
