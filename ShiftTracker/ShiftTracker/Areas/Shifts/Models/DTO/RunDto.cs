@@ -8,7 +8,6 @@ public class RunDto
 	public int  Number { get; set; }
 	public TimeSpan StartTime { get; set; }
 	
-	public ICollection<BaseShiftDto>?         BaseShifts         { get; set; }
-	public ICollection<ShiftWithTimeDataDto>? ShiftsWithTimeData { get; set; }
+	public ICollection<ShiftDto>? BaseShifts { get; set; }
 	public ICollection<ShopDayVariantDto>     Shops              { get; set; }
 }
