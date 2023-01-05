@@ -87,46 +87,18 @@ public class ShiftsApiController : ControllerBase
 	/// <param name="includeBreaks"></param>
 	/// <param name="includeTimeData"></param>
 	/// <returns></returns>
-	[HttpGet, Route( "base/{id}" )]
-	public async Task<ShiftDto> GetBaseShiftById(int id, bool includeRun = false, bool includeBreaks = false, bool includeTimeData = false)
+	[HttpGet( "{id}" )]
+	public async Task<ShiftDto?> GetBaseShiftById(int id, [FromQuery] bool includeRun = false, bool includeBreaks = false, bool includeTimeData = false)
 	{
 		try
 		{
-			Task<Shift?> shiftResultAsync =  Task.FromResult( await _dbContext.Shifts.AsQueryable()
-			                                                                  .IncludeExtraData( includeBreaks, includeRun, includeTimeData )
-			                                                                  .FirstOrDefaultAsync( s => s.Id == id )
-			);
-			while ( !shiftResultAsync.IsCompletedSuccessfully )
-			{ }
+			var shift = _dbContext.Shifts.AsQueryable()
+			                            .IncludeExtraData( includeBreaks, includeRun, includeTimeData )
+			                            .FirstOrDefault( s => s.Id == id );
+			if (shift != null)
+				return await CreateDto(shift, (includeBreaks, includeRun, includeTimeData));
 
-			var shift = shiftResultAsync.Result;
-			if ( shift == null )
-			{
-				return null;
-			}
-
-			
-			var baseShift = new ShiftDto()
-				{
-				Id = shift.Id,
-				Date = shift.Date,
-				RunId = shift.RunId,
-				Breaks = includeBreaks
-					? shift.Breaks.Select( b => new BreakDto
-							{
-							Id = b.Id, ShiftId = b.ShiftId, StartTime = b.StartTime, EndTime = b.EndTime,
-							}
-					).ToList()
-					: null,
-				Run = includeRun ? new RunDto { Id = shift.Run.Id, Number = shift.Run.Number } : null,
-				StartTime = includeTimeData ? shift.StartTime : new TimeSpan( 00, 00, 00 ),
-				EndTime = includeTimeData ? shift.EndTime : new TimeSpan( 00, 00, 00 ),
-				ShiftDuration = includeTimeData ? shift.ShiftDuration : new TimeSpan( 00, 00, 00 ),
-				BreakDuration = includeTimeData ? shift.BreakDuration : new TimeSpan( 00, 00, 00 ),
-				OtherWorkTime = includeTimeData ? shift.OtherWorkTime : new TimeSpan( 00, 00, 00 ),
-				WorkTime = includeTimeData ? shift.WorkTime : new TimeSpan( 00, 00, 00 ),
-				};
-			return baseShift;
+			return null;
 		}
 		catch ( Exception e )
 		{
@@ -135,9 +107,7 @@ public class ShiftsApiController : ControllerBase
 			return null;
 		}
 	}
-
-
-
+	
 
 	/// <summary>
 	/// Creates a new shift.
@@ -189,4 +159,36 @@ public class ShiftsApiController : ControllerBase
 	{
 		return shiftDto.ShiftDuration.Equals( new TimeSpan(shiftDto.BreakDuration.Ticks + shiftDto.WorkTime.Ticks + shiftDto.OtherWorkTime.Ticks + shiftDto.DriveTime.Ticks) );
 	}
+	
+	/// <summary>
+	/// Creates ShiftDto from Shift data
+	/// </summary>
+	/// <param name="shift"></param>
+	/// <param name="opts"></param>
+	/// <returns>ShiftDto</returns>
+	public async Task<ShiftDto> CreateDto(Shift shift, [FromQuery] (bool includeBreaks, bool includeRun, bool includeTimeData) opts)
+	{
+		var shiftDto = new ShiftDto()
+			{
+			Id = shift.Id,
+			Date = shift.Date,
+			RunId = shift.RunId,
+			Breaks = opts.includeBreaks
+				? shift.Breaks.Select( b => new BreakDto
+						{
+						Id = b.Id, ShiftId = b.ShiftId, StartTime = b.StartTime, EndTime = b.EndTime,
+						}
+				).ToList()
+				: null,
+			Run = opts.includeRun ? new RunDto { Id = shift.Run.Id, Number = shift.Run.Number } : null,
+			StartTime = opts.includeTimeData ? shift.StartTime : new TimeSpan( 00, 00, 00 ),
+			EndTime = opts.includeTimeData ? shift.EndTime : new TimeSpan( 00, 00, 00 ),
+			ShiftDuration = opts.includeTimeData ? shift.ShiftDuration : new TimeSpan( 00, 00, 00 ),
+			BreakDuration = opts.includeTimeData ? shift.BreakDuration : new TimeSpan( 00, 00, 00 ),
+			OtherWorkTime = opts.includeTimeData ? shift.OtherWorkTime : new TimeSpan( 00, 00, 00 ),
+			WorkTime = opts.includeTimeData ? shift.WorkTime : new TimeSpan( 00, 00, 00 ),
+			};
+		return shiftDto;
+	}
+
 }
