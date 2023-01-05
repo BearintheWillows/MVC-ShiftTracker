@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Areas.Shifts.Models;
 using Data;
+using Pages.Validators;
 
 [ApiController, Route( "api/shifts" )]
 public class ShiftsApiController : ControllerBase
@@ -88,7 +89,7 @@ public class ShiftsApiController : ControllerBase
 	/// <param name="includeTimeData"></param>
 	/// <returns></returns>
 	[HttpGet( "{id}" )]
-	public async Task<ShiftDto?> GetBaseShiftById(int id, [FromQuery] bool includeRun = false, bool includeBreaks = false, bool includeTimeData = false)
+	public async Task<ShiftDto?> GetBaseShiftById(int id, bool includeRun = false, bool includeBreaks = false, bool includeTimeData = false)
 	{
 		try
 		{
@@ -96,7 +97,7 @@ public class ShiftsApiController : ControllerBase
 			                            .IncludeExtraData( includeBreaks, includeRun, includeTimeData )
 			                            .FirstOrDefault( s => s.Id == id );
 			if (shift != null)
-				return await CreateDto(shift, (includeBreaks, includeRun, includeTimeData));
+				return await ShiftDto.CreateDto(shift, (includeBreaks, includeRun, includeTimeData));
 
 			return null;
 		}
@@ -118,6 +119,11 @@ public class ShiftsApiController : ControllerBase
 	[HttpPost]
 	public async Task<ActionResult?> CreateShift([FromBody] ShiftDto shiftDto)
 	{
+		if ( !ShiftValidator.TimeEntryValidation( shiftDto ) )
+		{
+			return BadRequest("Time entries do not add up to shift duration total") ;
+		}
+		
 		try
 		{
 			var shift = new Shift
@@ -133,10 +139,6 @@ public class ShiftsApiController : ControllerBase
 					OtherWorkTime = shiftDto.OtherWorkTime,
 					WorkTime = shiftDto.WorkTime,
 					};
-			if ( !TimeEntryValidation( shift ) )
-			{
-				return BadRequest("Time entries do not add up to shift duration") ;
-			}
 			await _dbContext.Shifts.AddAsync( shift );
 			await _dbContext.SaveChangesAsync();
 			shiftDto.Id = shift.Id;
@@ -150,45 +152,5 @@ public class ShiftsApiController : ControllerBase
 		}
 	}
 	
-	/// <summary>
-	/// Checks if the shift times add up to the shift duration.
-	/// </summary>
-	/// <param name="shiftDto"></param>
-	/// <returns>True/False</returns>
-	private static bool TimeEntryValidation(Shift shiftDto)
-	{
-		return shiftDto.ShiftDuration.Equals( new TimeSpan(shiftDto.BreakDuration.Ticks + shiftDto.WorkTime.Ticks + shiftDto.OtherWorkTime.Ticks + shiftDto.DriveTime.Ticks) );
-	}
 	
-	/// <summary>
-	/// Creates ShiftDto from Shift data
-	/// </summary>
-	/// <param name="shift"></param>
-	/// <param name="opts"></param>
-	/// <returns>ShiftDto</returns>
-	public async Task<ShiftDto> CreateDto(Shift shift, [FromQuery] (bool includeBreaks, bool includeRun, bool includeTimeData) opts)
-	{
-		var shiftDto = new ShiftDto()
-			{
-			Id = shift.Id,
-			Date = shift.Date,
-			RunId = shift.RunId,
-			Breaks = opts.includeBreaks
-				? shift.Breaks.Select( b => new BreakDto
-						{
-						Id = b.Id, ShiftId = b.ShiftId, StartTime = b.StartTime, EndTime = b.EndTime,
-						}
-				).ToList()
-				: null,
-			Run = opts.includeRun ? new RunDto { Id = shift.Run.Id, Number = shift.Run.Number } : null,
-			StartTime = opts.includeTimeData ? shift.StartTime : new TimeSpan( 00, 00, 00 ),
-			EndTime = opts.includeTimeData ? shift.EndTime : new TimeSpan( 00, 00, 00 ),
-			ShiftDuration = opts.includeTimeData ? shift.ShiftDuration : new TimeSpan( 00, 00, 00 ),
-			BreakDuration = opts.includeTimeData ? shift.BreakDuration : new TimeSpan( 00, 00, 00 ),
-			OtherWorkTime = opts.includeTimeData ? shift.OtherWorkTime : new TimeSpan( 00, 00, 00 ),
-			WorkTime = opts.includeTimeData ? shift.WorkTime : new TimeSpan( 00, 00, 00 ),
-			};
-		return shiftDto;
-	}
-
 }
