@@ -6,14 +6,84 @@ using Microsoft.EntityFrameworkCore;
 
 public static class QueryExtentions
 {
-	public static IQueryable<Shift> IncludeBreaksCheck(this IQueryable<Shift> query, bool includeBreaks)
+	public static IQueryable<Shift> IncludeExtraData(
+		this IQueryable<Shift> query,
+		bool                   includeBreaks,
+		bool                   includeRun,
+		bool                   includeTimeData
+	)
 	{
-		return includeBreaks ? query.Include(s => s.Breaks) : query;
-	}
+		if ( includeBreaks ) query = query.Include( s => s.Breaks );
 
+		if ( includeRun ) query = query.Include( s => s.Run );
 
-	public static IQueryable<Shift> InccludeRunCheck(this IQueryable<Shift> query, bool includeRun)
-	{
-		return includeRun ? query.Include(s => s.Run) : query;
+		if ( includeTimeData && includeRun && includeBreaks )
+			return query.Select( s => new Shift
+					{
+					Id = s.Id,
+					Date = s.Date,
+					RunId = s.RunId,
+					StartTime = s.StartTime,
+					EndTime = s.EndTime,
+					ShiftDuration = s.ShiftDuration,
+					BreakDuration = s.BreakDuration,
+					OtherWorkTime = s.OtherWorkTime,
+					WorkTime = s.WorkTime,
+					Breaks = s.Breaks,
+					Run = s.Run,
+					}
+			);
+		else if ( !includeTimeData && includeRun && includeBreaks )
+			return query.Select( s => new Shift
+					{
+					Id = s.Id,
+					Date = s.Date,
+					RunId = s.RunId,
+					Breaks = s.Breaks,
+					Run = s.Run,
+					}
+			);
+		else if ( !includeTimeData && !includeRun && includeBreaks )
+			return query.Select( s => new Shift
+					{
+					Id = s.Id, Date = s.Date, RunId = s.RunId, Breaks = s.Breaks,
+					}
+			);
+		else if ( !includeTimeData && !includeBreaks && !includeRun )
+			return query.Select( s => new Shift { Id = s.Id, Date = s.Date, RunId = s.RunId } );
+		else if ( !includeTimeData && includeRun && !includeBreaks )
+			return query.Select( s => new Shift { Id = s.Id, Date = s.Date, RunId = s.RunId, Run = s.Run } );
+		else if ( includeTimeData && !includeRun && includeBreaks )
+			return query.Select( s => new Shift
+					{
+					Id = s.Id,
+					Date = s.Date,
+					RunId = s.RunId,
+					Breaks = s.Breaks,
+					StartTime = s.StartTime,
+					EndTime = s.EndTime,
+					ShiftDuration = s.ShiftDuration,
+					BreakDuration = s.BreakDuration,
+					OtherWorkTime = s.OtherWorkTime,
+					WorkTime = s.WorkTime,
+					}
+			);
+		else if ( includeTimeData && includeRun && !includeBreaks )
+			return query.Select( s => new Shift
+					{
+					Id = s.Id,
+					Date = s.Date,
+					RunId = s.RunId,
+					Run = s.Run,
+					StartTime = s.StartTime,
+					EndTime = s.EndTime,
+					ShiftDuration = s.ShiftDuration,
+					BreakDuration = s.BreakDuration,
+					OtherWorkTime = s.OtherWorkTime,
+					WorkTime = s.WorkTime,
+					}
+			);
+
+		return query;
 	}
 }
