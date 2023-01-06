@@ -1,5 +1,6 @@
 ﻿namespace ShiftTracker.Data.Models;
 
+using System.Collections;
 using Areas.Shifts.Models;
 
 public class Run
@@ -9,5 +10,5 @@ public class Run
 	public TimeSpan StartTime { get; set; }
 	
 	public ICollection<Shift> Shifts { get; set; }
-	public ICollection<DayVariant> Shops { get; set; }
+	public ICollection<DayVariant>? Shops { get; set; }
 }
