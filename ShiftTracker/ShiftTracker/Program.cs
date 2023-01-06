@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using ShiftTracker.Data;
+using ShiftTracker.Services;
 
 var builder = WebApplication.CreateBuilder( args );
 
@@ -17,12 +18,14 @@ builder.Services.AddCors(options =>
 builder.Services.AddDbContext<ApplicationDbContext>( options =>
 	options.UseSqlServer( builder.Configuration.GetConnectionString( "DefaultConnection" ) ) );
 
+builder.Services.AddScoped<IShopService, ShopService>();
+
 Log.Logger = new LoggerConfiguration()
-	.WriteTo.File( 
+            .WriteTo.File( 
 	             "log-.txt", 
 	             rollingInterval: RollingInterval.Day,
 	             outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}"
-	             ).CreateLogger();
+             ).CreateLogger();
 
 var app = builder.Build();
 

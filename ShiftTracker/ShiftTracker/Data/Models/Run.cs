@@ -9,5 +9,5 @@ public class Run
 	public TimeSpan StartTime { get; set; }
 	
 	public ICollection<Shift> Shifts { get; set; }
-	public ICollection<ShopDayVariant> Shops { get; set; }
+	public ICollection<DayVariant> Shops { get; set; }
 }

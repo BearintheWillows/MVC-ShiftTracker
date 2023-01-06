@@ -3,6 +3,7 @@
 namespace ShiftTracker.Pages.Areas.Shifts.Pages;
 
 using Data;
+using Data.Models;
 using ShiftTracker.Areas.Shifts.Models;
 
 public class Index : PageModel

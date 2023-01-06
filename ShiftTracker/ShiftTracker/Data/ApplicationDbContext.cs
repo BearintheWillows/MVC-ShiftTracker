@@ -35,4 +35,12 @@ public class ApplicationDbContext : DbContext
 		get;
 		set;
 	}
+	
+	public DbSet<DayVariant> DayVariants
+	{
+		get;
+		set;
+	}
+	
+	
 }

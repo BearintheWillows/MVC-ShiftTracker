@@ -11,6 +11,6 @@ public class BreakDto
 	public TimeSpan Duration  { get; set; }
 	
 	// Navigation properties
-	public int   ShiftId { get; set; }
-	public Shift Shift   { get; set; }
+	public int ShiftId { get; set; }
+	public Shift? Shift   { get; set; }
 }

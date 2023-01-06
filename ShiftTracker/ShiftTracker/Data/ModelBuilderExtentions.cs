@@ -132,7 +132,7 @@ public static class ModelBuilderExtentions
 			                                     }
 		);
 
-		modelBuilder.Entity<ShopDayVariant>().HasData(
+		modelBuilder.Entity<DayVariant>().HasData(
 			new
 				{
 				Id = -1,

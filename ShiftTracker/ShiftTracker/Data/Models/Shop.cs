@@ -13,6 +13,6 @@ public class Shop
 	public int     PhoneNumber { get; set; } = 0;
 
 	
-	public ICollection<ShopDayVariant> DayVariants { get; set; }
+	public ICollection<DayVariant> DayVariants { get; set; }
 	
 }

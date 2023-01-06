@@ -1,5 +1,7 @@
 ﻿namespace ShiftTracker.Data.Models;
 
+using Areas.Shifts.Models.DTO;
+
 public class Break
 {
 	
@@ -9,8 +11,8 @@ public class Break
 	public TimeSpan Duration { get; set; }
 	
 	// Navigation properties
-	public int ShiftId { get; set; }
-	public Shift Shift { get; set; }
+	public int             ShiftId { get; set; }
+	public Shift Shift   { get; set; }
 	
 	public void ComputeDuration()
 	{

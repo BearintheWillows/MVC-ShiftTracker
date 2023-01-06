@@ -86,4 +86,12 @@ public static class QueryExtentions
 
 		return query;
 	}
+	
+	public static IQueryable<Shop> IncludeDayVariants(
+		this IQueryable<Shop> query,
+		bool includeVariants 
+	)
+	{
+		return query.Include( s => s.DayVariants );
+	}
 }
