@@ -30,7 +30,7 @@ public class ApplicationDbContext : DbContext
 		get;
 		set;
 	}
-	public DbSet<Shop> Shops
+	public DbSet<Shop?> Shops
 	{
 		get;
 		set;

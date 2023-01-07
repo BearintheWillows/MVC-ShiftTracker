@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShiftTracker.Data;
 
@@ -11,9 +12,11 @@ using ShiftTracker.Data;
 namespace ShiftTracker.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230107000939_AddedShopName")]
+    partial class AddedShopName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -288,9 +291,6 @@ namespace ShiftTracker.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<int>("Number")
-                        .HasColumnType("int");
-
                     b.Property<int>("PhoneNumber")
                         .HasMaxLength(20)
                         .HasColumnType("int");
@@ -320,7 +320,6 @@ namespace ShiftTracker.Migrations
                             City = "Irthlingborough",
                             County = "Northants",
                             Name = "Tesco",
-                            Number = 2006,
                             PhoneNumber = 1536741000,
                             Postcode = "NN95JG",
                             Street = "3 School Mews",
@@ -332,7 +331,6 @@ namespace ShiftTracker.Migrations
                             City = "Northampton",
                             County = "Northants",
                             Name = "Tesco",
-                            Number = 2005,
                             PhoneNumber = 1604620000,
                             Postcode = "NN38px",
                             Street = "38 Chesham Rise",
@@ -344,7 +342,6 @@ namespace ShiftTracker.Migrations
                             City = "Stanwick",
                             County = "Northants",
                             Name = "Tesco",
-                            Number = 2004,
                             PhoneNumber = 1536741000,
                             Postcode = "NN96JG",
                             Street = "10 Leighton Close",
@@ -356,7 +353,6 @@ namespace ShiftTracker.Migrations
                             City = "Thetford",
                             County = "Suffolk",
                             Name = "Aldi",
-                            Number = 121,
                             PhoneNumber = 1842741000,
                             Postcode = "IP242JG",
                             Street = "34 Church Rise",
@@ -368,7 +364,6 @@ namespace ShiftTracker.Migrations
                             City = "Brandon",
                             County = "Suffolk",
                             Name = "One Stop",
-                            Number = 1223,
                             PhoneNumber = 1842741000,
                             Postcode = "IP20JG",
                             Street = "2 Gander Avenue",

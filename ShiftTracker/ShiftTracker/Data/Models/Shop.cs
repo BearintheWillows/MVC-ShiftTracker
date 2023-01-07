@@ -5,6 +5,9 @@ using Areas.Shifts.Models;
 public class Shop
 {
 	public int     Id          { get; set; }
+	public string  Name        { get; set; } = string.Empty;
+
+	public int     Number      { get; set; } = 0;
 	public string  Street      { get; set; } = string.Empty;
 	public string? Street2     { get; set; } = string.Empty;
 	public string  City        { get; set; } = string.Empty;

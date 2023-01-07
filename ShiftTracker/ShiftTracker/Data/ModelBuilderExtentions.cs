@@ -83,6 +83,8 @@ public static class ModelBuilderExtentions
 		modelBuilder.Entity<Shop>().HasData( new
 			                                     {
 			                                     Id = -1,
+			                                     Name = "Tesco",
+			                                     Number = 2006,
 			                                     Street = "3 School Mews",
 			                                     Street2 = "",
 			                                     City = "Irthlingborough",
@@ -93,6 +95,8 @@ public static class ModelBuilderExtentions
 		                                     new
 			                                     {
 			                                     Id = -2,
+			                                     Name = "Tesco",
+			                                     Number = 2005,
 			                                     Street = "38 Chesham Rise",
 			                                     Street2 = "",
 			                                     City = "Northampton",
@@ -103,6 +107,8 @@ public static class ModelBuilderExtentions
 		                                     new
 			                                     {
 			                                     Id = -3,
+			                                     Name = "Tesco",
+			                                     Number = 2004,
 			                                     Street = "10 Leighton Close",
 			                                     Street2 = "",
 			                                     City = "Stanwick",
@@ -113,6 +119,8 @@ public static class ModelBuilderExtentions
 		                                     new
 			                                     {
 			                                     Id = -4,
+			                                     Name = "Aldi",
+			                                     Number = 121,
 			                                     Street = "34 Church Rise",
 			                                     Street2 = "",
 			                                     City = "Thetford",
@@ -123,6 +131,8 @@ public static class ModelBuilderExtentions
 		                                     new
 			                                     {
 			                                     Id = -5,
+			                                     Name = "One Stop",
+			                                     Number = 1223,
 			                                     Street = "2 Gander Avenue",
 			                                     Street2 = "",
 			                                     City = "Brandon",

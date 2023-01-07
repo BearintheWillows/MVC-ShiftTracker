@@ -42,6 +42,8 @@ public class ShopApiController : ControllerBase
 			var shopResultDto = shops.Select( s => new ShopDto
 					{
 					Id = s.Id,
+					Name = s.Name,
+					Number = s.Number,
 					Street = s.Street,
 					Street2 = s.Street2,
 					City = s.City,
@@ -72,106 +74,114 @@ public class ShopApiController : ControllerBase
 			return BadRequest();
 		}
 	}
-}
 
-// [HttpGet("{id}")]
-	// public IActionResult GetShiftById(int id, [FromQuery] bool includeDayData = false)
-	// {
-	// 	try
-	// 	{
-	// 		Shop? shopResultAsync = _dbContext.Shops.AsQueryable()
-	// 		                                       .IncludeDayVariants( includeDayData )
-	// 		                                       .FirstOrDefault( s => s.Id == id );
-	//
-	// 		if ( shopResultAsync == null )
-	// 		{
-	// 			return new NotFoundResult();
-	// 		}
-	// 		
-	// 		var shopDto = new ShopDto
-	// 		{
-	// 			Id = shopResultAsync.Id,
-	// 			Street = shopResultAsync.Street,
-	// 			Street2 = shopResultAsync.Street2,
-	// 			City = shopResultAsync.City,
-	// 			County = shopResultAsync.County,
-	// 			Postcode = shopResultAsync.Postcode,
-	// 			PhoneNumber = shopResultAsync.PhoneNumber,
-	// 			DayVariants = includeDayData
-	// 				? shopResultAsync.DayVariants.Select(
-	// 					dv => new DayVariantDto
-	// 						{
-	// 						Id = dv.Id,
-	// 						ShopId = dv.ShopId,
-	// 						DayOfWeek = dv.DayOfWeek,
-	// 						WindowOpenTime = dv.WindowOpenTime,
-	// 						WindowCloseTime = dv.WindowCloseTime,
-	// 						RunId = dv.RunId
-	// 						}
-	// 				).ToList()
-	// 				: null,
-	// 		};
-	// 		
-	// 		return Ok( shopDto );
-	// 	}
-	// 	catch ( Exception e )
-	// 	{
-	// 		Log.Error( e, "Error getting shifts" );
-	// 		Console.WriteLine( e );
-	// 		return BadRequest();
-	// 	}
-	// }
-	//
-	// [HttpDelete("delete/{id}")]
-	// public async Task<IActionResult> DeleteShiftById(int id)
-	// {
-	// 	try
-	// 	{
-	// 		Shop? shopResultAsync = _dbContext.Shops.Find( id );
-	//
-	// 		if ( shopResultAsync == null )
-	// 		{
-	// 			return NotFound("No Shops found with that ID");
-	// 		}
-	// 		
-	// 		_dbContext.Shops.Remove( shopResultAsync );
-	// 		await _dbContext.SaveChangesAsync();
-	//
-	// 		return Ok( "Deleted Successfully" );
-	// 	}
-	// 	catch ( Exception e )
-	// 	{
-	// 		Log.Error( e, "Error getting shifts" );
-	// 		Console.WriteLine( e );
-	// 		return BadRequest("Error deleting shop");
-	// 	}
-	// }
-	//
-	// [HttpPost]
-	// public Task<IActionResult> CreateShop([FromBody] ShopDto shopDto)
-	// {
-	// 	try
-	// 	{
-	// 		Shop shop = new Shop
-	// 		{
-	// 			Street = shopDto.Street,
-	// 			Street2 = shopDto.Street2,
-	// 			City = shopDto.City,
-	// 			County = shopDto.County,
-	// 			Postcode = shopDto.Postcode,
-	// 			PhoneNumber = shopDto.PhoneNumber,
-	// 			DayVariants = new List<DayVariant>()
-	// 		};
-	// 		
-	// 		_dbContext.Shops.Add( shop );
-	// 		_dbContext.SaveChangesAsync();
-	//
-	// 		return Task.FromResult<IActionResult>( Ok( shop ) );
-	// 	}
-	// 	catch ( Exception e )
-	// 	{
-	// 		Log.Error( e, "Error getting shifts" );
-	// 		Console.WriteLine( e );
-	// 		return Task.FromResult<IActionResult>( BadRequest("Error creating shop") );
-	// 	}
-	//}
+	[HttpGet("{id}")]
+	 public async Task<IActionResult> GetShiftById(int id, [FromQuery] bool includeDayData = false)
+	 {
+	 	try
+	    {
+		    Shop? shopResultAsync;
+
+		    if ( includeDayData == true )
+		    {
+			    shopResultAsync = await _shopService.GetShopWithDayData( id );
+		    }
+		    else
+		    {
+			    shopResultAsync = await _shopService.GetAsync( id );
+		    }
+		    
+	 		if ( shopResultAsync == null )
+	 		{
+	 			return new NotFoundResult();
+	 		}
+	 		
+	 		var shopDto = new ShopDto
+	 		{
+	 			Id = shopResultAsync.Id,
+				Name = shopResultAsync.Name,
+				Number = shopResultAsync.Number,
+	 			Street = shopResultAsync.Street,
+	 			Street2 = shopResultAsync.Street2,
+	 			City = shopResultAsync.City,
+	 			County = shopResultAsync.County,
+	 			Postcode = shopResultAsync.Postcode,
+	 			PhoneNumber = shopResultAsync.PhoneNumber,
+	 			DayVariants = includeDayData
+	 				? shopResultAsync.DayVariants.Select(
+	 					dv => new DayVariantDto
+	 						{
+	 						Id = dv.Id,
+	 						ShopId = dv.ShopId,
+	 						DayOfWeek = dv.DayOfWeek,
+	 						WindowOpenTime = dv.WindowOpenTime,
+	 						WindowCloseTime = dv.WindowCloseTime,
+	 						RunId = dv.RunId
+	 						}
+	 				).ToList()
+	 				: null,
+	 		};
+	 		
+	 		return Ok( shopDto );
+	 	}
+	 	catch ( Exception e )
+	 	{
+	 		Log.Error( e, "Error getting shifts" );
+	 		Console.WriteLine( e );
+	 		return BadRequest("Error getting shifts");
+	 	}
+	 }
+	
+	 [HttpDelete("{id}")]
+	 public async Task<IActionResult> DeleteShiftById(int id)
+	 {
+	 	try
+	    {
+		    if ( await _shopService.ExistsAsync( id ) == false )
+	 		{
+	 			return NotFound("No Shops found with that ID");
+	 		}
+
+		    await _shopService.DeleteAsync( id );
+		    
+		    return Ok( "Deleted Successfully" );
+	 	}
+	 	catch ( Exception e )
+	 	{
+	 		Log.Error( e, "Error getting shifts" );
+	 		Console.WriteLine( e );
+	 		return BadRequest("Error deleting shop");
+	 	}
+	 }
+
+	 [HttpPost]
+	 public async Task<IActionResult> CreateShop([FromBody] ShopDto shopDto)
+	 {
+		 try
+		 {
+			 Shop shop = new Shop
+				 
+				 {
+				 Id = shopDto.Id,
+				 Name = shopDto.Name,
+				 Street = shopDto.Street,
+				 Street2 = shopDto.Street2,
+				 City = shopDto.City,
+				 County = shopDto.County,
+				 Postcode = shopDto.Postcode,
+				 PhoneNumber = shopDto.PhoneNumber,
+				 DayVariants = new List<DayVariant>()
+				 };
+
+			 await _shopService.UpdateAsync(  shop );
+
+			 return Ok(shop);
+		 }
+		 catch ( Exception e )
+		 {
+			 Log.Error( e, "Error getting shifts" );
+			 Console.WriteLine( e );
+			 return BadRequest("Error creating shop");
+		 }
+	 }
+}
