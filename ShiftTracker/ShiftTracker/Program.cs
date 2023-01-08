@@ -23,6 +23,7 @@ builder.Services.AddScoped<IShiftService, ShiftService>();
 builder.Services.AddScoped<IBreakService, BreakService>();
 builder.Services.AddScoped<IDailyRoutePlanService, DailyRoutePlanService>();
 builder.Services.AddScoped<IRunService, RunService>();
+
 Log.Logger = new LoggerConfiguration()
             .WriteTo.File( 
 	             "log-.txt", 

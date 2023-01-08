@@ -52,7 +52,7 @@ public class ShopApiController : ControllerBase
 					Postcode = s.Postcode,
 					PhoneNumber = s.PhoneNumber,
 					DayVariants = includeDayData
-						? s.DayVariants.Select( dv => new DailyRoutePlanDto
+						? s.DailyRoutePlan.Select( dv => new DailyRoutePlanDto
 								{
 								Id = dv.Id,
 								ShopId = dv.ShopId,
@@ -108,7 +108,7 @@ public class ShopApiController : ControllerBase
 				Postcode = shopResultAsync.Postcode,
 				PhoneNumber = shopResultAsync.PhoneNumber,
 				DayVariants = includeDayData
-					? shopResultAsync.DayVariants.Select( dv => new DailyRoutePlanDto
+					? shopResultAsync.DailyRoutePlan.Select( dv => new DailyRoutePlanDto
 							{
 							Id = dv.Id,
 							ShopId = dv.ShopId,
@@ -175,7 +175,7 @@ public class ShopApiController : ControllerBase
 				County = shopDto.County,
 				Postcode = shopDto.Postcode,
 				PhoneNumber = shopDto.PhoneNumber,
-				DayVariants = new List<DailyRoutePlan>()
+				DailyRoutePlan = new List<DailyRoutePlan>()
 				};
 
 			await _shopService.AddAsync( shop );

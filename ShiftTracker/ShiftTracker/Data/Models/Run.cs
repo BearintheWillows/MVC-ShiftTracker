@@ -10,5 +10,5 @@ public class Run
 	public TimeSpan StartTime { get; set; }
 	
 	public ICollection<Shift> Shifts { get; set; }
-	public ICollection<DailyRoutePlan>? Shops { get; set; }
+	public ICollection<DailyRoutePlan>? RoutePlans{ get; set; }
 }

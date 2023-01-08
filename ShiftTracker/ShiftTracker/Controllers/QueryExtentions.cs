@@ -92,6 +92,6 @@ public static class QueryExtentions
 		bool includeVariants 
 	)
 	{
-		return query.Include( s => s.DayVariants );
+		return query.Include( s => s.DailyRoutePlan );
 	}
 }

@@ -38,7 +38,7 @@ public class ShopService : BaseCrudService<Shop>, IShopService
 	/// <returns>List of Shops</returns>
 	public async Task<IEnumerable<Shop>> GetAllShopsWithDayData()
 	{
-		return await _context.Shops.Include(s => s.DayVariants).ToListAsync();
+		return await _context.Shops.Include(s => s.DailyRoutePlan).ToListAsync();
 	}
 	
 	/// <summary>
@@ -48,7 +48,7 @@ public class ShopService : BaseCrudService<Shop>, IShopService
 	/// <returns>Shop Entity</returns>
 	public async Task<Shop?> GetShopWithDayData(int id)
 	{
-		return await _context.Shops.Include(s => s.DayVariants).FirstOrDefaultAsync(s => s.Id == id);
+		return await _context.Shops.Include(s => s.DailyRoutePlan).FirstOrDefaultAsync(s => s.Id == id);
 	}
 	
 	/// <summary>

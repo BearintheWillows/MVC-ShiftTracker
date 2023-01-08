@@ -14,8 +14,8 @@ public class DailyRoutePlanDto
 	public int?    RunId { get; set; }
 	public RunDto? Run   { get; set; }
 
-	public int      ShopId { get; set; }
-	public ShopDto? Shop   { get; set; }
+	public int                  ShopId { get; set; }
+	public IEnumerable<ShopDto> Shop   { get; set; }
 
 	public static ICollection<DailyRoutePlan> CreateVariants(int runId)
 	{
