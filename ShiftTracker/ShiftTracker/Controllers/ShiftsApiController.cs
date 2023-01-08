@@ -1,92 +1,96 @@
-﻿// namespace ShiftTracker.Controllers;
-//
-// using System.Runtime.InteropServices.JavaScript;
-// using Areas.Shifts.Models.DTO;
-// using Data.Models;
-// using Microsoft.AspNetCore.Mvc;
-// using Microsoft.EntityFrameworkCore;
-// using Serilog;
-// using Areas.Shifts.Models;
-// using Data;
-// using Pages.Validators;
-// using Microsoft.AspNetCore.Http.HttpResults;
-//
-// [ApiController, Route( "api/shifts" )]
-// public class ShiftsApiController : ControllerBase
-// {
-// 	private static ApplicationDbContext _dbContext;
-//
-// 	public ShiftsApiController(ApplicationDbContext dbContext)
-// 	{
-// 		_dbContext = dbContext;
-// 	}
-//
-// 	/// <summary>
-// 	/// Get all Shifts without Time Data/// 
-// 	/// </summary>
-// 	/// <param name="includeRun"></param>
-// 	/// <param name="includeBreaks"></param>
-// 	/// <returns>
-// 	/// All Shift entities
-// 	/// </returns>
-// 	[HttpGet]
-// 	public async Task<IActionResult> GetAllShifts(
-// 		[FromQuery] bool includeRun      = false,
-// 		bool             includeBreaks   = false,
-// 		bool             includeTimeData = false
-// 	)
-// 	{
-// 		try
-// 		{
-// 			List<Shift> shiftResultAsync = _dbContext.Shifts.AsQueryable()
-// 			                                               .IncludeExtraShiftData( includeBreaks,
-// 			                                                                  includeRun,
-// 			                                                                  includeTimeData
-// 			                                                )
-// 			                                               .ToList();
-// 			var shifts = shiftResultAsync.Select( s => new 
-// 					{
-// 					 _ = ShiftDto.CreateDto(s, (includeBreaks, includeRun,  includeTimeData))
-// 					}
-// 			).ToList();
-// 			return Ok( shifts );
-// 		}
-// 		catch ( Exception e )
-// 		{
-// 			Log.Error( e, "Error getting shifts" );
-// 			Console.WriteLine( e );
-// 			return BadRequest();
-// 		}
-// 	}
-//
-// 	/// <summary>
-// 	/// Get Shift by Id
-// 	/// </summary>
-// 	/// <param name="id"></param>
-// 	/// <param name="includeRun"></param>
-// 	/// <param name="includeBreaks"></param>
-// 	/// <param name="includeTimeData"></param>
-// 	/// <returns></returns>
-// 	[HttpGet( "{id}" )]
-// 	public async Task<ActionResult<ShiftDto?>> GetShiftById(int id, [FromQuery] bool includeRun = false, bool includeBreaks = false, bool includeTimeData = false)
-// 	{
-// 		try
-// 		{
-// 			var shift = _dbContext.Shifts.AsQueryable()
-// 			                            .IncludeExtraShiftData( includeBreaks, includeRun, includeTimeData )
-// 			                            .FirstOrDefault( s => s.Id == id );
-// 			if (shift != null)
-// 				return await ShiftDto.CreateDto(shift, (includeBreaks, includeRun, includeTimeData));
-//
-// 			return BadRequest("Shift not found");
-// 		}
-// 		catch ( Exception e )
-// 		{
-// 			Log.Error( e, "Error getting shift" );
-// 			Console.WriteLine( e );
-// 			return BadRequest("Error getting shift");
-// 		}
-// 	}
+﻿namespace ShiftTracker.Controllers;
+
+using System.Runtime.InteropServices.JavaScript;
+using Areas.Shifts.Models.DTO;
+using Data.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Serilog;
+using Areas.Shifts.Models;
+using Data;
+using Pages.Validators;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Services;
+
+[ApiController, Route( "api/shifts" )]
+public class ShiftsApiController : ControllerBase
+{
+	private readonly IShiftService _shiftService;
+
+	public ShiftsApiController(IShiftService shiftService)
+	{
+		_shiftService = shiftService;
+	}
+
+	/// <summary>
+	/// Get all Shifts without Time Data/// 
+	/// </summary>
+	/// <param name="includeRun"></param>
+	/// <param name="includeBreaks"></param>
+	/// <returns>
+	/// All Shift entities
+	/// </returns>
+	[HttpGet]
+	public async Task<IActionResult> GetAllShifts(
+		[FromQuery] bool includeRun      = false,
+		bool             includeBreaks   = false,
+		bool             includeTimeData = false
+	)
+	{
+		try
+		{
+			List<Shift> shiftResultAsync =
+				await _shiftService.GetAllAsync( includeBreaks, includeRun, includeTimeData );
+			var shifts = shiftResultAsync.Select( s => new
+					{
+					_ = ShiftDto.CreateDto(
+						s,
+						( includeBreaks, includeRun, includeTimeData )
+					)
+					}
+			).ToList();
+			return Ok( shifts );
+		}
+		catch ( Exception e )
+		{
+			Log.Error( e, "Error getting shifts" );
+			Console.WriteLine( e );
+			return BadRequest();
+		}
+	}
+
+	/// <summary>
+/// Get Shift by Id
+/// </summary>
+/// <param name="id"></param>
+/// <param name="includeRun"></param>
+/// <param name="includeBreaks"></param>
+/// <param name="includeTimeData"></param>
+/// <returns></returns>
+[HttpGet( "{id}" )]
+public async Task<ActionResult<ShiftDto?>> GetShiftById(
+	int              id,
+	[FromQuery] bool includeRun      = false,
+	bool             includeBreaks   = false,
+	bool             includeTimeData = false
+)
+{
+	try
+	{
+		Shift? shift = await _shiftService.GetAsync( id );
+		
+		if ( shift != null ) return ShiftDto.CreateDto( shift, ( includeBreaks, includeRun, includeTimeData ) );
+
+		return BadRequest( "Shift not found" );
+	}
+	catch ( Exception e )
+	{
+		Log.Error( e, "Error getting shift" );
+		Console.WriteLine( e );
+		return BadRequest( "Error getting shift" );
+	}
+}
+}
 // 	
 //
 // 	/// <summary>
