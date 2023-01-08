@@ -13,5 +13,5 @@ public class ShopDto
 	public string Postcode { get; set; }
 	public int PhoneNumber { get; set; }
 	
-	public ICollection<DayVariantDto>? DayVariants { get; set; }
+	public ICollection<DailyRoutePlanDto>? DayVariants { get; set; }
 }

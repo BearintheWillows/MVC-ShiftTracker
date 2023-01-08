@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ShiftTracker.Migrations
 {
     /// <inheritdoc />
-    public partial class Initials : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -33,6 +33,8 @@ namespace ShiftTracker.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Number = table.Column<int>(type: "int", nullable: false),
                     Street = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Street2 = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     City = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
@@ -73,11 +75,12 @@ namespace ShiftTracker.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "DayVariants",
+                name: "DailyRoutes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    SequenceNumber = table.Column<int>(type: "int", nullable: false),
                     DayOfWeek = table.Column<int>(type: "int", nullable: false),
                     WindowOpenTime = table.Column<TimeSpan>(type: "time", nullable: false),
                     WindowCloseTime = table.Column<TimeSpan>(type: "time", nullable: false),
@@ -86,15 +89,15 @@ namespace ShiftTracker.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DayVariants", x => x.Id);
+                    table.PrimaryKey("PK_DailyRoutes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_DayVariants_Runs_RunId",
+                        name: "FK_DailyRoutes_Runs_RunId",
                         column: x => x.RunId,
                         principalTable: "Runs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_DayVariants_Shops_ShopId",
+                        name: "FK_DailyRoutes_Shops_ShopId",
                         column: x => x.ShopId,
                         principalTable: "Shops",
                         principalColumn: "Id",
@@ -134,26 +137,26 @@ namespace ShiftTracker.Migrations
 
             migrationBuilder.InsertData(
                 table: "Shops",
-                columns: new[] { "Id", "City", "County", "PhoneNumber", "Postcode", "Street", "Street2" },
+                columns: new[] { "Id", "City", "County", "Name", "Number", "PhoneNumber", "Postcode", "Street", "Street2" },
                 values: new object[,]
                 {
-                    { -5, "Brandon", "Suffolk", 1842741000, "IP20JG", "2 Gander Avenue", "" },
-                    { -4, "Thetford", "Suffolk", 1842741000, "IP242JG", "34 Church Rise", "" },
-                    { -3, "Stanwick", "Northants", 1536741000, "NN96JG", "10 Leighton Close", "" },
-                    { -2, "Northampton", "Northants", 1604620000, "NN38px", "38 Chesham Rise", "" },
-                    { -1, "Irthlingborough", "Northants", 1536741000, "NN95JG", "3 School Mews", "" }
+                    { -5, "Brandon", "Suffolk", "One Stop", 1223, 1842741000, "IP20JG", "2 Gander Avenue", "" },
+                    { -4, "Thetford", "Suffolk", "Aldi", 121, 1842741000, "IP242JG", "34 Church Rise", "" },
+                    { -3, "Stanwick", "Northants", "Tesco", 2004, 1536741000, "NN96JG", "10 Leighton Close", "" },
+                    { -2, "Northampton", "Northants", "Tesco", 2005, 1604620000, "NN38px", "38 Chesham Rise", "" },
+                    { -1, "Irthlingborough", "Northants", "Tesco", 2006, 1536741000, "NN95JG", "3 School Mews", "" }
                 });
 
             migrationBuilder.InsertData(
-                table: "DayVariants",
-                columns: new[] { "Id", "DayOfWeek", "RunId", "ShopId", "WindowCloseTime", "WindowOpenTime" },
+                table: "DailyRoutes",
+                columns: new[] { "Id", "DayOfWeek", "RunId", "SequenceNumber", "ShopId", "WindowCloseTime", "WindowOpenTime" },
                 values: new object[,]
                 {
-                    { -5, 1, -2, -5, new TimeSpan(0, 13, 15, 0, 0), new TimeSpan(0, 12, 15, 0, 0) },
-                    { -4, 1, -2, -4, new TimeSpan(0, 11, 15, 0, 0), new TimeSpan(0, 10, 15, 0, 0) },
-                    { -3, 1, -1, -3, new TimeSpan(0, 14, 30, 0, 0), new TimeSpan(0, 14, 15, 0, 0) },
-                    { -2, 1, -1, -2, new TimeSpan(0, 13, 15, 0, 0), new TimeSpan(0, 12, 15, 0, 0) },
-                    { -1, 1, -1, -1, new TimeSpan(0, 11, 15, 0, 0), new TimeSpan(0, 10, 15, 0, 0) }
+                    { -5, 1, -2, 1, -5, new TimeSpan(0, 13, 15, 0, 0), new TimeSpan(0, 12, 15, 0, 0) },
+                    { -4, 1, -2, 2, -4, new TimeSpan(0, 11, 15, 0, 0), new TimeSpan(0, 10, 15, 0, 0) },
+                    { -3, 1, -1, 3, -3, new TimeSpan(0, 14, 30, 0, 0), new TimeSpan(0, 14, 15, 0, 0) },
+                    { -2, 1, -1, 2, -2, new TimeSpan(0, 13, 15, 0, 0), new TimeSpan(0, 12, 15, 0, 0) },
+                    { -1, 1, -1, 1, -1, new TimeSpan(0, 11, 15, 0, 0), new TimeSpan(0, 10, 15, 0, 0) }
                 });
 
             migrationBuilder.InsertData(
@@ -182,19 +185,25 @@ namespace ShiftTracker.Migrations
                 column: "ShiftId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DayVariants_RunId",
-                table: "DayVariants",
+                name: "IX_DailyRoutes_RunId",
+                table: "DailyRoutes",
                 column: "RunId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DayVariants_ShopId",
-                table: "DayVariants",
+                name: "IX_DailyRoutes_ShopId",
+                table: "DailyRoutes",
                 column: "ShopId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Shifts_RunId",
                 table: "Shifts",
                 column: "RunId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Shops_Name_Number",
+                table: "Shops",
+                columns: new[] { "Name", "Number" },
+                unique: true);
         }
 
         /// <inheritdoc />
@@ -204,7 +213,7 @@ namespace ShiftTracker.Migrations
                 name: "Breaks");
 
             migrationBuilder.DropTable(
-                name: "DayVariants");
+                name: "DailyRoutes");
 
             migrationBuilder.DropTable(
                 name: "Shifts");

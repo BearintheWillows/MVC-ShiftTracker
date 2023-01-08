@@ -36,7 +36,7 @@ public class ApplicationDbContext : DbContext
 		set;
 	}
 	
-	public DbSet<DayVariant> DayVariants
+	public DbSet<DailyRoutePlan> DailyRoutes
 	{
 		get;
 		set;

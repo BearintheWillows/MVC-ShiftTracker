@@ -2,7 +2,7 @@
 
 using Data.Models;
 
-public class DayVariantDto
+public class DailyRoutePlanDto
 {
 	public int?      Id        { get; set; }
 	public DayOfWeek DayOfWeek { get; set; }
@@ -17,12 +17,12 @@ public class DayVariantDto
 	public int      ShopId { get; set; }
 	public ShopDto? Shop   { get; set; }
 
-	public static ICollection<DayVariant> CreateVariants(int runId)
+	public static ICollection<DailyRoutePlan> CreateVariants(int runId)
 	{
-		var variants = new List<DayVariant>();
+		var variants = new List<DailyRoutePlan>();
 		for ( var i = 0; i < 7; i++ )
 		{
-			variants.Add( new DayVariant
+			variants.Add( new DailyRoutePlan
 					{
 					DayOfWeek = ( DayOfWeek ) i,
 					WindowOpenTime = new TimeSpan( 0, 0, 0 ),

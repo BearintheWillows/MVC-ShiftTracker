@@ -142,10 +142,11 @@ public static class ModelBuilderExtentions
 			                                     }
 		);
 
-		modelBuilder.Entity<DayVariant>().HasData(
+		modelBuilder.Entity<DailyRoutePlan>().HasData(
 			new
 				{
 				Id = -1,
+				SequenceNumber = 1,
 				DayOfWeek = DayOfWeek.Monday,
 				WindowOpenTime = new TimeSpan( 10, 15, 00 ),
 				WindowCloseTime = new TimeSpan( 11, 15, 00 ),
@@ -155,6 +156,7 @@ public static class ModelBuilderExtentions
 			new
 				{
 				Id = -2,
+				SequenceNumber = 2,
 				DayOfWeek = DayOfWeek.Monday,
 				WindowOpenTime = new TimeSpan( 12, 15, 00 ),
 				WindowCloseTime = new TimeSpan( 13, 15, 00 ),
@@ -164,6 +166,7 @@ public static class ModelBuilderExtentions
 			new
 				{
 				Id = -3,
+				SequenceNumber = 3,
 				DayOfWeek = DayOfWeek.Monday,
 				WindowOpenTime = new TimeSpan( 14, 15, 00 ),
 				WindowCloseTime = new TimeSpan( 14, 30, 00 ),
@@ -173,6 +176,7 @@ public static class ModelBuilderExtentions
 			new
 				{
 				Id = -4,
+				SequenceNumber = 2,
 				DayOfWeek = DayOfWeek.Monday,
 				WindowOpenTime = new TimeSpan( 10, 15, 00 ),
 				WindowCloseTime = new TimeSpan( 11, 15, 00 ),
@@ -182,6 +186,7 @@ public static class ModelBuilderExtentions
 			new
 				{
 				Id = -5,
+				SequenceNumber = 1,
 				DayOfWeek = DayOfWeek.Monday,
 				WindowOpenTime = new TimeSpan( 12, 15, 00 ),
 				WindowCloseTime = new TimeSpan( 13, 15, 00 ),

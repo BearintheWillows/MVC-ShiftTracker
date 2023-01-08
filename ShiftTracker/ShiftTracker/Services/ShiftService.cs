@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore;
 
 public interface IShiftService : IBaseCrudService<Shift>
 {
-	Task<Shift> GetAsync(int id, bool includeBreaks,bool includeRun,bool includeTimeData);
-	Task<List<Shift>> GetAllAsync(bool includeBreaks, bool includeRun, bool includeTimeData);
-	Task<bool>        ExistsAsync(int  id);
+	Task<Shift>       GetAsync(int     id,            bool includeBreaks, bool includeRun, bool includeTimeData);
+	Task<List<Shift>> GetAllAsync(bool includeBreaks, bool includeRun,    bool includeTimeData);
+	Task<bool>        ExistsAsync(int? id);
 
 	bool TimeEntryValidator(ShiftDto shiftDto);
 }
@@ -46,7 +46,7 @@ public class ShiftService : BaseCrudService<Shift>, IShiftService
 		
 	}
 
-	public async Task<bool> ExistsAsync(int id)
+	public async Task<bool> ExistsAsync(int? id)
 	{
 		return await _context.Shifts.AnyAsync(x => x.Id == id);
 	}

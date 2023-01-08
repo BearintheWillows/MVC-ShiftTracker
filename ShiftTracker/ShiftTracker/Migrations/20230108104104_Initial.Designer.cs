@@ -12,8 +12,8 @@ using ShiftTracker.Data;
 namespace ShiftTracker.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230108052531_ShopIndexUnique")]
-    partial class ShopIndexUnique
+    [Migration("20230108104104_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -86,7 +86,7 @@ namespace ShiftTracker.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ShiftTracker.Data.Models.DayVariant", b =>
+            modelBuilder.Entity("ShiftTracker.Data.Models.DailyRoutePlan", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -98,6 +98,9 @@ namespace ShiftTracker.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("RunId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SequenceNumber")
                         .HasColumnType("int");
 
                     b.Property<int>("ShopId")
@@ -115,7 +118,7 @@ namespace ShiftTracker.Migrations
 
                     b.HasIndex("ShopId");
 
-                    b.ToTable("DayVariants");
+                    b.ToTable("DailyRoutes");
 
                     b.HasData(
                         new
@@ -123,6 +126,7 @@ namespace ShiftTracker.Migrations
                             Id = -1,
                             DayOfWeek = 1,
                             RunId = -1,
+                            SequenceNumber = 1,
                             ShopId = -1,
                             WindowCloseTime = new TimeSpan(0, 11, 15, 0, 0),
                             WindowOpenTime = new TimeSpan(0, 10, 15, 0, 0)
@@ -132,6 +136,7 @@ namespace ShiftTracker.Migrations
                             Id = -2,
                             DayOfWeek = 1,
                             RunId = -1,
+                            SequenceNumber = 2,
                             ShopId = -2,
                             WindowCloseTime = new TimeSpan(0, 13, 15, 0, 0),
                             WindowOpenTime = new TimeSpan(0, 12, 15, 0, 0)
@@ -141,6 +146,7 @@ namespace ShiftTracker.Migrations
                             Id = -3,
                             DayOfWeek = 1,
                             RunId = -1,
+                            SequenceNumber = 3,
                             ShopId = -3,
                             WindowCloseTime = new TimeSpan(0, 14, 30, 0, 0),
                             WindowOpenTime = new TimeSpan(0, 14, 15, 0, 0)
@@ -150,6 +156,7 @@ namespace ShiftTracker.Migrations
                             Id = -4,
                             DayOfWeek = 1,
                             RunId = -2,
+                            SequenceNumber = 2,
                             ShopId = -4,
                             WindowCloseTime = new TimeSpan(0, 11, 15, 0, 0),
                             WindowOpenTime = new TimeSpan(0, 10, 15, 0, 0)
@@ -159,6 +166,7 @@ namespace ShiftTracker.Migrations
                             Id = -5,
                             DayOfWeek = 1,
                             RunId = -2,
+                            SequenceNumber = 1,
                             ShopId = -5,
                             WindowCloseTime = new TimeSpan(0, 13, 15, 0, 0),
                             WindowOpenTime = new TimeSpan(0, 12, 15, 0, 0)
@@ -393,7 +401,7 @@ namespace ShiftTracker.Migrations
                     b.Navigation("Shift");
                 });
 
-            modelBuilder.Entity("ShiftTracker.Data.Models.DayVariant", b =>
+            modelBuilder.Entity("ShiftTracker.Data.Models.DailyRoutePlan", b =>
                 {
                     b.HasOne("ShiftTracker.Data.Models.Run", "Run")
                         .WithMany("Shops")

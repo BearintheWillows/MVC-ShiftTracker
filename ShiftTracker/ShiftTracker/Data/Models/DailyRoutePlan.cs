@@ -1,8 +1,10 @@
 ﻿namespace ShiftTracker.Data.Models;
 
-public class DayVariant
+public class DailyRoutePlan
 {
 	public int Id { get; set; }
+	
+	public int SequenceNumber { get; set; }
 	public DayOfWeek DayOfWeek { get; set; }
 	public TimeSpan WindowOpenTime { get; set; }
 	public TimeSpan WindowCloseTime { get; set; }

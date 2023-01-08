@@ -26,7 +26,7 @@ public class ShiftDto
 	/// <param name="shift"></param>
 	/// <param name="opts"></param>
 	/// <returns>ShiftDto</returns>
-	public async static Task<ShiftDto?> CreateDto(Shift shift, (bool includeBreaks, bool includeRun, bool includeTimeData) opts)
+	public static ShiftDto? CreateDto(Shift shift, (bool includeBreaks, bool includeRun, bool includeTimeData) opts)
 	{
 		var shiftDto = new ShiftDto()
 			{

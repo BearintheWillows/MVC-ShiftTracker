@@ -9,5 +9,5 @@ public class RunDto
 	public TimeSpan StartTime { get; set; }
 	
 	public ICollection<ShiftDto>? BaseShifts { get; set; }
-	public ICollection<DayVariantDto>     Shops              { get; set; }
+	public ICollection<DailyRoutePlanDto>     Shops              { get; set; }
 }
