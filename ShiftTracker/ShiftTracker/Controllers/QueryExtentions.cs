@@ -94,4 +94,14 @@ public static class QueryExtentions
 	{
 		return query.Include( s => s.DailyRoutePlan );
 	}
+
+	public static IQueryable<Run> IncludeDailyDoutePlans(this IQueryable<Run> query, bool includeDRP)
+	{
+		if ( includeDRP )
+		{
+			return query.Include( s => s.RoutePlans ).ThenInclude( rp => rp.Shop );
+		}
+
+		return query;
+	}
 }

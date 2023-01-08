@@ -6,7 +6,7 @@ using Interfaces;
 
 public interface IDailyRoutePlanService : IBaseCrudService<DailyRoutePlan>
 {
-	
+	Task AddRangeAsync(List<DailyRoutePlan> dailyRoutes);
 }
 
 public class DailyRoutePlanService : BaseCrudService<DailyRoutePlan>, IDailyRoutePlanService
@@ -16,5 +16,10 @@ public class DailyRoutePlanService : BaseCrudService<DailyRoutePlan>, IDailyRout
 	public DailyRoutePlanService(ApplicationDbContext context) : base( context )
 	{
 		_context = context;
+	}
+
+	public async Task AddRangeAsync(List<DailyRoutePlan> dailyRoutes)
+	{
+		await _context.AddRangeAsync( dailyRoutes );
 	}
 }

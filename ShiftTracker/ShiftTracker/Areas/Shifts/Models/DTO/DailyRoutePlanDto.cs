@@ -16,22 +16,5 @@ public class DailyRoutePlanDto
 
 	public int                  ShopId { get; set; }
 	public IEnumerable<ShopDto> Shop   { get; set; }
-
-	public static ICollection<DailyRoutePlan> CreateVariants(int runId)
-	{
-		var variants = new List<DailyRoutePlan>();
-		for ( var i = 0; i < 7; i++ )
-		{
-			variants.Add( new DailyRoutePlan
-					{
-					DayOfWeek = ( DayOfWeek ) i,
-					WindowOpenTime = new TimeSpan( 0, 0, 0 ),
-					WindowCloseTime = new TimeSpan( 0, 0, 0 ),
-					RunId = runId,
-					}
-			);
-			
-		}
-		return variants;
-	}
+	
 }
