@@ -162,7 +162,7 @@ public class ShopApiController : ControllerBase
 		 {
 			 if ( await _shopService.IsNameAndNumberUnique( shopDto ) )
 			 {
-				 return BadRequest("Shop Name and Number must be unique");
+				 return BadRequest("Shop Already Exists!");
 			 }
 			 
 			 Shop shop = new Shop
@@ -170,6 +170,7 @@ public class ShopApiController : ControllerBase
 				 {
 				 Id = shopDto.Id,
 				 Name = shopDto.Name,
+				 Number = shopDto.Number,
 				 Street = shopDto.Street,
 				 Street2 = shopDto.Street2,
 				 City = shopDto.City,

@@ -19,6 +19,7 @@ builder.Services.AddDbContext<ApplicationDbContext>( options =>
 	options.UseSqlServer( builder.Configuration.GetConnectionString( "DefaultConnection" ) ) );
 
 builder.Services.AddScoped<IShopService, ShopService>();
+builder.Services.AddScoped<IShiftService, ShiftService>();
 
 Log.Logger = new LoggerConfiguration()
             .WriteTo.File( 
