@@ -1,15 +1,9 @@
 ﻿namespace ShiftTracker.Controllers;
 
-using System.Runtime.InteropServices.JavaScript;
 using Areas.Shifts.Models.DTO;
 using Data.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Serilog;
-using Areas.Shifts.Models;
-using Data;
-using Pages.Validators;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Services;
 
 [ApiController, Route( "api/shifts" )]

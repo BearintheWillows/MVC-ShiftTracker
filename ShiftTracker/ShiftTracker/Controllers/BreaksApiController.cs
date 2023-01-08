@@ -6,15 +6,18 @@ using Areas.Shifts.Models.DTO;
 using Data;
 using Data.Models;
 using Microsoft.EntityFrameworkCore;
+using Services;
 
 [ApiController, Route( "api/breaks" )]
 public class BreaksApiController : ControllerBase
 {
-	private readonly ApplicationDbContext _context;
+	private readonly IBreakService _breakService;
+	private readonly IShiftService _shiftService;
 
-	public BreaksApiController(ApplicationDbContext context)
+	public BreaksApiController(IBreakService breakService, IShiftService shiftService)
 	{
-		_context = context;
+		_breakService = breakService;
+		_shiftService = shiftService;
 	}
 
 	[HttpGet]
@@ -22,7 +25,7 @@ public class BreaksApiController : ControllerBase
 	{
 		try
 		{
-			var breaks = await _context.Breaks.ToListAsync();
+			var breaks = await _breakService.GetAllAsync();
 
 			var breaksDto = breaks.Select( b => new BreakDto
 					{
@@ -47,9 +50,9 @@ public class BreaksApiController : ControllerBase
 	{
 		try
 		{
-			var returnedBreak = await _context.Breaks.FindAsync( id );
+			var returnedBreak = await _breakService.GetAsync( id );
 
-			if ( returnedBreak == null ) return NotFound( null );
+			if ( returnedBreak == null ) return NotFound("No Break by that Id found.");
 			var breakDto = new BreakDto
 				{
 				Id = returnedBreak.Id,
@@ -72,9 +75,8 @@ public class BreaksApiController : ControllerBase
 	{
 		try
 		{
-			if ( _context.Shifts.Any( s => s.Id == breakDto.ShiftId ) == false )
-				return BadRequest( "Shift does not exist" );
-			if ( _context.Breaks.Any( b => b.Id == breakDto.Id ) ) return BadRequest( "Break already exists" );
+			if ( !await _shiftService.ExistsAsync(breakDto.ShiftId) ) return NotFound( "Shift does not exist" );
+			if ( await _breakService.ExistsAsync(breakDto.Id) ) return NotFound( "Break already exists" );
 
 			var newBreak = new Break
 				{
@@ -84,8 +86,7 @@ public class BreaksApiController : ControllerBase
 				ShiftId = breakDto.ShiftId,
 				};
 
-			_context.Breaks.Add( newBreak );
-			await _context.SaveChangesAsync();
+			await _breakService.AddAsync( newBreak );
 
 			return Ok( newBreak );
 		}
@@ -95,19 +96,18 @@ public class BreaksApiController : ControllerBase
 		}
 	}
 
-	[HttpDelete( "delete/{id}" )]
+	[HttpDelete( "{id}" )]
 	public async Task<ActionResult<Break>> DeleteBreak(int id)
 	{
 		try
 		{
-			var returnedBreak = _context.Breaks.Find( id );
+			var returnedBreak = await _breakService.GetAsync( id );
 
 			if ( returnedBreak == null ) return NotFound( "Break does not exist" );
 
-			_context.Breaks.Remove( returnedBreak );
-			await _context.SaveChangesAsync();
+			await _breakService.DeleteAsync( id );
 
-			return Ok( returnedBreak );
+			return Ok( "Break Deleted Successfully" );
 		}
 		catch ( Exception e )
 		{
@@ -115,24 +115,24 @@ public class BreaksApiController : ControllerBase
 		}
 	}
 
-	[HttpPut( "update/{id}" )]
+	[HttpPut( "{id}" )]
 	public async Task<ActionResult<Break>> PutBreak(int id, [FromBody] BreakDto breakDto)
 	{
 		try
 		{
-			if ( _context.Breaks.Any( b => b.Id == breakDto.Id ) == false ) return BadRequest( "Break does not exist" );
+			var returnedBreak = await _breakService.GetAsync( id );
 
-			var returnedBreak = await _context.Breaks.FindAsync( id );
-
-			if ( _context.Shifts.Any( s => s.Id == returnedBreak!.ShiftId ) == false )
-				return BadRequest( "Shift does not exist" );
+			if ( returnedBreak == null )
+			{
+				return NotFound("No Break by that Id found.");
+			}
+			
 
 			returnedBreak.StartTime = breakDto.StartTime;
 			returnedBreak.EndTime = breakDto.EndTime;
 			returnedBreak.Duration = breakDto.EndTime - breakDto.StartTime;
 
-			_context.Breaks.Update( returnedBreak );
-			await _context.SaveChangesAsync();
+			await _breakService.UpdateAsync( returnedBreak );
 
 			return Ok( returnedBreak );
 		}

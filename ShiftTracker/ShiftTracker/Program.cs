@@ -20,6 +20,7 @@ builder.Services.AddDbContext<ApplicationDbContext>( options =>
 
 builder.Services.AddScoped<IShopService, ShopService>();
 builder.Services.AddScoped<IShiftService, ShiftService>();
+builder.Services.AddScoped<IBreakService, BreakService>();
 
 Log.Logger = new LoggerConfiguration()
             .WriteTo.File( 
