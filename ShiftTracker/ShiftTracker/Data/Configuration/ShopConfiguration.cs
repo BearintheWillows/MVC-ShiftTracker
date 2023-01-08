@@ -19,5 +19,6 @@ public class ShopConfiguration : IEntityTypeConfiguration<Shop>
 		builder.Property( s => s.PhoneNumber ).HasMaxLength( 20 );
 		builder.Property(s => s.Name).IsRequired().HasMaxLength(30);
 		builder.HasMany( s => s.DayVariants ).WithOne( dv => dv.Shop ).HasForeignKey( dv => dv.ShopId );
+		builder.HasIndex( s => new { s.Name, s.Number } ).IsUnique();
 	}
 }
