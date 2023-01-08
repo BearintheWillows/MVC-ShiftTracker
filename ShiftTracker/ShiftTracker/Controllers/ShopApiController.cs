@@ -157,8 +157,14 @@ public class ShopApiController : ControllerBase
 	 [HttpPost]
 	 public async Task<IActionResult> CreateShop([FromBody] ShopDto shopDto)
 	 {
+		 
 		 try
 		 {
+			 if ( await _shopService.IsNameAndNumberUnique( shopDto ) )
+			 {
+				 return BadRequest("Shop Name and Number must be unique");
+			 }
+			 
 			 Shop shop = new Shop
 				 
 				 {

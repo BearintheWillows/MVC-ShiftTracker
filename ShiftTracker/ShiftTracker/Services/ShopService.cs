@@ -1,16 +1,17 @@
 ﻿namespace ShiftTracker.Services;
 
+using Areas.Shifts.Models.DTO;
 using Data;
 using Data.Models;
 using Interfaces;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 public interface IShopService : IBaseCrudService<Shop>
 {
 	Task<bool>              ExistsAsync(int id);
 	Task<IEnumerable<Shop>> GetAllShopsWithDayData();
-	Task<Shop?>             GetShopWithDayData(int id);
+	Task<Shop?>             GetShopWithDayData(int        id);
+	Task<bool>                    IsNameAndNumberUnique(ShopDto shopDto);
 }
 
 public class ShopService : BaseCrudService<Shop>, IShopService
@@ -22,7 +23,7 @@ public class ShopService : BaseCrudService<Shop>, IShopService
 	}
 
 	/// <summary>
-	/// Checks if a shop with the given id exists
+	/// Checks if a shopDto with the given id exists
 	/// </summary>
 	/// <param name="id"></param>
 	/// <returns>bool</returns>
@@ -48,5 +49,15 @@ public class ShopService : BaseCrudService<Shop>, IShopService
 	public async Task<Shop?> GetShopWithDayData(int id)
 	{
 		return await _context.Shops.Include(s => s.DayVariants).FirstOrDefaultAsync(s => s.Id == id);
+	}
+	
+	/// <summary>
+	/// Check if a Shop with a given Name and Number Exists
+	/// </summary>
+	/// <param name="shopDto"></param>
+	/// <returns>boolean</returns>
+	public async Task<bool> IsNameAndNumberUnique(ShopDto shopDto)
+	{
+		return await _context.Shops.AnyAsync(s => s.Name == shopDto.Name && s.Number == shopDto.Number);
 	}
 }
