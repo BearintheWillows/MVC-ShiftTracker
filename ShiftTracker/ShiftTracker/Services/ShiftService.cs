@@ -39,7 +39,7 @@ public class ShiftService : BaseCrudService<Shift>, IShiftService
 	/// <param name="includeRun"></param>
 	/// <param name="includeTimeData"></param>
 	/// <returns></returns>
-	public async Task<List<Shift>> GetAllAsync( bool includeBreaks, bool includeRun, bool includeTimeData)
+	public async Task<List<Shift>> GetAllAsync( bool includeBreaks = false, bool includeRun = false, bool includeTimeData = false)
 	{
 		return await _context.Shifts.AsQueryable().IncludeExtraShiftData( includeBreaks, includeRun, includeTimeData )
 		                    .ToListAsync();

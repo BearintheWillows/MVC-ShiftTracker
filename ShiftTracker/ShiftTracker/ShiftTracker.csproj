@@ -31,7 +31,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Areas\Shifts\Controllers" />
+      <Folder Include="Areas\Shifts\Pages" />
     </ItemGroup>
 
 </Project>

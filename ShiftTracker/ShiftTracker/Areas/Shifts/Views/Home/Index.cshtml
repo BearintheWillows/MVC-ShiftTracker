@@ -1,0 +1,21 @@
+﻿@model IEnumerable<ShiftTracker.Data.Models.Shift>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+@if ( Model == null )
+{
+    <p>Loading...</p>
+} else
+{
+@foreach ( var shift in Model )
+{
+    <div>
+        <h3>Id: @shift.Id</h3>
+        <p>Run: @shift.Run.Number</p>
+        <p>Shift Length: @shift.ShiftDuration.Hours hours  @shift.ShiftDuration.Minutes Minutes</p>
+    </div>
+}
+}
