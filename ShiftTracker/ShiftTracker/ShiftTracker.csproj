@@ -32,6 +32,7 @@
 
     <ItemGroup>
       <Folder Include="Areas\Shifts\Pages" />
+      <Folder Include="Areas\Shifts\Views\Shared" />
     </ItemGroup>
 
 </Project>

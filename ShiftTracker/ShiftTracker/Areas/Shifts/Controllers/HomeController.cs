@@ -23,6 +23,10 @@ public class HomeController : Controller
 		return View(shiftQuery);
 	}
 
+	public string GetAmOrPm(int hour)
+	{
+		return hour < 12 ? "AM" : "PM";
+	}
 
 
 }

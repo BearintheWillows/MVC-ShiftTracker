@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ShiftTracker.Data.Models.Shift>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData[ "Title" ] = "Index";
 }
 
 
@@ -10,12 +10,26 @@
     <p>Loading...</p>
 } else
 {
-@foreach ( var shift in Model )
-{
-    <div>
-        <h3>Id: @shift.Id</h3>
-        <p>Run: @shift.Run.Number</p>
-        <p>Shift Length: @shift.ShiftDuration.Hours hours  @shift.ShiftDuration.Minutes Minutes</p>
-    </div>
-}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Run #</th>
+            <th scope="col">Start Time</th>
+            <th scope="col">Finish Time</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach ( var s in Model )
+        {
+            <tr>
+                <td>@s.Date.ToShortDateString()</td>
+                <td>@s.Run.Number</td>
+                <td>@s.StartTime.ToString( @"hh\:mm")</td>
+                <td>@s.EndTime.ToString(@"hh\:mm")</td>
+                
+            </tr>
+        }
+        </tbody>
+    </table>
 }
