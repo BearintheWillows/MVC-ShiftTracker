@@ -56,7 +56,7 @@ public class ShopApiController : ControllerBase
 								{
 								Id = dv.Id,
 								ShopId = dv.ShopId,
-								DayOfWeek = dv.DayOfWeek,
+								DayOfWeek = ( int ) dv.DayOfWeek,
 								WindowOpenTime = dv.WindowOpenTime,
 								WindowCloseTime = dv.WindowCloseTime,
 								RunId = dv.RunId
@@ -112,7 +112,7 @@ public class ShopApiController : ControllerBase
 							{
 							Id = dv.Id,
 							ShopId = dv.ShopId,
-							DayOfWeek = dv.DayOfWeek,
+							DayOfWeek = (int) dv.DayOfWeek,
 							WindowOpenTime = dv.WindowOpenTime,
 							WindowCloseTime = dv.WindowCloseTime,
 							RunId = dv.RunId

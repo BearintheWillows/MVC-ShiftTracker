@@ -12,11 +12,13 @@ public class RunApiController : ControllerBase
 {
 	private readonly IRunService            _runService;
 	private readonly IDailyRoutePlanService _dRPService;
+	private readonly IShopService           _shopService;
 
-	public RunApiController(IRunService runService, IDailyRoutePlanService dRpService)
+	public RunApiController(IRunService runService, IDailyRoutePlanService dRpService, IShopService shopService)
 	{
 		_runService = runService;
 		_dRPService = dRpService;
+		_shopService = shopService;
 	}
 
 	[HttpGet]
@@ -92,7 +94,6 @@ public class RunApiController : ControllerBase
 			{
 				return NotFound( $"No run with Id {id} exists" );
 			}
-			//TODO: Change Number of any DRP's that are associated with this run
 			
 			Run newRun = new Run
 				{
@@ -130,6 +131,64 @@ public class RunApiController : ControllerBase
 		catch ( Exception e )
 		{
 			Log.Error( e, "Error deleting run" );
+			Console.WriteLine( e );
+			throw;
+		}
+	}
+	
+	[HttpGet("{id}/routes")]
+	public async Task<List<DailyRoutePlan>> GetRoutesForRun(int id, [FromQuery] DayOfWeek? day )
+	{
+		try
+		{
+			if ( day == null  )
+			{
+				return await _dRPService.GetRoutesForRunAsync( id );
+			} else
+			{
+				return await _dRPService.GetRouteForRunDayFilterAsync( id, day.Value );
+			}
+			
+		}
+		catch ( Exception e )
+		{
+			Log.Error( e, "Error getting routes for run" );
+			Console.WriteLine( e );
+			throw;
+		}
+	}
+	
+	[HttpPost("{id}/routes/")]
+	public async Task<ActionResult<DailyRoutePlan>> AddRouteToRun(int id, [FromBody] DailyRoutePlanDto drpDto)
+	{
+		try
+		{
+			if ( !await _runService.ExistsAsync( id )  )
+			{
+				return NotFound($"No Run with Id {id} found.");
+			}
+
+			if ( !await _shopService.ExistsAsync(drpDto.ShopId) )
+			{
+				return NotFound($"No Shop with Id {drpDto.ShopId} found.");
+			}
+
+			DailyRoutePlan route = new DailyRoutePlan
+				{
+				RunId = drpDto.RunId,
+				ShopId = ( int ) drpDto.ShopId,
+				DayOfWeek = ( DayOfWeek ) drpDto.DayOfWeek,
+				WindowOpenTime = drpDto.WindowOpenTime,
+				WindowCloseTime = drpDto.WindowCloseTime,
+				};
+			
+			await _dRPService.AddAsync( route );
+			
+			return Ok(drpDto);
+		}
+		catch ( Exception e )
+		{
+			Log.Error( e, "Error adding route to run" );
 			Console.WriteLine( e );
 			throw;
 		}

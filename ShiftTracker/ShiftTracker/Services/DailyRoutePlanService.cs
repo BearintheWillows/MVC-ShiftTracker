@@ -3,10 +3,13 @@
 using Data;
 using Data.Models;
 using Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 public interface IDailyRoutePlanService : IBaseCrudService<DailyRoutePlan>
 {
-	Task AddRangeAsync(List<DailyRoutePlan> dailyRoutes);
+	Task<List<DailyRoutePlan>> GetRoutesForRunAsync(int         id);
+	Task<List<DailyRoutePlan>> GetRouteForRunDayFilterAsync(int runId, DayOfWeek day);
+	Task<bool>                 RunRouteExistsAsync(int          id);
 }
 
 public class DailyRoutePlanService : BaseCrudService<DailyRoutePlan>, IDailyRoutePlanService
@@ -18,9 +21,21 @@ public class DailyRoutePlanService : BaseCrudService<DailyRoutePlan>, IDailyRout
 		_context = context;
 	}
 
-	public async Task AddRangeAsync(List<DailyRoutePlan> dailyRoutes)
+	//get all routes for a run
+	public async Task<List<DailyRoutePlan>> GetRoutesForRunAsync(int id)
 	{
-		await _context.AddRangeAsync( dailyRoutes );
-		await _context.SaveChangesAsync();
+		return await _context.DailyRoutes.Where(x => x.RunId == id).ToListAsync();
+	}
+	
+	public async Task<List<DailyRoutePlan>> GetRouteForRunDayFilterAsync(int runId, DayOfWeek day)
+	{
+		return await _context.DailyRoutes.Where(dr => dr.RunId == runId && dr.DayOfWeek == day).ToListAsync();
+	}
+	
+	
+
+	public async Task<bool> RunRouteExistsAsync(int number )
+	{
+		return await _context.DailyRoutes.Include(dr => dr.Run).AnyAsync(x => x.Run.Number == number);
 	}
 }

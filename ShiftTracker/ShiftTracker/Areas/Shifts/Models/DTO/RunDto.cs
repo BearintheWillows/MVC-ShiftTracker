@@ -24,7 +24,7 @@ public class RunDto
 					? r.RoutePlans.Select( dr => new DailyRoutePlanDto
 							{
 							Id = dr.Id,
-							DayOfWeek = dr.DayOfWeek,
+							DayOfWeek = ( int ) dr.DayOfWeek ,
 							Shop = new ShopDto
 								{
 								Id = dr.Shop.Id,
@@ -56,7 +56,7 @@ public class RunDto
 				? run.RoutePlans.Select( dr => new DailyRoutePlanDto
 						{
 						Id = dr.Id,
-						DayOfWeek = dr.DayOfWeek,
+						DayOfWeek = ( int ) dr.DayOfWeek,
 						Shop = new ShopDto
 							{
 							Id = dr.Shop.Id,
