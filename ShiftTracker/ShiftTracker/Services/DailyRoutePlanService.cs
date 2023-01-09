@@ -21,5 +21,6 @@ public class DailyRoutePlanService : BaseCrudService<DailyRoutePlan>, IDailyRout
 	public async Task AddRangeAsync(List<DailyRoutePlan> dailyRoutes)
 	{
 		await _context.AddRangeAsync( dailyRoutes );
+		await _context.SaveChangesAsync();
 	}
 }

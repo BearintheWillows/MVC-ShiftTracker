@@ -15,6 +15,6 @@ public class DailyRoutePlanDto
 	public RunDto? Run   { get; set; }
 
 	public int                  ShopId { get; set; }
-	public IEnumerable<ShopDto> Shop   { get; set; }
+	public ShopDto Shop   { get; set; }
 	
 }

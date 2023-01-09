@@ -7,10 +7,10 @@ using Data.Models;
 
 public class RunDto
 {
-	public int Id     { get; set; }
-	public int  Number { get; set; }
+	public int      Id        { get; set; }
+	public int      Number    { get; set; }
 	public TimeSpan StartTime { get; set; }
-	
+
 	public IEnumerable<DailyRoutePlanDto>? DailyRoutes { get; set; }
 
 	public static IEnumerable<RunDto> CreateDtoList(List<Run> run, bool includeDrp)
@@ -25,55 +25,52 @@ public class RunDto
 							{
 							Id = dr.Id,
 							DayOfWeek = dr.DayOfWeek,
-							Shop = r.RoutePlans.Select( s => new ShopDto
-									{
-									Id = s.Shop.Id,
-									Name = s.Shop.Name,
-									Number = s.Shop.Number,
-									Street = s.Shop.Street,
-									Street2 = s.Shop.Street2,
-									City = s.Shop.City,
-									Postcode = s.Shop.Postcode,
-									PhoneNumber = s.Shop.PhoneNumber,
-									}
-							)
+							Shop = new ShopDto
+								{
+								Id = dr.Shop.Id,
+								Name = dr.Shop.Name,
+								Number = dr.Shop.Number,
+								Street = dr.Shop.Street,
+								Street2 = dr.Shop.Street2,
+								City = dr.Shop.City,
+								Postcode = dr.Shop.Postcode,
+								PhoneNumber = dr.Shop.PhoneNumber,
+								}
 							}
 					).ToList()
-					: null,
-				}
-		);
+					: null
+				});
+			
 
 		return runDto;
 	}
 
-	public static RunDto CreateDto(Run run, bool includeDrp)
+	public static RunDto CreateRunDto(Run run, bool includeDRP)
 	{
-		RunDto runDto = new RunDto
+		return new RunDto()
 			{
 			Id = run.Id,
 			Number = run.Number,
 			StartTime = run.StartTime,
-			DailyRoutes = includeDrp
+			DailyRoutes = includeDRP
 				? run.RoutePlans.Select( dr => new DailyRoutePlanDto
 						{
 						Id = dr.Id,
 						DayOfWeek = dr.DayOfWeek,
-						Shop = run.RoutePlans.Select( s => new ShopDto
-								{
-								Id = s.Shop.Id,
-								Name = s.Shop.Name,
-								Number = s.Shop.Number,
-								Street = s.Shop.Street,
-								Street2 = s.Shop.Street2,
-								City = s.Shop.City,
-								Postcode = s.Shop.Postcode,
-								PhoneNumber = s.Shop.PhoneNumber,
-								}
-						)
+						Shop = new ShopDto
+							{
+							Id = dr.Shop.Id,
+							Name = dr.Shop.Name,
+							Number = dr.Shop.Number,
+							Street = dr.Shop.Street,
+							Street2 = dr.Shop.Street2,
+							City = dr.Shop.City,
+							Postcode = dr.Shop.Postcode,
+							PhoneNumber = dr.Shop.PhoneNumber,
+							}
 						}
 				).ToList()
-				: null,
+				: null
 			};
-		return runDto;
 	}
 }

@@ -45,7 +45,7 @@ public class RunApiController : ControllerBase
 		{
 			Run? run = await _runService.GetAsync( id, includeDRP );
 			
-			if ( run != null) return RunDto.CreateDto( run, includeDRP );
+			if ( run != null) return RunDto.CreateRunDto( run, includeDRP );
 			
 			return NotFound( "Run Doesn't exist" );
 		}
@@ -57,7 +57,7 @@ public class RunApiController : ControllerBase
 	}
 
 	[HttpPost]
-	public async Task<ActionResult<RunDto>> AddRunAndRoutes([FromBody] RunDto runDto)
+	public async Task<ActionResult<RunDto>> AddRun([FromBody] RunDto runDto)
 	{
 		 		try
 		{
@@ -68,24 +68,10 @@ public class RunApiController : ControllerBase
 
 
 			Run run = new Run { Number = runDto.Number, StartTime = runDto.StartTime };
-			
-			var storedRun = await _runService.AddAsync( run );
 
-			List<DailyRoutePlan> dailyRoutes = new List<DailyRoutePlan>();
-
-			for ( int i = 0; i < 7; i++ )
-			{
-				DailyRoutePlan dayRoute = new DailyRoutePlan
-					{
-					DayOfWeek = ( DayOfWeek ) i + 1, RunId = storedRun.Id,
-					};
-				
-				dailyRoutes.Add( dayRoute );
-			}
+			await _runService.AddAsync( run );
 			
-			await _dRPService.AddRangeAsync( dailyRoutes );
-			
-			return Ok( "ok" );
+			return Ok( RunDto.CreateRunDto( run, false ) );
 
 		}
 		catch ( Exception e )
@@ -96,27 +82,48 @@ public class RunApiController : ControllerBase
 		}
 	}
 
-	// [HttpPut]
-	// public async Task<ActionResult<RunDto>> UpdateRun([FromBody] RunDto runDto)
-	// {
-	// 	try
-	// 	{
-	// 		Run run = await _runService.UpdateAsync( runDto );
-	// 		return RunDto.CreateDto( run, true );
-	// 	}
-	// 	catch ( Exception e )
-	// 	{
-	// 		Log.Error( e, "Error updating run" );
-	// 		Console.WriteLine( e );
-	// 		throw;
-	// 	}
-	// }
+	[HttpPut("{id}")]
+	public async Task<ActionResult<RunDto>> UpdateRun(int id, [FromBody] RunDto runDto)
+	{
+		try
+		{
+			var run = await _runService.GetAsync( id, false );
+			if (  run == null )
+			{
+				return NotFound( $"No run with Id {id} exists" );
+			}
+			//TODO: Change Number of any DRP's that are associated with this run
+			
+			Run newRun = new Run
+				{
+				Id = runDto.Id,
+				Number = runDto.Number,
+				StartTime = runDto.StartTime
+				};
+			
+			await _runService.UpdateAsync( run );
+			
+			return Ok(runDto);
+		}
+		catch ( Exception e )
+		{
+			Log.Error( e, "Error updating run" );
+			Console.WriteLine( e );
+			throw;
+		}
+	}
 
 	[HttpDelete("{id}")]
 	public async Task<ActionResult> DeleteRun(int id)
 	{
 		try
 		{
+			if ( !await _runService.ExistsAsync( id )  )
+			{
+				return NotFound($"No Run with Id {id} found.");
+			}
+
+			
 			await _runService.DeleteAsync( id );
 			return Ok();
 		}
