@@ -5,30 +5,41 @@
 }
 
 
-@if ( Model == null )
+@if ( !Model.Any() )
 {
     <p>Loading...</p>
 } else
 {
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">Date</th>
-            <th scope="col">Run #</th>
-            <th scope="col">Start Time</th>
+            <div>Date</div>
+            <div>Run #</div>
+            <div>Start Time</div> 
             <th scope="col">Finish Time</th>
-        </tr>
-        </thead>
-        <tbody>
+        
         @foreach ( var s in Model )
         {
-            <tr>
-                <td>@s.Date.ToShortDateString()</td>
-                <td>@s.Run.Number</td>
-                <td>@s.StartTime.ToString( @"hh\:mm")</td>
-                <td>@s.EndTime.ToString(@"hh\:mm")</td>
-                
-            </tr>
+            <div class="accordion" id="ActionButtons">
+                <div class="accordion-item">
+                    
+                        <div class="accordion-header" id="rowHeader">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseButtons" aria-expanded="true" aria-controls="collapseButtons">
+                                <div class="row">
+                                                              <div class="column">@s.Date.ToShortDateString()</div>
+                                                              <div class="column">@s.Run.Number</div>
+                                                              <div class="column">@s.StartTime.ToString( @"hh\:mm" )</div>
+                                                              <div class="column">@s.EndTime.ToString( @"hh\:mm" )</div>
+                                                         </div>
+                                </button>
+                            
+                        </div>
+                        <div id="collapseButtons" class="accordion-collapse collapse show" aria-labelledby="rowHeader" data-bs-parent="#actionButtons">
+                            <div class="accordion-body">
+                                <button>Edit</button>
+                                <button>Delete</button>
+                            </div>
+                        </div>
+                    
+                </div>
+            </div>
         }
         </tbody>
     </table>
