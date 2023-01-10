@@ -1,0 +1,11 @@
+﻿@use "Content/base/colors";
+
+@mixin editDeleteButtonTransition{
+  transform: scale(1);
+  transition: 0.4s;
+  &:hover{
+
+    color: colors.$color-Cul-Orange-Hover;
+    transform: scale(1.4);
+  }
+}

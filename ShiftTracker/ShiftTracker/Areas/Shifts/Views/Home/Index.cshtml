@@ -28,9 +28,9 @@
                     <td>@s.Run.Number</td>
                     <td>@s.StartTime.ToString( @"hh\:mm" )</td>
                     <td>@s.EndTime.ToString( @"hh\:mm" )</td>
-                    <td class="actionButtons">
-                        <a asp-page="/Edit" asp-route-id="@s.Id"><i class="fa-regular fa-pen-to-square"></i></a>
-                        <a asp-page="/Delete" asp-route-id="@s.Id"><i class="fa-regular fa-trash-can"></i></a>
+                    <td class="updateDeleteButtons">
+                        <a asp-page="/Edit" asp-route-id="@s.Id"><i class="fa-regular fa-pen-to-square editBtn" style="display: none"></i></a>
+                        <a asp-page="/Delete" asp-route-id="@s.Id"><i class="fa-regular fa-trash-can deleteBtn" style="display: none"></i></a>
                     </td>
                 </tr>
                 

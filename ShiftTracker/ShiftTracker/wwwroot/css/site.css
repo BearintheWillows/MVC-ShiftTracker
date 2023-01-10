@@ -1,3 +1,17 @@
-.actionButtons .btn {
-  margin-right: 10px;
+.updateDeleteButtons {
+  color: #04ace4;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.editBtn, .deleteBtn {
+  transform: scale(1);
+  transition: 0.4s;
+}
+.editBtn:hover, .deleteBtn:hover {
+  color: #d46e1e;
+  transform: scale(1.4);
 }

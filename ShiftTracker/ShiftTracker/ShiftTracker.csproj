@@ -34,6 +34,10 @@
     <ItemGroup>
       <Folder Include="Areas\Shifts\Pages\Shared" />
       <Folder Include="Areas\Shifts\Views\Shared" />
+      <Folder Include="Content\layout" />
+      <Folder Include="Content\pages" />
+      <Folder Include="Content\themes" />
+      <Folder Include="Content\vendors" />
     </ItemGroup>
 
 </Project>

@@ -1,9 +1,7 @@
-﻿.actionButtons{
-    .btn {
-        margin-right: 10px;
-    }
-}
+﻿//Base
 
-.btn {
-    margin-right: 10px;
-}
+@use "Content/base/colors";
+@use "Content/base/typography";
+
+//Components
+@use "Content/components/buttons";
