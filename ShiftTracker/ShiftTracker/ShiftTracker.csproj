@@ -37,7 +37,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <TypeScriptCompile Include="ClientScripts\app.ts" />
+      <TypeScriptCompile Include="ClientScripts\Index.ts" />
       <TypeScriptCompile Include="ClientScripts\functions.ts" />
       <TypeScriptCompile Include="ClientScripts\interfaces.ts" />
       <TypeScriptCompile Include="ClientScripts\shiftService.ts" />

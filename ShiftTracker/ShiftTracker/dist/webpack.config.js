@@ -1,5 +1,4 @@
-﻿const path = require('path');
-
+const path = require('path');
 module.exports = {
     entry: './ClientScripts/Index.ts',
     devtool: 'inline-source-map',
@@ -24,3 +23,4 @@ module.exports = {
         path: path.resolve(__dirname, './wwwroot/js'),
     }
 };
+//# sourceMappingURL=webpack.config.js.map

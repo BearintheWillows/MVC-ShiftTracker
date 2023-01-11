@@ -8,8 +8,8 @@
     "moduleResolution": "node",
     "allowJs": true,
     "outDir": "./dist/",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
   },
-  "files": ["./app.ts"],
-  
   "compileOnSave": true
 }
