@@ -1,8 +1,15 @@
 ﻿@model IEnumerable<ShiftTracker.Data.Models.Shift>
 
+<html>
+<head>
+    <script src="scripts/app.js" type="module"></script>
+</head>
+
 @{
     ViewData[ "Title" ] = "Index";
 }
+
+<button type="button" class="addButton">Get Shifts</button>
 
 @if ( Model == null )
 {
@@ -17,7 +24,7 @@
                 <th scope="col">Run #</th>
                 <th scope="col">Start Time</th>
                 <th scope="col">Finish Time</th>
-             
+
             </tr>
             </thead>
             <tbody>
@@ -33,10 +40,12 @@
                         <a asp-page="/Delete" asp-route-id="@s.Id"><i class="fa-regular fa-trash-can deleteBtn" style="display: none"></i></a>
                     </td>
                 </tr>
-                
+
             }
             </tbody>
         </table>
-        
+
     </div>
 }
+
+</html>

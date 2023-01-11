@@ -28,16 +28,19 @@
     </ItemGroup>
 
     <ItemGroup>
-      <TypeScriptCompile Include="scripts\app.ts" />
-    </ItemGroup>
-
-    <ItemGroup>
       <Folder Include="Areas\Shifts\Pages\Shared" />
       <Folder Include="Areas\Shifts\Views\Shared" />
       <Folder Include="Content\layout" />
       <Folder Include="Content\pages" />
       <Folder Include="Content\themes" />
       <Folder Include="Content\vendors" />
+      <Folder Include="wwwroot\scripts" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <TypeScriptCompile Include="scripts\app.ts" />
+      <TypeScriptCompile Include="scripts\interfaces.ts" />
+      <TypeScriptCompile Include="scripts\shiftService.ts" />
     </ItemGroup>
 
 </Project>

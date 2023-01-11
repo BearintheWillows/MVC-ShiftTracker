@@ -6,5 +6,6 @@
     "target": "esnext"
   },
   "files": ["./app.ts"],
+  
   "compileOnSave": true
 }
