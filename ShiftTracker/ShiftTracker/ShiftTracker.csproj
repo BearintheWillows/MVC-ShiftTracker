@@ -34,6 +34,7 @@
       <Folder Include="Content\pages" />
       <Folder Include="Content\themes" />
       <Folder Include="Content\vendors" />
+      <Folder Include="Interfaces" />
     </ItemGroup>
 
     <ItemGroup>

@@ -4,7 +4,6 @@ using Areas.Shifts.Models.DTO;
 using Controllers;
 using Data;
 using Data.Models;
-using Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 public interface IShiftService : IBaseCrudService<Shift>

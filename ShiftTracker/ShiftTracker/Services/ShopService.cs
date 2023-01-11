@@ -3,7 +3,6 @@
 using Areas.Shifts.Models.DTO;
 using Data;
 using Data.Models;
-using Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 public interface IShopService : IBaseCrudService<Shop>

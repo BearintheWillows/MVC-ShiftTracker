@@ -2,8 +2,17 @@
 
 using Data;
 using Data.Models;
-using Interfaces;
 using Microsoft.EntityFrameworkCore;
+
+public interface IBaseCrudService<T> where T : class
+{
+	Task<T?>             GetAsync(int id);
+	Task<IEnumerable<T>> GetAllAsync();
+	Task<T>              AddAsync(T            entity);
+	Task<T>              UpdateAsync(T         entity);
+	Task                 DeleteAsync(int       id);
+	Task<T>              AddAsyncWithoutSave(T entity);
+}
 
 public abstract class BaseCrudService<T> : IBaseCrudService<T> where T : class
 {
@@ -42,6 +51,12 @@ public abstract class BaseCrudService<T> : IBaseCrudService<T> where T : class
 	{
 		await Context.Set<T>().AddAsync( entity );
 		await Context.SaveChangesAsync();
+		return entity;
+	}
+	
+	public async Task<T> AddAsyncWithoutSave(T entity)
+	{
+		await Context.Set<T>().AddAsync( entity );
 		return entity;
 	}
 
