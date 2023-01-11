@@ -23,10 +23,21 @@ public class HomeController : Controller
 		return View(shiftQuery);
 	}
 
-	public string GetAmOrPm(int hour)
+	public IActionResult Create()
 	{
-		return hour < 12 ? "AM" : "PM";
+		return View();
 	}
-
+	
+	[HttpPost]
+	[ValidateAntiForgeryToken]
+	public async Task<IActionResult> Create([Bind("Date, StartTime, EndTime, DriveTime, OtherWorkTime, WorkTime")] Shift shift)
+	{
+		if ( ModelState.IsValid )
+		{
+			await _shiftService.AddAsync( shift );
+			return RedirectToAction("Index");
+		}
+		return View(Shift);
+	}
 
 }

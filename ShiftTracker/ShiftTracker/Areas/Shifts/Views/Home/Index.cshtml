@@ -5,36 +5,7 @@
     ViewData[ "Title" ] = "Index";
 }
 
-<button type="button" class="addButton">Get Shifts</button>
-
-<form>
-    <div class="form-group">
-        <label for="date">Date</label>
-        <input type="date" class="form-control" id="date" placeholder="Enter Date">
-    </div>
-    <div class="form-group">
-        <label for="shiftStart">Shift Start</label>
-        <input type="time" class="form-control" id="shiftStart" placeholder="Enter Shift End">
-    </div>
-    <div class="form-group">
-        <label for="shiftEnd">Shift Finish</label>
-        <input type="time" class="form-control" id="shiftEnd" placeholder="Enter Shift Finish TIme">
-    </div>
-    <div class="form-group">
-        <label for="driveTime">Drive Time</label>
-        <input type="time" class="form-control" id="driveTime" placeholder="Enter Drive Time">
-    </div>
-    <div class="form-group">
-        <label for="workTime">Work Time</label>
-        <input type="time" class="form-control" id="workTime" placeholder="Enter Work Time">
-    </div>
-    <div class="form-group">
-        <label for="otherWorkTime">Other Work</label>
-        <input type="time" class="form-control" id="OtherWorkTime" placeholder="Enter Other Work">
-    </div>
-    <button type="button">Add Break</button>
-    <button type="button" class="addButton">Add Shift</button>
-</form>
+<a type="button" asp-area="Shifts" asp-page="/Create">Get Shifts</a>
 
 @if ( Model == null )
 {

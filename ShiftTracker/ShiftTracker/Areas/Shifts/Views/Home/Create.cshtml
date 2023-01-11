@@ -1,0 +1,32 @@
+﻿@using ShiftTracker.Pages.Pages.Shared
+@model ShiftTracker.Data.Models.Shift;
+
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div class="form-group">
+        <label for="Date">Date</label>
+        <input type="date" class="form-control" id="date" asp-for="Date" placeholder="Enter Date">
+    </div>
+    <div class="form-group">
+        <label for="StartTime">Shift Start</label>
+        <input type="time" class="form-control" id="StartTime" asp-for="StartTime" placeholder="Enter Shift End">
+    </div>
+    <div class="form-group">
+        <label for="shiftEnd">Shift Finish</label>
+        <input type="time" class="form-control" id="shiftEnd" placeholder="Enter Shift Finish TIme">
+    </div>
+    <div class="form-group">
+        <label for="driveTime">Drive Time</label>
+        <input type="time" class="form-control" id="driveTime" placeholder="Enter Drive Time">
+    </div>
+    <div class="form-group">
+        <label for="workTime">Work Time</label>
+        <input type="time" class="form-control" id="workTime" placeholder="Enter Work Time">
+    </div>
+    <div class="form-group">
+        <label for="otherWorkTime">Other Work</label>
+        <input type="time" class="form-control" id="OtherWorkTime" placeholder="Enter Other Work">
+    </div>
+    <button type="button">Add Break</button>
+    <button type="button" class="addButton">Add Shift</button>
+</form>
