@@ -1,0 +1,1 @@
+{"version":3,"file":"shiftService.js","sourceRoot":"","sources":["shiftService.ts"],"names":[],"mappings":";;AAEA,MAAqB,YAAY;IAE7B;QAGS,YAAO,GAAG,oCAAoC,CAAC;IAFxD,CAAC;IAID,SAAS;QACL,OAAO,KAAK,CAAC,IAAI,CAAC,OAAO,CAAC;aACrB,IAAI,CAAC,QAAQ,CAAC,EAAE,CAAC,QAAQ,CAAC,IAAI,EAAE,CAChC,CAAC;IACV,CAAC;CACJ;AAZD,+BAYC"}

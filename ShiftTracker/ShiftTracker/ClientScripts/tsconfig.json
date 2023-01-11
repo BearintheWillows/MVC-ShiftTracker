@@ -3,7 +3,11 @@
     "noEmitOnError": true,
     "noImplicitAny": true,
     "sourceMap": true,
-    "target": "esnext"
+    "target": "esnext",
+    "module": "esnext", 
+    "moduleResolution": "node",
+    "allowJs": true,
+    "outDir": "./dist/",
   },
   "files": ["./app.ts"],
   

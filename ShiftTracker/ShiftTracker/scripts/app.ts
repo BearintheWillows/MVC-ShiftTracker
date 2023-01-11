@@ -1,7 +1,0 @@
-﻿const ShiftService = require("shiftService.js");
-
-let shiftService = new ShiftService();
-
-document.querySelector( ".addButton").addEventListener("click", () => {
-console.log(shiftService.getShifts())
-});

@@ -1,6 +1,6 @@
-import {IShift} from "./interfaces";
+﻿import {IShift} from "./interfaces";
 
-export class ShiftService {
+export default class ShiftService {
     
     constructor() {
     }
@@ -13,4 +13,6 @@ export class ShiftService {
             );
     }
 }
+
+
 

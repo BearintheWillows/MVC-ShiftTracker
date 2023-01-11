@@ -1,4 +1,4 @@
-export class ShiftService {
+export default class ShiftService {
     constructor() {
     }
     baseUrl = "https://localhost:44392/api/shifts";
