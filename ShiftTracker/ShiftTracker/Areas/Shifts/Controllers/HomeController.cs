@@ -22,7 +22,8 @@ public class HomeController : Controller
 		
 		return View(shiftQuery);
 	}
-
+     
+	[HttpGet]
 	public IActionResult Create()
 	{
 		return View();
@@ -30,14 +31,11 @@ public class HomeController : Controller
 	
 	[HttpPost]
 	[ValidateAntiForgeryToken]
-	public async Task<IActionResult> Create([Bind("Date, StartTime, EndTime, DriveTime, OtherWorkTime, WorkTime")] Shift shift)
+	public async Task<IActionResult> Create([Bind("Date, RunId, StartTime, EndTime, DriveTime, OtherWorkTime, WorkTime")] Shift shift)
 	{
-		if ( ModelState.IsValid )
-		{
+		
 			await _shiftService.AddAsync( shift );
 			return RedirectToAction("Index");
-		}
-		return View(Shift);
 	}
 
 }

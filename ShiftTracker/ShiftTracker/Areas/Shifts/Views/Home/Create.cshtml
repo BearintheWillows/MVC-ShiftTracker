@@ -4,6 +4,10 @@
 <form asp-action="Create">
     <div asp-validation-summary="ModelOnly"></div>
     <div class="form-group">
+            <label for="RunId">Run Id:</label>
+            <input type="number" class="form-control" id="RunId" asp-for="RunId" placeholder="Enter Date">
+        </div>
+    <div class="form-group">
         <label for="Date">Date</label>
         <input type="date" class="form-control" id="date" asp-for="Date" placeholder="Enter Date">
     </div>
@@ -12,21 +16,21 @@
         <input type="time" class="form-control" id="StartTime" asp-for="StartTime" placeholder="Enter Shift End">
     </div>
     <div class="form-group">
-        <label for="shiftEnd">Shift Finish</label>
-        <input type="time" class="form-control" id="shiftEnd" placeholder="Enter Shift Finish TIme">
+        <label for="EndTime">Shift Finish</label>
+        <input type="time" class="form-control" id="EndTime" asp-for="EndTime" placeholder="Enter Shift Finish TIme">
     </div>
     <div class="form-group">
-        <label for="driveTime">Drive Time</label>
-        <input type="time" class="form-control" id="driveTime" placeholder="Enter Drive Time">
+        <label for="DriveTime">Drive Time</label>
+        <input type="time" class="form-control" asp-for="DriveTime" id="DriveTime" placeholder="Enter Drive Time">
     </div>
     <div class="form-group">
-        <label for="workTime">Work Time</label>
-        <input type="time" class="form-control" id="workTime" placeholder="Enter Work Time">
+        <label for="WorkTime">Work Time</label>
+        <input type="time" class="form-control" asp-for="WorkTime" id="WorkTime" placeholder="Enter Work Time">
     </div>
     <div class="form-group">
-        <label for="otherWorkTime">Other Work</label>
-        <input type="time" class="form-control" id="OtherWorkTime" placeholder="Enter Other Work">
+        <label for="OtherWorkTime">Other Work</label>
+        <input type="time" class="form-control" asp-for="OtherWorkTime" id="OtherWorkTime" placeholder="Enter Other Work">
     </div>
     <button type="button">Add Break</button>
-    <button type="button" class="addButton">Add Shift</button>
+    <input type="submit" value="Create">
 </form>
