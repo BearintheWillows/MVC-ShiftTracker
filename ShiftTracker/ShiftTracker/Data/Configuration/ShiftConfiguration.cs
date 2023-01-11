@@ -11,6 +11,7 @@ public class ShiftConfiguration : IEntityTypeConfiguration<Shift>
 	{
 		builder.ToTable( "Shifts" );
 		builder.HasKey( s => s.Id );
+		builder.Property( s => s.Id ).UseHiLo();
 		builder.Property( s => s.Date ).IsRequired();
 		builder.Property( s => s.StartTime ).IsRequired();
 		builder.Property( s => s.EndTime ).IsRequired();
@@ -18,6 +19,7 @@ public class ShiftConfiguration : IEntityTypeConfiguration<Shift>
 		builder.Property( s => s.DriveTime ).IsRequired();
 		builder.Property( s => s.ShiftDuration ).IsRequired();
 		builder.Property( s => s.WorkTime ).IsRequired();
+		builder.HasIndex( s => s.Date ).IsUnique();
 		builder.HasOne( s => s.Run ).WithMany( r => r.Shifts ).HasForeignKey( s => s.RunId );
 	}
 }

@@ -12,7 +12,7 @@ public class DailyRoutePlanConfiguration : IEntityTypeConfiguration<DailyRoutePl
 		builder.ToTable( "Daily Route Plans" );
 		builder.HasKey( s => s.Id );
 		builder.HasIndex( s => new { s.ShopId, s.RunId, s.DayOfWeek } ).IsUnique();
-		builder.Property( s => s.DayOfWeek ).IsRequired();
+		builder.Property( s => s.DayOfWeek ).IsRequired().HasColumnType( "byte" );
 		builder.Property( s => s.ShopId ).IsRequired();
 		builder.Property( s => s.RunId ).IsRequired();
 		builder.Property( s => s.WindowOpenTime ).IsRequired();
