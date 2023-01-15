@@ -6,10 +6,6 @@
     "target": "esnext",
     "module": "esnext", 
     "moduleResolution": "node",
-    "allowJs": true,
-    "outDir": "./dist/",
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
   },
   "compileOnSave": true
 }

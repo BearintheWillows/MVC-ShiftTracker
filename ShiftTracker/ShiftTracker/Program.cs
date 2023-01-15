@@ -53,6 +53,9 @@ app.MapControllerRoute(
 	name: "Areas",
 	pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}" );
 
-app.MapDefaultControllerRoute();
+app.MapControllerRoute(
+	name: "Default",
+	pattern: "{area=Shifts}/{controller=Home}/{action=Index}/{id?}" );
+
 app.MapRazorPages();
 app.Run();

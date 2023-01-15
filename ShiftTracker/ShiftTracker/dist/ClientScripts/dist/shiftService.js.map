@@ -1,1 +1,0 @@
-{"version":3,"file":"shiftService.js","sourceRoot":"","sources":["../../../ClientScripts/dist/shiftService.js"],"names":[],"mappings":"AAAA,MAAM,CAAC,OAAO,OAAO,YAAY;IAC7B;IACA,CAAC;IACD,OAAO,GAAG,oCAAoC,CAAC;IAC/C,SAAS;QACL,OAAO,KAAK,CAAC,IAAI,CAAC,OAAO,CAAC;aACrB,IAAI,CAAC,QAAQ,CAAC,EAAE,CAAC,QAAQ,CAAC,IAAI,EAAE,CAAC,CAAC;IAC3C,CAAC;CACJ;AACD,wCAAwC"}

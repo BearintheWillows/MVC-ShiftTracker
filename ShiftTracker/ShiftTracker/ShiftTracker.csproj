@@ -18,10 +18,6 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
-      <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.9.4">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
       <PackageReference Include="Sass.AspNetCore" Version="0.1.4" />
       <PackageReference Include="Serilog" Version="2.12.0" />
       <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
@@ -35,13 +31,14 @@
       <Folder Include="Content\themes" />
       <Folder Include="Content\vendors" />
       <Folder Include="Interfaces" />
+      <Folder Include="wwwroot\js" />
     </ItemGroup>
 
     <ItemGroup>
-      <TypeScriptCompile Include="ClientScripts\Index.ts" />
-      <TypeScriptCompile Include="ClientScripts\functions.ts" />
-      <TypeScriptCompile Include="ClientScripts\interfaces.ts" />
-      <TypeScriptCompile Include="ClientScripts\shiftService.ts" />
+      <TypeScriptCompile Include="src\functions.ts" />
+      <TypeScriptCompile Include="src\Index.ts" />
+      <TypeScriptCompile Include="src\interfaces.ts" />
+      <TypeScriptCompile Include="src\shiftService.ts" />
     </ItemGroup>
 
 </Project>

@@ -1,7 +1,6 @@
-﻿const path = require('path');
-
+const path = require('path');
 module.exports = {
-    entry: './ClientScripts/Index.ts',
+    entry: './src/Index.ts',
     devtool: 'inline-source-map',
     module: {
         rules: [
@@ -32,10 +31,11 @@ module.exports = {
     },
     output: {
         library: {
-            name: 'MYAPP',
+            name: 'ShiftTracker',
             type: 'var'
         },
         filename: 'bundle.js',
         path: path.resolve(__dirname, './wwwroot/js'),
     }
 };
+//# sourceMappingURL=webpack.config.js.map
