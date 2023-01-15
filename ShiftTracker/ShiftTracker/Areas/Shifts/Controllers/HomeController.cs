@@ -27,6 +27,7 @@ public class HomeController : Controller
 	}
 
 	[HttpGet]
+	[Route( "/Create" )]
 	public IActionResult Create()
 	{
 		return View();

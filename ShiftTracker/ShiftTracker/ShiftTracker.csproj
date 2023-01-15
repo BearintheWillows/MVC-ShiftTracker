@@ -31,12 +31,8 @@
       <Folder Include="src\scss\pages" />
       <Folder Include="src\scss\themes" />
       <Folder Include="src\scss\vendors" />
-      <Folder Include="src\typescript" />
+      <Folder Include="src\typescript\components" />
       <Folder Include="wwwroot\js" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <TypeScriptCompile Include="src\shiftService.ts" />
     </ItemGroup>
 
 </Project>

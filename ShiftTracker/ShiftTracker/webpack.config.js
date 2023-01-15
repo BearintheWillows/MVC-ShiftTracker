@@ -3,7 +3,7 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 module.exports = {
     entry: {
         scss: './src/scss/site.scss',
-        
+        shiftService: './src/typescript/services/shiftService.ts',
     },
     mode: 'development',
     optimization: {

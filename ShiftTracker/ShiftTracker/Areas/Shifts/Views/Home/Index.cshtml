@@ -1,12 +1,10 @@
 ﻿@model IEnumerable<ShiftTracker.Data.Models.Shift>
 
-
-
 @{
     ViewData[ "Title" ] = "Index";
 }
 
-<a type="button" asp-area="Shifts" asp-page="/Create">Get Shifts</a>
+<button class="getShiftBtn">Get Shifts</button>
 
 @if ( Model == null )
 {
@@ -45,7 +43,5 @@
     </div>
 }
 
-<button onclick="JS.itWorks = itWorks"></button>
+<script src="js/shiftService.bundle.min.js"></script>
 
-
-<script src="js/home.bundle.min.js"></script>
