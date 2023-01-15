@@ -2,10 +2,9 @@
   "compilerOptions": {
     "noEmitOnError": true,
     "noImplicitAny": true,
-    "sourceMap": true,
     "target": "esnext",
-    "module": "esnext", 
-    "moduleResolution": "node",
+    "module": "esnext",
+    "moduleResolution": "node"
   },
   "compileOnSave": true
 }

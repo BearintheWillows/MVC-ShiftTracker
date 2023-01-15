@@ -1,7 +1,18 @@
 const path = require('path');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 module.exports = {
-    entry: './src/Index.ts',
+    entry: {
+        scss: './src/scss/site.scss',
+        
+    },
+    mode: 'development',
+    optimization: {
+        minimize: true,
+    },
     devtool: 'inline-source-map',
+    plugins: [
+        new CleanWebpackPlugin(),
+    ],
     module: {
         rules: [
             {
@@ -31,11 +42,12 @@ module.exports = {
     },
     output: {
         library: {
-            name: 'ShiftTracker',
+            name: 'JS',
             type: 'var'
         },
-        filename: 'bundle.js',
+        filename: '[name].bundle.min.js',
         path: path.resolve(__dirname, './wwwroot/js'),
-    }
+    },
+        
 };
 //# sourceMappingURL=webpack.config.js.map

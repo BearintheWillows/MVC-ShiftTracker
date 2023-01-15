@@ -7,6 +7,7 @@
     "start:dev": "webpack --watch --mode=development"
   },
   "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.3",
     "del": "5.1.0",
     "node-sass": "^8.0.0",
@@ -17,5 +18,9 @@
     "typescript": "^4.4.3",
     "webpack": "^5.52.1",
     "webpack-cli": "^4.8.0"
+  },
+  "dependencies": {
+    "webpack-clean-plugin": "^0.2.3",
+    "webpack-dev-server": "^4.11.1"
   }
 }

@@ -26,18 +26,16 @@
     <ItemGroup>
       <Folder Include="Areas\Shifts\Pages\Shared" />
       <Folder Include="Areas\Shifts\Views\Shared" />
-      <Folder Include="Content\layout" />
-      <Folder Include="Content\pages" />
-      <Folder Include="Content\themes" />
-      <Folder Include="Content\vendors" />
       <Folder Include="Interfaces" />
+      <Folder Include="src\scss\layout" />
+      <Folder Include="src\scss\pages" />
+      <Folder Include="src\scss\themes" />
+      <Folder Include="src\scss\vendors" />
+      <Folder Include="src\typescript" />
       <Folder Include="wwwroot\js" />
     </ItemGroup>
 
     <ItemGroup>
-      <TypeScriptCompile Include="src\functions.ts" />
-      <TypeScriptCompile Include="src\Index.ts" />
-      <TypeScriptCompile Include="src\interfaces.ts" />
       <TypeScriptCompile Include="src\shiftService.ts" />
     </ItemGroup>
 
