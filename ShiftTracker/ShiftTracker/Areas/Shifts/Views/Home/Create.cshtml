@@ -1,11 +1,11 @@
 ﻿@using ShiftTracker.Pages.Pages.Shared
-@model ShiftTracker.Data.Models.Shift;
+@model ShiftTracker.Areas.Shifts.Models.DTO.ShiftDto;
 
-<form asp-action="Create">
+<form asp-area="Shifts" asp-controller="Home" asp-action="Create" method="post"   >
     <div asp-validation-summary="ModelOnly"></div>
     <div class="form-group">
-        <label for="RunId">Run Id:</label>
-        <input type="number" class="form-control" id="RunId" asp-for="RunId" placeholder="Enter Date">
+        <label for="RunNumber">Run Number:</label>
+        <input type="number" class="form-control" id="RunNumber" asp-for="RunNumber" placeholder="Number">
     </div>
     <div class="form-group">
         <label for="Date">Date</label>
@@ -32,7 +32,7 @@
         <input type="time" class="form-control" asp-for="OtherWorkTime" id="OtherWorkTime" placeholder="Enter Other Work">
     </div>
     <button type="button">Add Break</button>
-    <input type="submit" value="Create">
+    <input type="submit" value="Submit">
 </form>
 
-<script src="/js/create.bundle.min.js"></script>
+

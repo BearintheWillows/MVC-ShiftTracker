@@ -7,7 +7,8 @@ public class ShiftDto
 
 	public int?      Id    { get; set; }
 	public DateTime Date  { get; set; }
-	public int      RunId { get; set; }
+	public int?      RunId { get; set; }
+	public int RunNumber { get; set; }
 	public RunDto?   Run   { get; set; }
 	// Navigation properties
 	public List<BreakDto>? Breaks { get; set; }

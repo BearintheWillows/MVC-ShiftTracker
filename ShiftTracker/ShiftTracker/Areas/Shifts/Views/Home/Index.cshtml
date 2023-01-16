@@ -4,7 +4,7 @@
     ViewData[ "Title" ] = "Index";
 }
 
-<button class="getShiftBtn">Get Shifts</button>
+<a type="button" asp-area="Shifts" asp-controller="Home" asp-action="Create" >Add Shift</a>
 
 @if ( Model == null )
 {

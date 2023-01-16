@@ -10,10 +10,12 @@ using Services;
 public class ShiftsApiController : ControllerBase
 {
 	private readonly IShiftService _shiftService;
+	private readonly IRunService   _runService;
 
-	public ShiftsApiController(IShiftService shiftService)
+	public ShiftsApiController(IShiftService shiftService, IRunService runService)
 	{
 		_shiftService = shiftService;
+		_runService = runService;
 	}
 
 	/// <summary>
@@ -105,7 +107,7 @@ public async Task<ActionResult<ShiftDto?>> GetShiftById(
 				var shift = new Shift
 					{
 					Date = shiftDto.Date,
-					RunId = shiftDto.RunId,
+					RunId = await _runService.GetByNumberAsync( shiftDto.RunNumber ),
 					Breaks = new List<Break>(),
 					StartTime = shiftDto.StartTime,
 					EndTime = shiftDto.EndTime,

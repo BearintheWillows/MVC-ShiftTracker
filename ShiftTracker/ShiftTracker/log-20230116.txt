@@ -1,0 +1,39 @@
+2023-01-16 05:45:34.274 +00:00 [ERR] Error creating shift
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert the value NULL into column 'RunId', table 'MVC-ShiftTracker.dbo.Shifts'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__208_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:94decc47-4aee-43f9-a565-33f892d24643
+Error Number:515,State:2,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at ShiftTracker.Services.BaseCrudService`1.AddAsync(T entity) in C:\Users\SJWil\RiderProjects\MVC-ShiftTracker\ShiftTracker\ShiftTracker\Services\BaseCrudService.cs:line 53
+   at ShiftTracker.Controllers.ShiftsApiController.AddShift(ShiftDto shiftDto) in C:\Users\SJWil\RiderProjects\MVC-ShiftTracker\ShiftTracker\ShiftTracker\Controllers\ShiftsApiController.cs:line 118
+2023-01-16 05:51:36.737 +00:00 [ERR] Error getting shift
+System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Select[TSource,TResult](IEnumerable`1 source, Func`2 selector)
+   at ShiftTracker.Areas.Shifts.Models.DTO.ShiftDto.CreateDto(Shift shift, ValueTuple`3 opts) in C:\Users\SJWil\RiderProjects\MVC-ShiftTracker\ShiftTracker\ShiftTracker\Areas\Shifts\Models\DTO\ShiftDto.cs:line 32
+   at ShiftTracker.Controllers.ShiftsApiController.GetShiftById(Int32 id, Boolean includeRun, Boolean includeBreaks, Boolean includeTimeData) in C:\Users\SJWil\RiderProjects\MVC-ShiftTracker\ShiftTracker\ShiftTracker\Controllers\ShiftsApiController.cs:line 78
+2023-01-16 05:51:48.467 +00:00 [ERR] Error getting shift
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at ShiftTracker.Areas.Shifts.Models.DTO.ShiftDto.CreateDto(Shift shift, ValueTuple`3 opts) in C:\Users\SJWil\RiderProjects\MVC-ShiftTracker\ShiftTracker\ShiftTracker\Areas\Shifts\Models\DTO\ShiftDto.cs:line 32
+   at ShiftTracker.Controllers.ShiftsApiController.GetShiftById(Int32 id, Boolean includeRun, Boolean includeBreaks, Boolean includeTimeData) in C:\Users\SJWil\RiderProjects\MVC-ShiftTracker\ShiftTracker\ShiftTracker\Controllers\ShiftsApiController.cs:line 78

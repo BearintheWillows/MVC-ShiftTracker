@@ -1,6 +1,7 @@
 ﻿namespace ShiftTracker.Areas.Shifts.Controllers;
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Models.DTO;
 using ShiftTracker.Data.Models;
 using Services;
@@ -10,11 +11,13 @@ public class HomeController : Controller
 {
 	private readonly IShiftService _shiftService;
 	private readonly IBreakService _breakService;
+	private readonly IRunService _runService;
 
-	public HomeController(IShiftService shiftService, IBreakService breakService)
+	public HomeController(IShiftService shiftService, IBreakService breakService, IRunService runService)
 	{
 		_shiftService = shiftService;
 		_breakService = breakService;
+		_runService = runService;
 	}
 
 	public async Task<IActionResult> Index()
@@ -34,9 +37,9 @@ public class HomeController : Controller
 	}
 
 	[HttpPost]
-	[ValidateAntiForgeryToken]
+	[Route( "/Create" )]
 	public async Task<IActionResult> Create(
-		[Bind( "Date, RunId, StartTime, EndTime, DriveTime, OtherWorkTime, WorkTime" )] ShiftDto shiftDto
+		[Bind( "Date, RunNumber, StartTime, EndTime, DriveTime, OtherWorkTime, WorkTime" )] ShiftDto shiftDto
 	)
 	{
 
@@ -44,7 +47,7 @@ public class HomeController : Controller
 		Shift shift = new Shift
 			{
 			Date = shiftDto.Date,
-			RunId = shiftDto.RunId,
+			RunId = await _runService.GetByNumberAsync( shiftDto.RunNumber),
 			StartTime = shiftDto.StartTime,
 			EndTime = shiftDto.EndTime,
 			DriveTime = shiftDto.DriveTime,

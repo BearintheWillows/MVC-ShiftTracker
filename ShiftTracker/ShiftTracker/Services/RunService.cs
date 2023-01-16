@@ -11,6 +11,8 @@ public interface IRunService : IBaseCrudService<Run>
 	Task<List<Run>> GetAllAsync(bool includeDRP);
 	Task<Run?>      GetAsync(int     id, bool includeDRP);
 	Task<bool>      ExistsAsync(int  id);
+	
+	Task<int?> GetByNumberAsync(int runNumber);
 }
 
 public class RunService : BaseCrudService<Run>, IRunService
@@ -51,5 +53,17 @@ public class RunService : BaseCrudService<Run>, IRunService
 	public async Task<bool> ExistsAsync(int id)
 	{
 		return await _context.Runs.AnyAsync( r => r.Id == id );
+	}
+	
+	public async Task<int?> GetByNumberAsync(int runNumber)
+	{
+		var run = await _context.Runs.FirstOrDefaultAsync(r => r.Number == runNumber);
+		if ( run == null  )
+		{
+			return null;
+		} else
+		{
+			return run.Id;
+		}
 	}
 }
