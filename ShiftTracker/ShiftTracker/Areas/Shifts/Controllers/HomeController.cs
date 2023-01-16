@@ -31,15 +31,19 @@ public class HomeController : Controller
 
 	[HttpGet]
 	[Route( "/Create" )]
-	public IActionResult Create()
+	public async Task<IActionResult> Create()
 	{
+		var runNumbers = await _runService.GetAllNumbersAndIds();
+
+		ViewBag.runNumbers = runNumbers;
+		
 		return View();
 	}
 
 	[HttpPost]
 	[Route( "/Create" )]
 	public async Task<IActionResult> Create(
-		[Bind( "Date, RunNumber, StartTime, EndTime, DriveTime, OtherWorkTime, WorkTime" )] ShiftDto shiftDto
+		[Bind( "Date, RunId, StartTime, EndTime, DriveTime, OtherWorkTime, WorkTime" )] ShiftDto shiftDto
 	)
 	{
 
@@ -47,7 +51,7 @@ public class HomeController : Controller
 		Shift shift = new Shift
 			{
 			Date = shiftDto.Date,
-			RunId = await _runService.GetByNumberAsync( shiftDto.RunNumber),
+			RunId = shiftDto.RunId,
 			StartTime = shiftDto.StartTime,
 			EndTime = shiftDto.EndTime,
 			DriveTime = shiftDto.DriveTime,

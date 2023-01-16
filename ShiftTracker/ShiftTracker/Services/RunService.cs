@@ -11,8 +11,8 @@ public interface IRunService : IBaseCrudService<Run>
 	Task<List<Run>> GetAllAsync(bool includeDRP);
 	Task<Run?>      GetAsync(int     id, bool includeDRP);
 	Task<bool>      ExistsAsync(int  id);
-	
-	Task<int?> GetByNumberAsync(int runNumber);
+
+	Task<List<Tuple<int, int>>> GetAllNumbersAndIds();
 }
 
 public class RunService : BaseCrudService<Run>, IRunService
@@ -54,16 +54,14 @@ public class RunService : BaseCrudService<Run>, IRunService
 	{
 		return await _context.Runs.AnyAsync( r => r.Id == id );
 	}
-	
-	public async Task<int?> GetByNumberAsync(int runNumber)
+
+	/// <summary>
+	/// Returns a List of tuples containing the Run Id {0} and the Run Number {1}
+	/// </summary>
+	/// <returns>Tuple</returns>
+	public async Task<List<Tuple<int, int>>> GetAllNumbersAndIds()
 	{
-		var run = await _context.Runs.FirstOrDefaultAsync(r => r.Number == runNumber);
-		if ( run == null  )
-		{
-			return null;
-		} else
-		{
-			return run.Id;
-		}
+		return await _context.Runs.Select( r => new Tuple<int, int>
+			(r.Id, r.Number)).ToListAsync(  );
 	}
 }

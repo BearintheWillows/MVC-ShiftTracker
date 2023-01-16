@@ -4,11 +4,16 @@
 <form asp-area="Shifts" asp-controller="Home" asp-action="Create" method="post"   >
     <div asp-validation-summary="ModelOnly"></div>
     <div class="form-group">
-        <label for="RunNumber">Run Number:</label>
-        <input type="number" class="form-control" id="RunNumber" asp-for="RunNumber" placeholder="Number">
+        <label for="runId">Run Number:</label> 
+        <select asp-for="RunId" id="runId">
+            @foreach ( var item in ViewBag.runNumbers )
+            {
+                <option value="@item.Item1">@item.Item2</option>
+            }
+        </select>
     </div>
     <div class="form-group">
-        <label for="Date">Date</label>
+        <label for="date">Date</label>
         <input type="date" class="form-control" id="date" asp-for="Date" placeholder="Enter Date">
     </div>
     <div class="form-group">

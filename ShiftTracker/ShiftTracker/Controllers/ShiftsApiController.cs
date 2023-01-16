@@ -107,7 +107,7 @@ public async Task<ActionResult<ShiftDto?>> GetShiftById(
 				var shift = new Shift
 					{
 					Date = shiftDto.Date,
-					RunId = await _runService.GetByNumberAsync( shiftDto.RunNumber ),
+					RunId = shiftDto.RunId,
 					Breaks = new List<Break>(),
 					StartTime = shiftDto.StartTime,
 					EndTime = shiftDto.EndTime,

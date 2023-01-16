@@ -24,6 +24,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Areas\Shifts\Models\ViewModels" />
       <Folder Include="Areas\Shifts\Pages\Shared" />
       <Folder Include="Areas\Shifts\Views\Shared" />
       <Folder Include="Interfaces" />
