@@ -15,3 +15,10 @@
     otherWorkTime?: Date;
     workTime?: Date;
 }
+
+interface IBreak {
+    Id?: number;
+    startTime: Date;
+    endTime: Date;
+    duration: Date;
+}

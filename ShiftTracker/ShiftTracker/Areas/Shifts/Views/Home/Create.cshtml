@@ -1,6 +1,8 @@
 ﻿@using ShiftTracker.Pages.Pages.Shared
 @model ShiftTracker.Areas.Shifts.Models.DTO.ShiftDto;
 
+<script src = "js/shiftService.bundle.min.js" ></script >
+
 <form asp-area="Shifts" asp-controller="Home" asp-action="Create" method="post"   >
     <div asp-validation-summary="ModelOnly"></div>
     <div class="form-group">
@@ -36,8 +38,11 @@
         <label for="OtherWorkTime">Other Work</label>
         <input type="time" class="form-control" asp-for="OtherWorkTime" id="OtherWorkTime" placeholder="Enter Other Work">
     </div>
-    <button type="button">Add Break</button>
+    <div id="breakForm" >
+        
+    </div>
     <input type="submit" value="Submit">
 </form>
+
 
 
