@@ -1,7 +1,11 @@
 ﻿//Base
 
+@use "base/reset";
 @use "base/colors";
 @use "base/typography";
 
 //Components
 @use "components/buttons";
+@use "components/inputs";
+@use "components/shiftForm";
+@use "components/labels";

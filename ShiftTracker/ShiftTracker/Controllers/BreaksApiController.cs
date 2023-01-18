@@ -1,11 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace ShiftTracker.Controllers;
+﻿namespace ShiftTracker.Controllers;
 
 using Areas.Shifts.Models.DTO;
-using Data;
 using Data.Models;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 using Services;
 
 [ApiController, Route( "api/breaks" )]
@@ -52,7 +49,7 @@ public class BreaksApiController : ControllerBase
 		{
 			var returnedBreak = await _breakService.GetAsync( id );
 
-			if ( returnedBreak == null ) return NotFound("No Break by that Id found.");
+			if ( returnedBreak == null ) return NotFound( "No Break by that Id found." );
 			var breakDto = new BreakDto
 				{
 				Id = returnedBreak.Id,
@@ -75,8 +72,8 @@ public class BreaksApiController : ControllerBase
 	{
 		try
 		{
-			if ( !await _shiftService.ExistsAsync(breakDto.ShiftId) ) return NotFound( "Shift does not exist" );
-			if ( await _breakService.ExistsAsync(breakDto.Id) ) return NotFound( "Break already exists" );
+			if ( !await _shiftService.ExistsAsync( breakDto.ShiftId ) ) return NotFound( "Shift does not exist" );
+			if ( await _breakService.ExistsAsync( breakDto.Id ) ) return NotFound( "Break already exists" );
 
 			var newBreak = new Break
 				{
@@ -122,11 +119,8 @@ public class BreaksApiController : ControllerBase
 		{
 			var returnedBreak = await _breakService.GetAsync( id );
 
-			if ( returnedBreak == null )
-			{
-				return NotFound("No Break by that Id found.");
-			}
-			
+			if ( returnedBreak == null ) return NotFound( "No Break by that Id found." );
+
 
 			returnedBreak.StartTime = breakDto.StartTime;
 			returnedBreak.EndTime = breakDto.EndTime;

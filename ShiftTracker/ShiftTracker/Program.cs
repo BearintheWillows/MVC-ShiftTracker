@@ -9,14 +9,21 @@ var builder = WebApplication.CreateBuilder( args );
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
-builder.Services.AddCors(options =>
-{
-	options.AddPolicy("AllowSpecificOrigin",
-	                  builder => builder.WithOrigins("http://localhost:44392"));
-});
+builder.Services.AddCors( options =>
+	{
+		options.AddPolicy( "AllowSpecificOrigin",
+		                   builder => builder.WithOrigins( "http://localhost:44392" )
+		);
+	}
+);
 
 builder.Services.AddDbContext<ApplicationDbContext>( options =>
-	options.UseSqlServer( builder.Configuration.GetConnectionString( "DefaultConnection" ) ) );
+	                                                     options.UseSqlServer(
+		                                                     builder.Configuration.GetConnectionString(
+			                                                     "DefaultConnection"
+		                                                     )
+	                                                     )
+);
 
 builder.Services.AddScoped<IShopService, ShopService>();
 builder.Services.AddScoped<IShiftService, ShiftService>();
@@ -25,10 +32,10 @@ builder.Services.AddScoped<IDailyRoutePlanService, DailyRoutePlanService>();
 builder.Services.AddScoped<IRunService, RunService>();
 
 Log.Logger = new LoggerConfiguration()
-            .WriteTo.File( 
-	             "log-.txt", 
-	             rollingInterval: RollingInterval.Day,
-	             outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}"
+            .WriteTo.File( "log-.txt",
+                           rollingInterval: RollingInterval.Day,
+                           outputTemplate:
+                           "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}"
              ).CreateLogger();
 
 var app = builder.Build();
@@ -41,6 +48,7 @@ if ( !app.Environment.IsDevelopment() )
 	// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 	app.UseHsts();
 }
+
 app.UseDefaultFiles();
 app.UseStaticFiles();
 app.UseHttpsRedirection();
@@ -49,13 +57,13 @@ app.UseHttpsRedirection();
 app.UseRouting();
 
 app.UseAuthorization();
-app.MapControllerRoute(
-	name: "Areas",
-	pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}" );
+app.MapControllerRoute( "Areas",
+                        "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+);
 
-app.MapControllerRoute(
-	name: "Default",
-	pattern: "{area=Shifts}/{controller=Home}/{action=Index}/{id?}" );
+app.MapControllerRoute( "Default",
+                        "{area=Shifts}/{controller=Home}/{action=Index}/{id?}"
+);
 
 app.MapRazorPages();
 app.Run();

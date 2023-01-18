@@ -1,10 +1,14 @@
 export default class ShiftService {
+    static baseUrl = "https://localhost:44392/api/shifts";
+
     constructor() {
     }
-   static baseUrl = "https://localhost:44392/api/shifts";
-   static getShifts() {
+
+    static getShifts() {
         return fetch(this.baseUrl)
-            .then(response => {console.log(response.json())})
+            .then(response => {
+                console.log(response.json())
+            })
     }
 }
 

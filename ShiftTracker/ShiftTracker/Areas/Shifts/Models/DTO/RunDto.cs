@@ -1,8 +1,5 @@
 ﻿namespace ShiftTracker.Areas.Shifts.Models.DTO;
 
-using System.Collections;
-using System.Data.SqlTypes;
-using Azure.Core;
 using Data.Models;
 
 public class RunDto
@@ -15,7 +12,7 @@ public class RunDto
 
 	public static IEnumerable<RunDto> CreateDtoList(List<Run> run, bool includeDrp)
 	{
-		IEnumerable<RunDto> runDto = run.Select( r => new RunDto
+		var runDto = run.Select( r => new RunDto
 				{
 				Id = r.Id,
 				Number = r.Number,
@@ -24,7 +21,7 @@ public class RunDto
 					? r.RoutePlans.Select( dr => new DailyRoutePlanDto
 							{
 							Id = dr.Id,
-							DayOfWeek = ( int ) dr.DayOfWeek ,
+							DayOfWeek = ( int ) dr.DayOfWeek,
 							Shop = new ShopDto
 								{
 								Id = dr.Shop.Id,
@@ -35,42 +32,40 @@ public class RunDto
 								City = dr.Shop.City,
 								Postcode = dr.Shop.Postcode,
 								PhoneNumber = dr.Shop.PhoneNumber,
-								}
+								},
 							}
 					).ToList()
-					: null
-				});
-			
+					: null,
+				}
+		);
+
 
 		return runDto;
 	}
 
-	public static RunDto CreateRunDto(Run run, bool includeDRP)
-	{
-		return new RunDto()
-			{
-			Id = run.Id,
-			Number = run.Number,
-			StartTime = run.StartTime,
-			DailyRoutes = includeDRP
-				? run.RoutePlans.Select( dr => new DailyRoutePlanDto
+	public static RunDto CreateRunDto(Run run, bool includeDRP) => new RunDto
+		{
+		Id = run.Id,
+		Number = run.Number,
+		StartTime = run.StartTime,
+		DailyRoutes = includeDRP
+			? run.RoutePlans.Select( dr => new DailyRoutePlanDto
+					{
+					Id = dr.Id,
+					DayOfWeek = ( int ) dr.DayOfWeek,
+					Shop = new ShopDto
 						{
-						Id = dr.Id,
-						DayOfWeek = ( int ) dr.DayOfWeek,
-						Shop = new ShopDto
-							{
-							Id = dr.Shop.Id,
-							Name = dr.Shop.Name,
-							Number = dr.Shop.Number,
-							Street = dr.Shop.Street,
-							Street2 = dr.Shop.Street2,
-							City = dr.Shop.City,
-							Postcode = dr.Shop.Postcode,
-							PhoneNumber = dr.Shop.PhoneNumber,
-							}
-						}
-				).ToList()
-				: null
-			};
-	}
+						Id = dr.Shop.Id,
+						Name = dr.Shop.Name,
+						Number = dr.Shop.Number,
+						Street = dr.Shop.Street,
+						Street2 = dr.Shop.Street2,
+						City = dr.Shop.City,
+						Postcode = dr.Shop.Postcode,
+						PhoneNumber = dr.Shop.PhoneNumber,
+						},
+					}
+			).ToList()
+			: null,
+		};
 }

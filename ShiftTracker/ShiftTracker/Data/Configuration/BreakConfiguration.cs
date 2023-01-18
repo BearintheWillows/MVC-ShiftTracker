@@ -3,7 +3,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Models;
-using ShiftTracker.Areas.Shifts.Models;
 
 public class BreakConfiguration : IEntityTypeConfiguration<Break>
 {
@@ -14,6 +13,7 @@ public class BreakConfiguration : IEntityTypeConfiguration<Break>
 		builder.Property( b => b.StartTime ).IsRequired();
 		builder.Property( b => b.EndTime ).IsRequired();
 		builder.Property( b => b.Duration ).IsRequired();
-		builder.HasOne(b => b.Shift  ).WithMany( b => b.Breaks ).HasForeignKey( b => b.ShiftId ).OnDelete( deleteBehavior: DeleteBehavior.Cascade );	
+		builder.HasOne( b => b.Shift ).WithMany( b => b.Breaks ).HasForeignKey( b => b.ShiftId )
+		       .OnDelete( DeleteBehavior.Cascade );
 	}
 }

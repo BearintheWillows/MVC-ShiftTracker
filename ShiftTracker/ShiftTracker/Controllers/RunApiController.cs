@@ -7,11 +7,10 @@ using Serilog;
 using Services;
 
 [ApiController, Route( "api/runs" )]
-
 public class RunApiController : ControllerBase
 {
-	private readonly IRunService            _runService;
 	private readonly IDailyRoutePlanService _dRPService;
+	private readonly IRunService            _runService;
 	private readonly IShopService           _shopService;
 
 	public RunApiController(IRunService runService, IDailyRoutePlanService dRpService, IShopService shopService)
@@ -26,9 +25,9 @@ public class RunApiController : ControllerBase
 	{
 		try
 		{
-			List<Run> runResultAsync = await _runService.GetAllAsync( includeDRP );
+			var runResultAsync = await _runService.GetAllAsync( includeDRP );
 
-			IEnumerable<RunDto> results = RunDto.CreateDtoList( runResultAsync, includeDRP );
+			var results = RunDto.CreateDtoList( runResultAsync, includeDRP );
 
 			return Ok( results );
 		}
@@ -40,15 +39,15 @@ public class RunApiController : ControllerBase
 		}
 	}
 
-	[HttpGet("{id}")]
+	[HttpGet( "{id}" )]
 	public async Task<ActionResult<RunDto?>> GetRunById(int id, [FromQuery] bool includeDRP = false)
 	{
 		try
 		{
-			Run? run = await _runService.GetAsync( id, includeDRP );
-			
-			if ( run != null) return RunDto.CreateRunDto( run, includeDRP );
-			
+			var run = await _runService.GetAsync( id, includeDRP );
+
+			if ( run != null ) return RunDto.CreateRunDto( run, includeDRP );
+
 			return NotFound( "Run Doesn't exist" );
 		}
 		catch ( Exception e )
@@ -61,20 +60,16 @@ public class RunApiController : ControllerBase
 	[HttpPost]
 	public async Task<ActionResult<RunDto>> AddRun([FromBody] RunDto runDto)
 	{
-		 		try
+		try
 		{
-			if ( await _runService.ExistsAsync(runDto.Id) )
-			{
-				return BadRequest("Run already exists");
-			}
+			if ( await _runService.ExistsAsync( runDto.Id ) ) return BadRequest( "Run already exists" );
 
 
-			Run run = new Run { Number = runDto.Number, StartTime = runDto.StartTime };
+			var run = new Run { Number = runDto.Number, StartTime = runDto.StartTime };
 
 			await _runService.AddAsync( run );
-			
-			return Ok( RunDto.CreateRunDto( run, false ) );
 
+			return Ok( RunDto.CreateRunDto( run, false ) );
 		}
 		catch ( Exception e )
 		{
@@ -84,27 +79,19 @@ public class RunApiController : ControllerBase
 		}
 	}
 
-	[HttpPut("{id}")]
+	[HttpPut( "{id}" )]
 	public async Task<ActionResult<RunDto>> UpdateRun(int id, [FromBody] RunDto runDto)
 	{
 		try
 		{
 			var run = await _runService.GetAsync( id, false );
-			if (  run == null )
-			{
-				return NotFound( $"No run with Id {id} exists" );
-			}
-			
-			Run newRun = new Run
-				{
-				Id = runDto.Id,
-				Number = runDto.Number,
-				StartTime = runDto.StartTime
-				};
-			
+			if ( run == null ) return NotFound( $"No run with Id {id} exists" );
+
+			var newRun = new Run { Id = runDto.Id, Number = runDto.Number, StartTime = runDto.StartTime };
+
 			await _runService.UpdateAsync( run );
-			
-			return Ok(runDto);
+
+			return Ok( runDto );
 		}
 		catch ( Exception e )
 		{
@@ -114,17 +101,14 @@ public class RunApiController : ControllerBase
 		}
 	}
 
-	[HttpDelete("{id}")]
+	[HttpDelete( "{id}" )]
 	public async Task<ActionResult> DeleteRun(int id)
 	{
 		try
 		{
-			if ( !await _runService.ExistsAsync( id )  )
-			{
-				return NotFound($"No Run with Id {id} found.");
-			}
+			if ( !await _runService.ExistsAsync( id ) ) return NotFound( $"No Run with Id {id} found." );
 
-			
+
 			await _runService.DeleteAsync( id );
 			return Ok();
 		}
@@ -135,20 +119,14 @@ public class RunApiController : ControllerBase
 			throw;
 		}
 	}
-	
-	[HttpGet("{id}/routes")]
-	public async Task<List<DailyRoutePlan>> GetRoutesForRun(int id, [FromQuery] DayOfWeek? day )
+
+	[HttpGet( "{id}/routes" )]
+	public async Task<List<DailyRoutePlan>> GetRoutesForRun(int id, [FromQuery] DayOfWeek? day)
 	{
 		try
 		{
-			if ( day == null  )
-			{
-				return await _dRPService.GetRoutesForRunAsync( id );
-			} else
-			{
-				return await _dRPService.GetRouteForRunDayFilterAsync( id, day.Value );
-			}
-			
+			if ( day == null ) return await _dRPService.GetRoutesForRunAsync( id );
+			return await _dRPService.GetRouteForRunDayFilterAsync( id, day.Value );
 		}
 		catch ( Exception e )
 		{
@@ -157,34 +135,29 @@ public class RunApiController : ControllerBase
 			throw;
 		}
 	}
-	
-	[HttpPost("{id}/routes/")]
+
+	[HttpPost( "{id}/routes/" )]
 	public async Task<ActionResult<DailyRoutePlan>> AddRouteToRun(int id, [FromBody] DailyRoutePlanDto drpDto)
 	{
 		try
 		{
-			if ( !await _runService.ExistsAsync( id )  )
-			{
-				return NotFound($"No Run with Id {id} found.");
-			}
+			if ( !await _runService.ExistsAsync( id ) ) return NotFound( $"No Run with Id {id} found." );
 
-			if ( !await _shopService.ExistsAsync(drpDto.ShopId) )
-			{
-				return NotFound($"No Shop with Id {drpDto.ShopId} found.");
-			}
+			if ( !await _shopService.ExistsAsync( drpDto.ShopId ) )
+				return NotFound( $"No Shop with Id {drpDto.ShopId} found." );
 
-			DailyRoutePlan route = new DailyRoutePlan
+			var route = new DailyRoutePlan
 				{
 				RunId = drpDto.RunId,
-				ShopId = ( int ) drpDto.ShopId,
+				ShopId = drpDto.ShopId,
 				DayOfWeek = ( DayOfWeek ) drpDto.DayOfWeek,
 				WindowOpenTime = drpDto.WindowOpenTime,
 				WindowCloseTime = drpDto.WindowCloseTime,
 				};
-			
+
 			await _dRPService.AddAsync( route );
-			
-			return Ok(drpDto);
+
+			return Ok( drpDto );
 		}
 		catch ( Exception e )
 		{

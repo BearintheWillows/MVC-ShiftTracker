@@ -1,18 +1,19 @@
 ﻿namespace ShiftTracker.Areas.Shifts.Models.DTO;
 
-using ShiftTracker.Data.Models;
+using Data.Models;
 
 public class ShiftDto
 {
+	public int?     Id        { get; set; }
+	public DateTime Date      { get; set; }
+	public int?     RunId     { get; set; }
+	public int      RunNumber { get; set; }
 
-	public int?      Id    { get; set; }
-	public DateTime Date  { get; set; }
-	public int?      RunId { get; set; }
-	public int RunNumber { get; set; }
-	public RunDto?   Run   { get; set; }
+	public RunDto? Run { get; set; }
+
 	// Navigation properties
 	public List<BreakDto>? Breaks { get; set; }
-	
+
 	public TimeSpan StartTime     { get; set; }
 	public TimeSpan EndTime       { get; set; }
 	public TimeSpan BreakDuration { get; set; }
@@ -20,16 +21,16 @@ public class ShiftDto
 	public TimeSpan ShiftDuration { get; set; }
 	public TimeSpan OtherWorkTime { get; set; }
 	public TimeSpan WorkTime      { get; set; }
-	
+
 	/// <summary>
-	/// Creates ShiftDto from Shift data
+	///     Creates ShiftDto from Shift data
 	/// </summary>
 	/// <param name="shift"></param>
 	/// <param name="opts"></param>
 	/// <returns>ShiftDto</returns>
 	public static ShiftDto? CreateDto(Shift shift, (bool includeBreaks, bool includeRun, bool includeTimeData) opts)
 	{
-		var shiftDto = new ShiftDto()
+		var shiftDto = new ShiftDto
 			{
 			Id = shift.Id,
 			Date = shift.Date,
@@ -51,6 +52,4 @@ public class ShiftDto
 			};
 		return shiftDto;
 	}
-
 }
-

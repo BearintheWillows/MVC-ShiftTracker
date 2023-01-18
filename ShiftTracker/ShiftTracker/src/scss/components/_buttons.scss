@@ -2,15 +2,15 @@
 @use "../utilities/mixins";
 //Updated and Delete Buttons
 
-.updateDeleteButtons{
-    color: colors.$color-Cul-Blue;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    margin: 5px;
-    cursor: pointer;
+.updateDeleteButtons {
+  color: colors.$color-Cul-Blue;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin: 5px;
+  cursor: pointer;
 }
 
-.editBtn , .deleteBtn{
-   @include mixins.editDeleteButtonTransition;
- }
+.editBtn, .deleteBtn {
+  @include mixins.editDeleteButtonTransition;
+}

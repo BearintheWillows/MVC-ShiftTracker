@@ -1,48 +1,52 @@
 ﻿@using ShiftTracker.Pages.Pages.Shared
 @model ShiftTracker.Areas.Shifts.Models.DTO.ShiftDto;
 
-<script src = "js/shiftService.bundle.min.js" ></script >
+<script src="js/shiftService.bundle.min.js"></script >
 
-<form asp-area="Shifts" asp-controller="Home" asp-action="Create" method="post"   >
+<form class="form" asp-area="Shifts" asp-controller="Home" asp-action="Create" method="post">
     <div asp-validation-summary="ModelOnly"></div>
-    <div class="form-group">
-        <label for="runId">Run Number:</label> 
-        <select asp-for="RunId" id="runId">
-            @foreach ( var item in ViewBag.runNumbers )
-            {
-                <option value="@item.Item1">@item.Item2</option>
-            }
-        </select>
+    <div class="form__shift">
+        <div class="form__shift--sectionLeft">
+            <div class="form-group--top">
+                <label for="runId" class=" form__label">
+                </label>
+                <select type="select" class="form__input" asp-for="RunId ">
+                    @foreach ( var item in ViewBag.runNumbers )
+                    {
+                        <option class="option" value="@item.Item1">@item.Item2</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group--bottom">
+                <label for="date" class="form__label">Date</label>
+                <input type="date" class="form__input" id="date" asp-for="Date " placeholder="Enter Date">
+            </div>
+        </div>
+        <div class="form__shift--sectionMid">
+            <div class="form-group">
+                <label for="StartTime" class="form__label">Shift Start</label>
+                <input type="time" class="form__input" id="StartTime" asp-for="StartTime " placeholder="Enter Shift End">
+            </div>
+            <div class="form-group">
+                <label for="EndTime" class="form__label">Shift Finish</label>
+                <input type="time" class="form__input" id="EndTime" asp-for="EndTime " placeholder="Enter Shift Finish TIme">
+            </div>
+            <div class="form-group">
+                <label for="DriveTime" class="form__label">Drive Time</label>
+                <input type="time" class="form__input" asp-for="DriveTime " id="DriveTime" placeholder="Enter Drive Time">
+            </div>
+            <div class="form-group">
+                <label for="WorkTime" class="form__label">Work Time</label>
+                <input type="time" class="form__input" asp-for="WorkTime " id="WorkTime" placeholder="Enter Work Time">
+            </div>
+            <div class="form-group">
+                <label for="OtherWorkTime" class="form__label">Other Work</label>
+                <input type="time" class="form__input" asp-for="OtherWorkTime " id="OtherWorkTime" placeholder="Enter Other Work">
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="date">Date</label>
-        <input type="date" class="form-control" id="date" asp-for="Date" placeholder="Enter Date">
+    <div class="form__breaks">
+        <div id="breakForm" class="breakForm"></div>
     </div>
-    <div class="form-group">
-        <label for="StartTime">Shift Start</label>
-        <input type="time" class="form-control" id="StartTime" asp-for="StartTime" placeholder="Enter Shift End">
-    </div>
-    <div class="form-group">
-        <label for="EndTime">Shift Finish</label>
-        <input type="time" class="form-control" id="EndTime" asp-for="EndTime" placeholder="Enter Shift Finish TIme">
-    </div>
-    <div class="form-group">
-        <label for="DriveTime">Drive Time</label>
-        <input type="time" class="form-control" asp-for="DriveTime" id="DriveTime" placeholder="Enter Drive Time">
-    </div>
-    <div class="form-group">
-        <label for="WorkTime">Work Time</label>
-        <input type="time" class="form-control" asp-for="WorkTime" id="WorkTime" placeholder="Enter Work Time">
-    </div>
-    <div class="form-group">
-        <label for="OtherWorkTime">Other Work</label>
-        <input type="time" class="form-control" asp-for="OtherWorkTime" id="OtherWorkTime" placeholder="Enter Other Work">
-    </div>
-    <div id="breakForm" >
-        
-    </div>
-    <input type="submit" value="Submit">
+    <input type="submit" class="form__btn--submit" value="Submit">
 </form>
-
-
-

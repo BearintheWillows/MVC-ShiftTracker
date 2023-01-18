@@ -18,14 +18,9 @@ public class BreakService : BaseCrudService<Break>, IBreakService
 	{
 		_context = context;
 	}
-	
-	public async Task<bool> ExistsAsync(int? id)
-	{
-		return await _context.Breaks.AnyAsync( s => s.Id == id);
-	}
-	
-	public async Task<IEnumerable<Break>> GetAllAsyncByShiftId(int shiftId)
-	{
-		return await _context.Breaks.Where( s => s.ShiftId == shiftId).ToListAsync();
-	}
+
+	public async Task<bool> ExistsAsync(int? id) => await _context.Breaks.AnyAsync( s => s.Id == id );
+
+	public async Task<IEnumerable<Break>> GetAllAsyncByShiftId(int shiftId) =>
+		await _context.Breaks.Where( s => s.ShiftId == shiftId ).ToListAsync();
 }

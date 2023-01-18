@@ -1,8 +1,5 @@
-﻿using ShiftTracker.Areas.Shifts.Models;
+﻿namespace ShiftTracker.Migrations;
 
-namespace ShiftTracker.Migrations;
-
-using System.Runtime.InteropServices.JavaScript;
 using Data.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -89,7 +86,7 @@ public static class ModelBuilderExtentions
 			                                     Street2 = "",
 			                                     City = "Irthlingborough",
 			                                     County = "Northants",
-			                                     Postcode = $"NN95JG",
+			                                     Postcode = "NN95JG",
 			                                     PhoneNumber = 01536741000,
 			                                     },
 		                                     new
@@ -101,7 +98,7 @@ public static class ModelBuilderExtentions
 			                                     Street2 = "",
 			                                     City = "Northampton",
 			                                     County = "Northants",
-			                                     Postcode = $"NN38px",
+			                                     Postcode = "NN38px",
 			                                     PhoneNumber = 01604620000,
 			                                     },
 		                                     new
@@ -113,7 +110,7 @@ public static class ModelBuilderExtentions
 			                                     Street2 = "",
 			                                     City = "Stanwick",
 			                                     County = "Northants",
-			                                     Postcode = $"NN96JG",
+			                                     Postcode = "NN96JG",
 			                                     PhoneNumber = 01536741000,
 			                                     },
 		                                     new
@@ -125,7 +122,7 @@ public static class ModelBuilderExtentions
 			                                     Street2 = "",
 			                                     City = "Thetford",
 			                                     County = "Suffolk",
-			                                     Postcode = $"IP242JG",
+			                                     Postcode = "IP242JG",
 			                                     PhoneNumber = 01842741000,
 			                                     },
 		                                     new
@@ -137,62 +134,61 @@ public static class ModelBuilderExtentions
 			                                     Street2 = "",
 			                                     City = "Brandon",
 			                                     County = "Suffolk",
-			                                     Postcode = $"IP20JG",
+			                                     Postcode = "IP20JG",
 			                                     PhoneNumber = 01842741000,
 			                                     }
 		);
 
-		modelBuilder.Entity<DailyRoutePlan>().HasData(
-			new
-				{
-				Id = -1,
-				SequenceNumber = 1,
-				DayOfWeek = DayOfWeek.Monday,
-				WindowOpenTime = new TimeSpan( 10, 15, 00 ),
-				WindowCloseTime = new TimeSpan( 11, 15, 00 ),
-				RunId = -1,
-				ShopId = -1
-				},
-			new
-				{
-				Id = -2,
-				SequenceNumber = 2,
-				DayOfWeek = DayOfWeek.Monday,
-				WindowOpenTime = new TimeSpan( 12, 15, 00 ),
-				WindowCloseTime = new TimeSpan( 13, 15, 00 ),
-				RunId = -1,
-				ShopId = -2
-				},
-			new
-				{
-				Id = -3,
-				SequenceNumber = 3,
-				DayOfWeek = DayOfWeek.Monday,
-				WindowOpenTime = new TimeSpan( 14, 15, 00 ),
-				WindowCloseTime = new TimeSpan( 14, 30, 00 ),
-				RunId = -1,
-				ShopId = -3
-				},
-			new
-				{
-				Id = -4,
-				SequenceNumber = 2,
-				DayOfWeek = DayOfWeek.Monday,
-				WindowOpenTime = new TimeSpan( 10, 15, 00 ),
-				WindowCloseTime = new TimeSpan( 11, 15, 00 ),
-				RunId = -2,
-				ShopId = -4
-				},
-			new
-				{
-				Id = -5,
-				SequenceNumber = 1,
-				DayOfWeek = DayOfWeek.Monday,
-				WindowOpenTime = new TimeSpan( 12, 15, 00 ),
-				WindowCloseTime = new TimeSpan( 13, 15, 00 ),
-				RunId = -2,
-				ShopId = -5
-				}
+		modelBuilder.Entity<DailyRoutePlan>().HasData( new
+			                                               {
+			                                               Id = -1,
+			                                               SequenceNumber = 1,
+			                                               DayOfWeek = DayOfWeek.Monday,
+			                                               WindowOpenTime = new TimeSpan( 10, 15, 00 ),
+			                                               WindowCloseTime = new TimeSpan( 11, 15, 00 ),
+			                                               RunId = -1,
+			                                               ShopId = -1,
+			                                               },
+		                                               new
+			                                               {
+			                                               Id = -2,
+			                                               SequenceNumber = 2,
+			                                               DayOfWeek = DayOfWeek.Monday,
+			                                               WindowOpenTime = new TimeSpan( 12, 15, 00 ),
+			                                               WindowCloseTime = new TimeSpan( 13, 15, 00 ),
+			                                               RunId = -1,
+			                                               ShopId = -2,
+			                                               },
+		                                               new
+			                                               {
+			                                               Id = -3,
+			                                               SequenceNumber = 3,
+			                                               DayOfWeek = DayOfWeek.Monday,
+			                                               WindowOpenTime = new TimeSpan( 14, 15, 00 ),
+			                                               WindowCloseTime = new TimeSpan( 14, 30, 00 ),
+			                                               RunId = -1,
+			                                               ShopId = -3,
+			                                               },
+		                                               new
+			                                               {
+			                                               Id = -4,
+			                                               SequenceNumber = 2,
+			                                               DayOfWeek = DayOfWeek.Monday,
+			                                               WindowOpenTime = new TimeSpan( 10, 15, 00 ),
+			                                               WindowCloseTime = new TimeSpan( 11, 15, 00 ),
+			                                               RunId = -2,
+			                                               ShopId = -4,
+			                                               },
+		                                               new
+			                                               {
+			                                               Id = -5,
+			                                               SequenceNumber = 1,
+			                                               DayOfWeek = DayOfWeek.Monday,
+			                                               WindowOpenTime = new TimeSpan( 12, 15, 00 ),
+			                                               WindowCloseTime = new TimeSpan( 13, 15, 00 ),
+			                                               RunId = -2,
+			                                               ShopId = -5,
+			                                               }
 		);
 	}
 }

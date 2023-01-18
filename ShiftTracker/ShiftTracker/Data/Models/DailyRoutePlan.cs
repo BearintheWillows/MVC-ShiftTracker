@@ -8,6 +8,6 @@ public class DailyRoutePlan
 	public TimeSpan  WindowCloseTime { get; set; }
 	public int?      RunId           { get; set; }
 	public Run       Run             { get; set; }
-	public int ShopId { get; set; }
-	public Shop? Shop { get; set; }
+	public int       ShopId          { get; set; }
+	public Shop?     Shop            { get; set; }
 }

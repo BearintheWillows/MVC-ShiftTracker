@@ -1,17 +1,16 @@
 ﻿namespace ShiftTracker.Areas.Shifts.Controllers;
 
+using Data.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Models.DTO;
-using ShiftTracker.Data.Models;
 using Services;
 
 [Area( "Shifts" )]
 public class HomeController : Controller
 {
-	private readonly IShiftService _shiftService;
 	private readonly IBreakService _breakService;
-	private readonly IRunService _runService;
+	private readonly IRunService   _runService;
+	private readonly IShiftService _shiftService;
 
 	public HomeController(IShiftService shiftService, IBreakService breakService, IRunService runService)
 	{
@@ -29,26 +28,23 @@ public class HomeController : Controller
 		return View( shiftQuery );
 	}
 
-	[HttpGet]
-	[Route( "/Create" )]
+	[HttpGet, Route( "/Create" )]
 	public async Task<IActionResult> Create()
 	{
 		var runNumbers = await _runService.GetAllNumbersAndIds();
 
 		ViewBag.runNumbers = runNumbers;
-		
+
 		return View();
 	}
 
-	[HttpPost]
-	[Route( "/Create" )]
+	[HttpPost, Route( "/Create" )]
 	public async Task<IActionResult> Create(
-		[Bind( "Date, RunId, StartTime, EndTime, DriveTime, OtherWorkTime, WorkTime" )] ShiftDto shiftDto
+		[Bind( "Date, RunId, StartTime, EndTime, DriveTime, OtherWorkTime, WorkTime" )]
+		ShiftDto shiftDto
 	)
 	{
-
-
-		Shift shift = new Shift
+		var shift = new Shift
 			{
 			Date = shiftDto.Date,
 			RunId = shiftDto.RunId,
@@ -61,22 +57,16 @@ public class HomeController : Controller
 			};
 
 
-
-
 		await _shiftService.AddAsync( shift );
 		return RedirectToAction( "Index" );
 	}
 
 	public async Task<TimeSpan> CalculateBreakDuration(int shiftId)
 	{
-		IEnumerable<Break> breakQuery = await _breakService.GetAllAsyncByShiftId( shiftId );
-		TimeSpan breakDuration = new TimeSpan();
-		foreach ( Break b in breakQuery )
-		{
-			breakDuration += b.Duration;
-		}
+		var breakQuery = await _breakService.GetAllAsyncByShiftId( shiftId );
+		var breakDuration = new TimeSpan();
+		foreach ( var b in breakQuery ) breakDuration += b.Duration;
 
 		return breakDuration;
-
 	}
 }

@@ -7,7 +7,7 @@ module.exports = {
     },
     mode: 'development',
     optimization: {
-        minimize: true,
+        minimize: false
     },
     devtool: 'inline-source-map',
     plugins: [
@@ -48,6 +48,6 @@ module.exports = {
         filename: '[name].bundle.min.js',
         path: path.resolve(__dirname, './wwwroot/js'),
     },
-        
+
 };
 //# sourceMappingURL=webpack.config.js.map

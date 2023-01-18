@@ -1,9 +1,7 @@
 ﻿namespace ShiftTracker.Controllers;
 
 using Areas.Shifts.Models.DTO;
-using Data;
 using Data.Models;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 using Services;
@@ -32,13 +30,9 @@ public class ShopApiController : ControllerBase
 			default:
 				shops = await _shopService.GetAllAsync() as List<Shop>;
 				break;
-
 			}
 
-			if ( shops.Count == 0 )
-			{
-				return NotFound();
-			}
+			if ( shops.Count == 0 ) return NotFound();
 
 			var shopResultDto = shops.Select( s => new ShopDto
 					{
@@ -59,7 +53,7 @@ public class ShopApiController : ControllerBase
 								DayOfWeek = ( int ) dv.DayOfWeek,
 								WindowOpenTime = dv.WindowOpenTime,
 								WindowCloseTime = dv.WindowCloseTime,
-								RunId = dv.RunId
+								RunId = dv.RunId,
 								}
 						).ToList()
 						: null,
@@ -83,18 +77,12 @@ public class ShopApiController : ControllerBase
 		{
 			Shop? shopResultAsync;
 
-			if ( includeDayData == true )
-			{
+			if ( includeDayData )
 				shopResultAsync = await _shopService.GetShopWithDayData( id );
-			} else
-			{
+			else
 				shopResultAsync = await _shopService.GetAsync( id );
-			}
 
-			if ( shopResultAsync == null )
-			{
-				return new NotFoundResult();
-			}
+			if ( shopResultAsync == null ) return new NotFoundResult();
 
 			var shopDto = new ShopDto
 				{
@@ -112,10 +100,10 @@ public class ShopApiController : ControllerBase
 							{
 							Id = dv.Id,
 							ShopId = dv.ShopId,
-							DayOfWeek = (int) dv.DayOfWeek,
+							DayOfWeek = ( int ) dv.DayOfWeek,
 							WindowOpenTime = dv.WindowOpenTime,
 							WindowCloseTime = dv.WindowCloseTime,
-							RunId = dv.RunId
+							RunId = dv.RunId,
 							}
 					).ToList()
 					: null,
@@ -136,10 +124,7 @@ public class ShopApiController : ControllerBase
 	{
 		try
 		{
-			if ( await _shopService.ExistsAsync( id ) == false )
-			{
-				return NotFound( "No Shops found with that ID" );
-			}
+			if ( await _shopService.ExistsAsync( id ) == false ) return NotFound( "No Shops found with that ID" );
 
 			await _shopService.DeleteAsync( id );
 
@@ -156,15 +141,11 @@ public class ShopApiController : ControllerBase
 	[HttpPost]
 	public async Task<IActionResult> CreateShop([FromBody] ShopDto shopDto)
 	{
-
 		try
 		{
-			if ( await _shopService.IsNameAndNumberUnique( shopDto ) )
-			{
-				return BadRequest( "Shop Already Exists!" );
-			}
+			if ( await _shopService.IsNameAndNumberUnique( shopDto ) ) return BadRequest( "Shop Already Exists!" );
 
-			Shop shop = new Shop
+			var shop = new Shop
 				{
 				Id = shopDto.Id,
 				Name = shopDto.Name,
@@ -175,7 +156,7 @@ public class ShopApiController : ControllerBase
 				County = shopDto.County,
 				Postcode = shopDto.Postcode,
 				PhoneNumber = shopDto.PhoneNumber,
-				DailyRoutePlan = new List<DailyRoutePlan>()
+				DailyRoutePlan = new List<DailyRoutePlan>(),
 				};
 
 			await _shopService.AddAsync( shop );
@@ -193,18 +174,12 @@ public class ShopApiController : ControllerBase
 	[HttpPut]
 	public async Task<IActionResult> UpdateShop([FromBody] ShopDto shopDto)
 	{
-		
-		if ( await _shopService.ExistsAsync( shopDto.Id ) == false )
-		{
-			return NotFound( "No Shops found with that ID" );
-		}
+		if ( await _shopService.ExistsAsync( shopDto.Id ) == false ) return NotFound( "No Shops found with that ID" );
 
 		if ( await _shopService.IsNameAndNumberUnique( shopDto ) )
-		{
 			return BadRequest( "Shop Already Exists! Name and Number must be unique" );
-		}
-		
-		Shop shop = new Shop
+
+		var shop = new Shop
 			{
 			Id = shopDto.Id,
 			Name = shopDto.Name,
@@ -216,10 +191,9 @@ public class ShopApiController : ControllerBase
 			Postcode = shopDto.Postcode,
 			PhoneNumber = shopDto.PhoneNumber,
 			};
-		
+
 		try
 		{
-
 			await _shopService.UpdateAsync( shop );
 
 			return Ok( shop );
@@ -230,7 +204,5 @@ public class ShopApiController : ControllerBase
 			Console.WriteLine( e );
 			return BadRequest( "Error updating shop" );
 		}
-		
-		
 	}
 }

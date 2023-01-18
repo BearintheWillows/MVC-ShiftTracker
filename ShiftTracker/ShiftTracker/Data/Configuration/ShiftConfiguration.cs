@@ -3,7 +3,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Models;
-using ShiftTracker.Areas.Shifts.Models;
 
 public class ShiftConfiguration : IEntityTypeConfiguration<Shift>
 {

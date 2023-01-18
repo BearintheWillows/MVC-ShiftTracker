@@ -1,7 +1,6 @@
 ﻿namespace ShiftTracker.Services;
 
 using Data;
-using Data.Models;
 using Microsoft.EntityFrameworkCore;
 
 public interface IBaseCrudService<T> where T : class
@@ -21,29 +20,23 @@ public abstract class BaseCrudService<T> : IBaseCrudService<T> where T : class
 		Context = context;
 	}
 
-	internal ApplicationDbContext Context { get;}
+	internal ApplicationDbContext Context { get; }
 
 	/// <summary>
-	/// Gets singular entity of type T
+	///     Gets singular entity of type T
 	/// </summary>
 	/// <param name="id"></param>
 	/// <returns>Single Entity</returns>
-	public async Task<T?> GetAsync(int id)
-	{
-		return await Context.Set<T>().FindAsync(id);
-	}
+	public async Task<T?> GetAsync(int id) => await Context.Set<T>().FindAsync( id );
 
 	/// <summary>
-	/// Gets all entities of type T
+	///     Gets all entities of type T
 	/// </summary>
 	/// <returns>List of type T entities</returns>
-	public async Task<IEnumerable<T>> GetAllAsync()
-	{
-		return await Context.Set<T>().ToListAsync();
-	}
+	public async Task<IEnumerable<T>> GetAllAsync() => await Context.Set<T>().ToListAsync();
 
 	/// <summary>
-	/// Adds a new entity to the database
+	///     Adds a new entity to the database
 	/// </summary>
 	/// <param name="entity"></param>
 	/// <returns>Created Entity</returns>
@@ -53,7 +46,7 @@ public abstract class BaseCrudService<T> : IBaseCrudService<T> where T : class
 		await Context.SaveChangesAsync();
 		return entity;
 	}
-	
+
 	public async Task<T> AddAsyncWithoutSave(T entity)
 	{
 		await Context.Set<T>().AddAsync( entity );
@@ -61,7 +54,7 @@ public abstract class BaseCrudService<T> : IBaseCrudService<T> where T : class
 	}
 
 	/// <summary>
-	/// Updated entity in database
+	///     Updated entity in database
 	/// </summary>
 	/// <param name="entity"></param>
 	/// <returns>Updated Entity</returns>
@@ -71,15 +64,15 @@ public abstract class BaseCrudService<T> : IBaseCrudService<T> where T : class
 		await Context.SaveChangesAsync();
 		return entity;
 	}
-	
+
 	/// <summary>
-	/// Deletes entity from database by id
+	///     Deletes entity from database by id
 	/// </summary>
 	/// <param name="id"></param>
-	public async Task DeleteAsync(int id) 
+	public async Task DeleteAsync(int id)
 	{
-		var entity = await Context.Set<T>().FindAsync(id);
-		Context.Set<T>().Remove(entity);
+		var entity = await Context.Set<T>().FindAsync( id );
+		Context.Set<T>().Remove( entity );
 		await Context.SaveChangesAsync();
 	}
 }

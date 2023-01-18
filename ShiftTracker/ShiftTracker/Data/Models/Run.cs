@@ -1,14 +1,11 @@
 ﻿namespace ShiftTracker.Data.Models;
 
-using System.Collections;
-using Areas.Shifts.Models;
-
 public class Run
 {
 	public int      Id        { get; set; }
 	public int      Number    { get; set; }
 	public TimeSpan StartTime { get; set; }
-	
-	public ICollection<Shift> Shifts { get; set; }
-	public ICollection<DailyRoutePlan>? RoutePlans{ get; set; }
+
+	public ICollection<Shift>           Shifts     { get; set; }
+	public ICollection<DailyRoutePlan>? RoutePlans { get; set; }
 }

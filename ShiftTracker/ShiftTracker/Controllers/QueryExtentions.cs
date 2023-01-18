@@ -1,6 +1,5 @@
 ﻿namespace ShiftTracker.Controllers;
 
-using Areas.Shifts.Models.DTO;
 using Data.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -33,7 +32,7 @@ public static class QueryExtentions
 					Run = s.Run,
 					}
 			);
-		else if ( !includeTimeData && includeRun && includeBreaks )
+		if ( !includeTimeData && includeRun && includeBreaks )
 			return query.Select( s => new Shift
 					{
 					Id = s.Id,
@@ -43,17 +42,17 @@ public static class QueryExtentions
 					Run = s.Run,
 					}
 			);
-		else if ( !includeTimeData && !includeRun && includeBreaks )
+		if ( !includeTimeData && !includeRun && includeBreaks )
 			return query.Select( s => new Shift
 					{
 					Id = s.Id, Date = s.Date, RunId = s.RunId, Breaks = s.Breaks,
 					}
 			);
-		else if ( !includeTimeData && !includeBreaks && !includeRun )
+		if ( !includeTimeData && !includeBreaks && !includeRun )
 			return query.Select( s => new Shift { Id = s.Id, Date = s.Date, RunId = s.RunId } );
-		else if ( !includeTimeData && includeRun && !includeBreaks )
+		if ( !includeTimeData && includeRun && !includeBreaks )
 			return query.Select( s => new Shift { Id = s.Id, Date = s.Date, RunId = s.RunId, Run = s.Run } );
-		else if ( includeTimeData && !includeRun && includeBreaks )
+		if ( includeTimeData && !includeRun && includeBreaks )
 			return query.Select( s => new Shift
 					{
 					Id = s.Id,
@@ -68,7 +67,7 @@ public static class QueryExtentions
 					WorkTime = s.WorkTime,
 					}
 			);
-		else if ( includeTimeData && includeRun && !includeBreaks )
+		if ( includeTimeData && includeRun && !includeBreaks )
 			return query.Select( s => new Shift
 					{
 					Id = s.Id,
@@ -86,21 +85,15 @@ public static class QueryExtentions
 
 		return query;
 	}
-	
+
 	public static IQueryable<Shop> IncludeDayVariants(
 		this IQueryable<Shop> query,
-		bool includeVariants 
-	)
-	{
-		return query.Include( s => s.DailyRoutePlan );
-	}
+		bool                  includeVariants
+	) => query.Include( s => s.DailyRoutePlan );
 
 	public static IQueryable<Run> IncludeDailyDoutePlans(this IQueryable<Run> query, bool includeDRP)
 	{
-		if ( includeDRP )
-		{
-			return query.Include( s => s.RoutePlans ).ThenInclude( rp => rp.Shop );
-		}
+		if ( includeDRP ) return query.Include( s => s.RoutePlans ).ThenInclude( rp => rp.Shop );
 
 		return query;
 	}

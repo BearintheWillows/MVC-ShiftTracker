@@ -3,5 +3,5 @@
 let form = new breakForm()
 
 document.addEventListener("DOMContentLoaded", () => {
-    form.displayRow();
+    form.displayAllRows();
 });

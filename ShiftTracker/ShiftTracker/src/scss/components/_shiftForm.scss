@@ -1,0 +1,119 @@
+﻿@use "../base/colors";
+
+.form {
+
+  padding: 2rem;
+  width: 60vw;
+
+  &__shift {
+    display: flex;
+    flex-direction: row;
+    height: 20rem;
+    flex-wrap: wrap;
+    border: colors.$color-Cul-Blue 0.3rem solid;
+    border-radius: 1rem;
+    padding: 0.5rem;
+
+    &--sectionLeft {
+      display: flex;
+      flex-direction: column;
+      height: 15rem;
+      padding: 0.5rem 1rem;
+
+      .form-group--top {
+        height: 60%;
+        margin-bottom: 1rem;
+
+        label {
+          display: none;
+        }
+
+        select {
+          font-size: 6rem;
+          width: 100%;
+          text-align: center;
+        }
+      }
+
+      .form-group--bottom {
+        display: flex;
+        flex-direction: column;
+
+        label {
+          font-size: 1.5rem;
+          font-weight: 600;
+          text-align: center;
+        }
+
+        input {
+          height: 2.5rem;
+          font-size: 1.1rem;
+        }
+      }
+    }
+
+    &--sectionMid {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      padding: 0.5rem 1rem;
+      width: 77%;
+      align-items: center;
+      justify-content: center;
+
+      .form-group {
+        display: flex;
+        flex-direction: row;
+        padding: 0.5rem;
+        align-items: center;
+
+        label {
+          font-size: 1.5rem;
+          font-weight: 600;
+          text-align: center;
+
+        }
+
+        input[type="time"] {
+
+          height: 5rem;
+          width: 5rem;
+          font-size: 1.4rem;
+          margin-left: 3rem;
+        }
+      }
+
+      .breakForm {
+        height: 5rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+
+  &__breaks {
+    display: flex;
+    width: 50%;
+    border: colors.$color-Cul-Blue 0.3rem solid;
+    border-radius: 1rem;
+
+    .breakForm {
+      width: 100%;
+
+      &__row {
+        display: flex;
+        justify-content: center;
+        padding: 0.5rem 0.5rem;
+        height: 5rem;
+
+        input {
+          border-radius: 0.6rem;
+          height: 2rem;
+          width: 6rem;
+        }
+      }
+    }
+
+  }
+}
