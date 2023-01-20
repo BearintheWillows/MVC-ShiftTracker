@@ -68,29 +68,31 @@ public class BreaksApiController : ControllerBase
 	}
 
 	[HttpPost]
-	public async Task<ActionResult<Break>> PostBreak(BreakDto breakDto)
+	public async Task<ActionResult> PostBreak(IEnumerable<BreakDto> breakDtoEnumerable)
 	{
-		try
+		var breakList = new List<Break>();
+		foreach ( var breakDto in breakDtoEnumerable )
 		{
-			if ( !await _shiftService.ExistsAsync( breakDto.ShiftId ) ) return NotFound( "Shift does not exist" );
-			if ( await _breakService.ExistsAsync( breakDto.Id ) ) return NotFound( "Break already exists" );
-
 			var newBreak = new Break
 				{
-				StartTime = breakDto.StartTime,
-				EndTime = breakDto.EndTime,
-				Duration = breakDto.EndTime - breakDto.StartTime,
-				ShiftId = breakDto.ShiftId,
+				StartTime = breakDto.StartTime, EndTime = breakDto.EndTime, ShiftId = breakDto.ShiftId,
 				};
 
-			await _breakService.AddAsync( newBreak );
+			breakList.Add( newBreak );
+		}
 
-			return Ok( newBreak );
+		try
+		{
+			await _breakService.PostAllBreaksAsync( breakList );
 		}
 		catch ( Exception e )
 		{
-			return BadRequest( e.Message );
+			Console.WriteLine( e );
+			throw;
 		}
+
+		return Ok();
+
 	}
 
 	[HttpDelete( "{id}" )]

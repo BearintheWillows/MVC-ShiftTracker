@@ -1,9 +1,20 @@
-﻿export class breakForm {
+﻿import {BreakService} from '../services/breakService';
+export class breakForm {
 
     breaks: IBreak[] = [];
-
+    
+    breakService = new BreakService();
+    
     constructor() {
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("form__btn--submit").addEventListener('click', () => {
+                this.breakService.PostBreaks(this.breaks);
+            }
+            );
+    });
     }
+    
+    
 
 
     displayAllRows() {
@@ -13,17 +24,30 @@
         console.log(this.breaks);
 
         this.breaks.forEach((b) => {
+            console.log(b);
             form.appendChild(this.createRow(b, this.breaks.indexOf(b)));
         });
+        
+        document.getElementById("form__btn--submit").addEventListener('click', () => {
+            console.log(this.breaks);
+        }   );
     }
 
-    createTimeInput(i: number, timeType: string): HTMLInputElement {
+    createTimeInput(b: IBreak,  i: number, timeType: string): HTMLInputElement {
         const input = document.createElement("input");
         input.type = "time";
         input.id = `${timeType}-${i}`;
-        input.addEventListener('change', () => {
+        
+            if(timeType === "startTime") {
+                input.value = b.startTime.toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"});       
+            } else {
+                input.value = b.endTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            }
+        input.addEventListener('blur', () => {
             this.updateBreak(input.value, i, timeType);
+            console.log(input.value);
         })
+       
         return input;
     }
     
@@ -33,7 +57,10 @@
         button.classList.add("addBreakButton");
         button.type = "button";
         button.addEventListener('click', () => {
-            this.breaks.push({startTime: null, endTime: null, duration: null});
+            this.breaks.push({
+                startTime: new Date(0,0, 0, 0,0) ,
+                endTime: new Date(0,0,0,0,0), 
+                duration: null});
             this.displayAllRows();
         });
         
@@ -44,9 +71,10 @@
         const row = document.createElement("div");
         row.className = "breakRow";
         row.id = `breakRow-${i}`;
-        let startTime = this.createTimeInput(i, "startTime");
-        let endTime = this.createTimeInput(i, "endTime");
+        let startTime = this.createTimeInput( b  ,i, "startTime");
+        let endTime = this.createTimeInput(b , i, "endTime");
         let removeButton = this.CreateRemoveButton(i);
+        
         row.append(startTime, endTime, removeButton);
         return row;
     }
@@ -71,18 +99,15 @@
     }
 
     private updateBreak(date: string, i: number, timeType: string) {
-        
-        if (timeType === "startTime") {
+
+        if(timeType === "startTime") {
             this.breaks[i].startTime = this.dateFormat(date);
         } else {
             this.breaks[i].endTime = this.dateFormat(date);
         }
         
-        if(this.breaks[i].startTime != null && this.breaks[i].endTime != null) {
-            this.breaks[i].duration = this.calculateDuration(this.breaks[i].startTime, this.breaks[i].endTime);
-            document.querySelector(`#breakRow-${i}`).removeChild(document.querySelector("button"));
-            this.displayAllRows();
-        }
+        this.breaks[i].duration = this.calculateDuration(this.breaks[i].startTime, this.breaks[i].endTime);
+        
         console.log(this.breaks);
     }
 
