@@ -2,50 +2,46 @@
 
 <script src="js/shiftService.bundle.min.js"></script >
 
-<form class="form" asp-area="Shifts" asp-controller="Home" asp-action="Create" method="post">
+<form>
     <div asp-validation-summary="ModelOnly"></div>
-    <div class="form__shift">
-        <div class="form__shift--sectionLeft">
-            <div class="form-group--top">
-                <label for="runId" class=" form__label">
-                </label>
-                <select type="select" id="shiftFormRunIdInput" class="form__input" for="RunId ">
-                    @foreach ( var item in ViewBag.runNumbers )
-                    {
-                        <option class="option" value="@item.Item1">@item.Item2</option>
-                    }
-                </select>
-            </div>
-            <div class="form-group--bottom">
-                <label for="date" class="form__label">Date</label>
-                <input type="date" class="form__input" id="shiftFormDateInput" for="Date " placeholder="Enter Date">
-            </div>
-        </div>
-        <div class="form__shift--sectionMid">
-            <div class="form-group">
-                <label for="StartTime" class="form__label">Shift Start</label>
-                <input type="time" class="form__input" id="StartTime" for="StartTime " placeholder="Enter Shift End">
-            </div>
-            <div class="form-group">
-                <label for="EndTime" class="form__label">Shift Finish</label>
-                <input type="time" class="form__input" id="EndTime" for="EndTime " placeholder="Enter Shift Finish TIme">
-            </div>
-            <div class="form-group">
-                <label for="DriveTime" class="form__label">Drive Time</label>
-                <input type="time" class="form__input" for="DriveTime " id="DriveTime" placeholder="Enter Drive Time">
-            </div>
-            <div class="form-group">
-                <label for="WorkTime" class="form__label">Work Time</label>
-                <input type="time" class="form__input" for="WorkTime " id="WorkTime" placeholder="Enter Work Time">
-            </div>
-            <div class="form-group">
-                <label for="OtherWorkTime" class="form__label">Other Work</label>
-                <input type="time" class="form__input" for="OtherWorkTime " id="OtherWorkTime" placeholder="Enter Other Work">
-            </div>
-        </div>
+    <div class="form-group">
+       
+        <select id="ShiftFormRunIdInput" class="form-select" aria-label="Default">
+            <option selected>Select Run</option>
+            @foreach ( var item in ViewBag.runNumbers )
+            {
+                <option class="option" value="@item.Item1">@item.Item2</option>
+            }
+        </select>
+
+        <label for="ShiftFormDateInput" class="form-label">Date</label>
+        <input type="date" class="form-control" id="ShiftFormDateInput"  placeholder="Enter Date">
     </div>
+
+    <div class="form-group">
+        <label for="ShiftFormStartTimeInput" class="form-label">Shift Start</label>
+        <input type="time" class="form-control" id="ShiftFormStartTimeInput"  placeholder="Enter Shift End">
+    </div>
+    <div class="form-group">
+        <label for="ShiftFormEndTimeInput" class="form__label">Shift Finish</label>
+        <input type="time" class="form-control" id="ShiftFormEndTimeInput" placeholder="Enter Shift Finish TIme">
+    </div>
+    <div class="form-group">
+        <label for="ShiftFormDriveTimeInput" class="form-label">Drive Time</label>
+        <input type="time" class="form-control" id="ShiftFormDriveTimeInput" placeholder="Enter Drive Time">
+    </div>
+    <div class="form-group">
+        <label for="ShiftFormWorkTimeInput" class="form-label">Work Time</label>
+        <input type="time" class="form-control" id="ShiftFormWorkTimeInput" placeholder="Enter Work Time">
+    </div>
+    <div class="form-group">
+        <label for="ShiftFormOtherWorkInput" class="form__label">Other Work</label>
+        <input type="time" class="form-control" id="ShiftFormOtherWorkInput" placeholder="Enter Other Work">
+    </div>
+
     <div class="form__breaks">
         <div id="breakForm" class="breakForm"></div>
     </div>
-    <input type="button" class="form__btn--submit" id="form__btn--submit" value="Submit">
+    
+    <input type="submit" class="btn btn-primary" id="form__btn--submit" value="Submit">
 </form>

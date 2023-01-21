@@ -129,7 +129,7 @@ namespace ShiftTracker.Migrations
 
             migrationBuilder.InsertData(
                 table: "Runs",
-                columns: new[] { "Id", "Number", "StartTime" },
+                columns: new[] { "Id", "Number", "ShiftFormStartTimeInput" },
                 values: new object[,]
                 {
                     { -2, 19, new TimeSpan(0, 10, 0, 0, 0) },
@@ -162,7 +162,7 @@ namespace ShiftTracker.Migrations
 
             migrationBuilder.InsertData(
                 table: "Shifts",
-                columns: new[] { "Id", "BreakDuration", "Date", "DriveTime", "EndTime", "OtherWorkTime", "RunId", "ShiftDuration", "StartTime", "WorkTime" },
+                columns: new[] { "Id", "BreakDuration", "Date", "DriveTime", "ShiftFormEndTimeInput", "OtherWorkTime", "RunId", "ShiftDuration", "ShiftFormStartTimeInput", "WorkTime" },
                 values: new object[,]
                 {
                     { -2, new TimeSpan(0, 0, 30, 0, 0), new DateTime(2023, 1, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0), new TimeSpan(0, 16, 0, 0, 0), new TimeSpan(0, 2, 0, 0, 0), -2, new TimeSpan(0, 6, 0, 0, 0), new TimeSpan(0, 10, 0, 0, 0), new TimeSpan(0, 1, 30, 0, 0) },
@@ -171,7 +171,7 @@ namespace ShiftTracker.Migrations
 
             migrationBuilder.InsertData(
                 table: "Breaks",
-                columns: new[] { "Id", "Duration", "EndTime", "ShiftId", "StartTime" },
+                columns: new[] { "Id", "Duration", "ShiftFormEndTimeInput", "ShiftId", "ShiftFormStartTimeInput" },
                 values: new object[,]
                 {
                     { -4, new TimeSpan(0, 0, 15, 0, 0), new TimeSpan(0, 14, 0, 0, 0), -2, new TimeSpan(0, 13, 45, 0, 0) },

@@ -1,13 +1,1 @@
 ﻿//Form Inputs
-
-input, select {
-  text-align: center;
-  border-radius: 1rem;
-  border: black 1px solid;
-}
-
-input[type="time"] {
-  &::-webkit-calendar-picker-indicator {
-    display: none;
-  }
-}

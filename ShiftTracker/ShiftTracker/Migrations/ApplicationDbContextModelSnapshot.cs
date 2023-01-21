@@ -36,13 +36,13 @@ namespace ShiftTracker.Migrations
                     b.Property<TimeSpan>("Duration")
                         .HasColumnType("time");
 
-                    b.Property<TimeSpan>("EndTime")
+                    b.Property<TimeSpan>("ShiftFormEndTimeInput")
                         .HasColumnType("time");
 
                     b.Property<int>("ShiftId")
                         .HasColumnType("int");
 
-                    b.Property<TimeSpan>("StartTime")
+                    b.Property<TimeSpan>("ShiftFormStartTimeInput")
                         .HasColumnType("time");
 
                     b.HasKey("Id");
@@ -176,7 +176,7 @@ namespace ShiftTracker.Migrations
                     b.Property<int>("Number")
                         .HasColumnType("int");
 
-                    b.Property<TimeSpan>("StartTime")
+                    b.Property<TimeSpan>("ShiftFormStartTimeInput")
                         .HasColumnType("time");
 
                     b.HasKey("Id");
@@ -215,7 +215,7 @@ namespace ShiftTracker.Migrations
                     b.Property<TimeSpan>("DriveTime")
                         .HasColumnType("time");
 
-                    b.Property<TimeSpan>("EndTime")
+                    b.Property<TimeSpan>("ShiftFormEndTimeInput")
                         .HasColumnType("time");
 
                     b.Property<TimeSpan>("OtherWorkTime")
@@ -228,7 +228,7 @@ namespace ShiftTracker.Migrations
                     b.Property<TimeSpan>("ShiftDuration")
                         .HasColumnType("time");
 
-                    b.Property<TimeSpan>("StartTime")
+                    b.Property<TimeSpan>("ShiftFormStartTimeInput")
                         .HasColumnType("time");
 
                     b.Property<TimeSpan>("WorkTime")

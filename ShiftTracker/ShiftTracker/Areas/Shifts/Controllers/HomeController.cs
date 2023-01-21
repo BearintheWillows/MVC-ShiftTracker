@@ -40,7 +40,7 @@ public class HomeController : Controller
 
 	// [HttpPost, Route( "/Create" )]
 	// public async Task<IActionResult> Create(
-	// 	[Bind( "Date, RunId, StartTime, EndTime, DriveTime, OtherWorkTime, WorkTime" )]
+	// 	[Bind( "Date, RunId, ShiftFormStartTimeInput, ShiftFormEndTimeInput, DriveTime, OtherWorkTime, WorkTime" )]
 	// 	ShiftDto shiftDto
 	// )
 	// {
@@ -48,12 +48,12 @@ public class HomeController : Controller
 	// 		{
 	// 		Date = shiftDto.Date,
 	// 		RunId = shiftDto.RunId,
-	// 		StartTime = shiftDto.StartTime,
-	// 		EndTime = shiftDto.EndTime,
+	// 		ShiftFormStartTimeInput = shiftDto.ShiftFormStartTimeInput,
+	// 		ShiftFormEndTimeInput = shiftDto.ShiftFormEndTimeInput,
 	// 		DriveTime = shiftDto.DriveTime,
 	// 		OtherWorkTime = shiftDto.OtherWorkTime,
 	// 		WorkTime = shiftDto.WorkTime,
-	// 		ShiftDuration = shiftDto.EndTime - shiftDto.StartTime,
+	// 		ShiftDuration = shiftDto.ShiftFormEndTimeInput - shiftDto.ShiftFormStartTimeInput,
 	// 		};
 	//
 	//
