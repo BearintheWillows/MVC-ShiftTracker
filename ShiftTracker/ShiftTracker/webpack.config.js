@@ -3,7 +3,7 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 module.exports = {
     entry: {
         scss: './src/scss/site.scss',
-        shiftService: './src/typescript/services/shiftService.ts',
+        index: './src/typescript/index.ts',
     },
     mode: 'development',
     optimization: {
@@ -45,7 +45,7 @@ module.exports = {
             name: 'JS',
             type: 'var'
         },
-        filename: '[name].bundle.min.js',
+        filename: '[name].bundle.js',
         path: path.resolve(__dirname, './wwwroot/js'),
     },
 

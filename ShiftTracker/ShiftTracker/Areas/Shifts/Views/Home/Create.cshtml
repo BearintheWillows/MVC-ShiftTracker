@@ -1,7 +1,5 @@
 ﻿@model ShiftTracker.Areas.Shifts.Models.DTO.ShiftDto;
 
-<script src="js/shiftService.bundle.min.js"></script >
-
 <form>
     <div asp-validation-summary="ModelOnly"></div>
     <div class="form-group">
@@ -38,10 +36,12 @@
         <label for="ShiftFormOtherWorkInput" class="form__label">Other Work</label>
         <input type="time" class="form-control" id="ShiftFormOtherWorkInput" placeholder="Enter Other Work">
     </div>
-
-    <div class="form__breaks">
-        <div id="breakForm" class="breakForm"></div>
+    
+    <div id="breakForm" class="breakForm">
+        
     </div>
     
     <input type="submit" class="btn btn-primary" id="form__btn--submit" value="Submit">
 </form>
+
+<script src="js/index.bundle.js"></script>

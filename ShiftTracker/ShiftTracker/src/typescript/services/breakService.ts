@@ -1,7 +1,1 @@
 ﻿
-export class BreakService {
-     constructor() {
-     }
-     
-     
-}

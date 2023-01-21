@@ -1,9 +1,8 @@
-﻿import {BreakService} from '../services/breakService';
+﻿
 export class breakForm {
     
     breaks: IBreak[] = [];
     
-    breakService = new BreakService();
     
     constructor() {
         
@@ -31,6 +30,7 @@ export class breakForm {
     createTimeInput(b: IBreak,  i: number, timeType: string): HTMLInputElement {
         const input = document.createElement("input");
         input.type = "time";
+        input.classList.add("form-control");
         input.id = `${timeType}-${i}`;
         
             if(timeType === "startTime") {
@@ -49,7 +49,7 @@ export class breakForm {
     private createAddBreakButton(): HTMLButtonElement {
         const button = document.createElement("button");
         button.innerText = "Add Break";
-        button.classList.add("addBreakButton");
+        button.classList.add("btn", "btn-primary");
         button.type = "button";
         button.addEventListener('click', () => {
             this.breaks.push({
@@ -64,7 +64,7 @@ export class breakForm {
 
     private createRow(b?: IBreak, i?: number): HTMLDivElement {
         const row = document.createElement("div");
-        row.className = "breakRow";
+        row.className = "form-group";
         row.id = `breakRow-${i}`;
         let startTime = this.createTimeInput( b  ,i, "startTime");
         let endTime = this.createTimeInput(b , i, "endTime");
