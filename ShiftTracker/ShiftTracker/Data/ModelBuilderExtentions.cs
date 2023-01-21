@@ -1,7 +1,7 @@
-﻿namespace ShiftTracker.Migrations;
+﻿namespace ShiftTracker.Data;
 
-using Data.Models;
 using Microsoft.EntityFrameworkCore;
+using ShiftTracker.Areas.Shifts.Data.Models;
 
 public static class ModelBuilderExtentions
 {

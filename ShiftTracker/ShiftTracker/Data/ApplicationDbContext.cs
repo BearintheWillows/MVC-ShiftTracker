@@ -1,9 +1,9 @@
 ﻿namespace ShiftTracker.Data;
 
-using Configuration;
+using Areas.Shifts.Data;
 using Microsoft.EntityFrameworkCore;
-using Migrations;
-using Models;
+using ShiftTracker.Areas.Shifts.Data.Configuration;
+using ShiftTracker.Areas.Shifts.Data.Models;
 
 public class ApplicationDbContext : DbContext
 {

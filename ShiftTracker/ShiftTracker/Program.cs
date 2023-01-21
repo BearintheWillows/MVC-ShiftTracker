@@ -1,7 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using ShiftTracker.Areas.Shifts.Data;
+using ShiftTracker.Areas.Shifts.Services;
 using ShiftTracker.Data;
-using ShiftTracker.Services;
 
 var builder = WebApplication.CreateBuilder( args );
 
@@ -11,9 +12,12 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddCors( options =>
 	{
-		options.AddPolicy( "AllowSpecificOrigin",
-		                   builder => builder.WithOrigins( "http://localhost:44392" )
-		);
+		options.AddPolicy( "AllowAll", corbuilder =>
+		{
+			corbuilder.AllowAnyOrigin()
+				.AllowAnyMethod()
+				.AllowAnyHeader();
+		} );
 	}
 );
 

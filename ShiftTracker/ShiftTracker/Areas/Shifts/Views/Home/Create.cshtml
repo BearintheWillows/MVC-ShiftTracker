@@ -1,5 +1,4 @@
-﻿@using ShiftTracker.Pages.Pages.Shared
-@model ShiftTracker.Areas.Shifts.Models.DTO.ShiftDto;
+﻿@model ShiftTracker.Areas.Shifts.Models.DTO.ShiftDto;
 
 <script src="js/shiftService.bundle.min.js"></script >
 
@@ -10,7 +9,7 @@
             <div class="form-group--top">
                 <label for="runId" class=" form__label">
                 </label>
-                <select type="select" class="form__input" asp-for="RunId ">
+                <select type="select" id="shiftFormRunIdInput" class="form__input" for="RunId ">
                     @foreach ( var item in ViewBag.runNumbers )
                     {
                         <option class="option" value="@item.Item1">@item.Item2</option>
@@ -19,34 +18,34 @@
             </div>
             <div class="form-group--bottom">
                 <label for="date" class="form__label">Date</label>
-                <input type="date" class="form__input" id="date" asp-for="Date " placeholder="Enter Date">
+                <input type="date" class="form__input" id="shiftFormDateInput" for="Date " placeholder="Enter Date">
             </div>
         </div>
         <div class="form__shift--sectionMid">
             <div class="form-group">
                 <label for="StartTime" class="form__label">Shift Start</label>
-                <input type="time" class="form__input" id="StartTime" asp-for="StartTime " placeholder="Enter Shift End">
+                <input type="time" class="form__input" id="StartTime" for="StartTime " placeholder="Enter Shift End">
             </div>
             <div class="form-group">
                 <label for="EndTime" class="form__label">Shift Finish</label>
-                <input type="time" class="form__input" id="EndTime" asp-for="EndTime " placeholder="Enter Shift Finish TIme">
+                <input type="time" class="form__input" id="EndTime" for="EndTime " placeholder="Enter Shift Finish TIme">
             </div>
             <div class="form-group">
                 <label for="DriveTime" class="form__label">Drive Time</label>
-                <input type="time" class="form__input" asp-for="DriveTime " id="DriveTime" placeholder="Enter Drive Time">
+                <input type="time" class="form__input" for="DriveTime " id="DriveTime" placeholder="Enter Drive Time">
             </div>
             <div class="form-group">
                 <label for="WorkTime" class="form__label">Work Time</label>
-                <input type="time" class="form__input" asp-for="WorkTime " id="WorkTime" placeholder="Enter Work Time">
+                <input type="time" class="form__input" for="WorkTime " id="WorkTime" placeholder="Enter Work Time">
             </div>
             <div class="form-group">
                 <label for="OtherWorkTime" class="form__label">Other Work</label>
-                <input type="time" class="form__input" asp-for="OtherWorkTime " id="OtherWorkTime" placeholder="Enter Other Work">
+                <input type="time" class="form__input" for="OtherWorkTime " id="OtherWorkTime" placeholder="Enter Other Work">
             </div>
         </div>
     </div>
     <div class="form__breaks">
         <div id="breakForm" class="breakForm"></div>
     </div>
-    <input type="submit" class="form__btn--submit" id="form__btn--submit" value="Submit">
+    <input type="button" class="form__btn--submit" id="form__btn--submit" value="Submit">
 </form>

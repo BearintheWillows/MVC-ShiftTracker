@@ -38,35 +38,41 @@ public class HomeController : Controller
 		return View();
 	}
 
-	[HttpPost, Route( "/Create" )]
-	public async Task<IActionResult> Create(
-		[Bind( "Date, RunId, StartTime, EndTime, DriveTime, OtherWorkTime, WorkTime" )]
-		ShiftDto shiftDto
-	)
-	{
-		var shift = new Shift
-			{
-			Date = shiftDto.Date,
-			RunId = shiftDto.RunId,
-			StartTime = shiftDto.StartTime,
-			EndTime = shiftDto.EndTime,
-			DriveTime = shiftDto.DriveTime,
-			OtherWorkTime = shiftDto.OtherWorkTime,
-			WorkTime = shiftDto.WorkTime,
-			ShiftDuration = shiftDto.EndTime - shiftDto.StartTime,
-			};
+	// [HttpPost, Route( "/Create" )]
+	// public async Task<IActionResult> Create(
+	// 	[Bind( "Date, RunId, StartTime, EndTime, DriveTime, OtherWorkTime, WorkTime" )]
+	// 	ShiftDto shiftDto
+	// )
+	// {
+	// 	var shift = new Shift
+	// 		{
+	// 		Date = shiftDto.Date,
+	// 		RunId = shiftDto.RunId,
+	// 		StartTime = shiftDto.StartTime,
+	// 		EndTime = shiftDto.EndTime,
+	// 		DriveTime = shiftDto.DriveTime,
+	// 		OtherWorkTime = shiftDto.OtherWorkTime,
+	// 		WorkTime = shiftDto.WorkTime,
+	// 		ShiftDuration = shiftDto.EndTime - shiftDto.StartTime,
+	// 		};
+	//
+	//
+	// 	await _shiftService.AddAsyncWithoutSave( shift );
+	//
+	// 	while ( await _shiftService.CheckIfAnyChangesAsync() != true )
+	// 	{
+	// 		
+	// 	}
+	// 	
+	// 	return RedirectToAction( "Index" );
+	// }
 
-
-		await _shiftService.AddAsync( shift );
-		return RedirectToAction( "Index" );
-	}
-
-	public async Task<TimeSpan> CalculateBreakDuration(int shiftId)
-	{
-		var breakQuery = await _breakService.GetAllAsyncByShiftId( shiftId );
-		var breakDuration = new TimeSpan();
-		foreach ( var b in breakQuery ) breakDuration += b.Duration;
-
-		return breakDuration;
-	}
+	// public async Task<TimeSpan> CalculateBreakDuration(int shiftId)
+	// {
+	// 	var breakQuery = await _breakService.GetAllAsyncByShiftId( shiftId );
+	// 	var breakDuration = new TimeSpan();
+	// 	foreach ( var b in breakQuery ) breakDuration += b.Duration;
+	//
+	// 	return breakDuration;
+	// }
 }

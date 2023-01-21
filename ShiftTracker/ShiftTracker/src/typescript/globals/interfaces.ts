@@ -10,6 +10,7 @@
     //TODO: Add IBreak[]
     startTime?: Date;
     endTime?: Date;
+    driveTime?: Date;
     breakDuration?: Date;
     shiftDuration?: Date;
     otherWorkTime?: Date;

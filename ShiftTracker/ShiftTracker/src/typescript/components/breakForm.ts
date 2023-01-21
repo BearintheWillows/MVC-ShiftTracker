@@ -1,17 +1,12 @@
 ﻿import {BreakService} from '../services/breakService';
 export class breakForm {
-
+    
     breaks: IBreak[] = [];
     
     breakService = new BreakService();
     
     constructor() {
-        document.addEventListener("DOMContentLoaded", () => {
-            document.getElementById("form__btn--submit").addEventListener('click', () => {
-                this.breakService.PostBreaks(this.breaks);
-            }
-            );
-    });
+        
     }
     
     

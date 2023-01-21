@@ -1,4 +1,0 @@
-2022-12-31 19:30:46.334 +00:00 [INF] List of Shift returned successfully
-2022-12-31 19:30:46.358 +00:00 [INF] Shift contains 3 record.
-2022-12-31 20:00:44.744 +00:00 [INF] Shift was successfully retrieved.
-2022-12-31 20:00:44.766 +00:00 [INF] Shift contains 3 record.
