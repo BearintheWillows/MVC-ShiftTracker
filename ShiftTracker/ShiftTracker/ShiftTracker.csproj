@@ -29,9 +29,7 @@
         <Folder Include="Areas\Shifts\Pages\Shared" />
         <Folder Include="Areas\Shifts\Views\Shared" />
         <Folder Include="src\scss\layout" />
-        <Folder Include="src\scss\pages" />
         <Folder Include="src\scss\themes" />
-        <Folder Include="src\scss\vendors" />
         <Folder Include="wwwroot\js" />
     </ItemGroup>
 

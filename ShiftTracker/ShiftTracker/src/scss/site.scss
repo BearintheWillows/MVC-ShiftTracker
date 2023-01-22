@@ -1,11 +1,15 @@
-﻿//Base
+﻿
 
-@use "base/reset";
-@use "base/colors";
-@use "base/typography";
+//Base
+
+@use "base/_base-dir";
+
+//Pages
+@use "pages/_pages-dir";
 
 //Components
-@use "components/buttons";
-@use "components/inputs";
-@use "components/shiftForm";
-@use "components/labels";
+@use "components/_components-dir";
+
+//Vendors
+@use "vendor/_vendor-dir";
+
