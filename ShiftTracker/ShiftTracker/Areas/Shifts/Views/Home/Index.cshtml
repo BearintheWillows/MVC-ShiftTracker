@@ -5,43 +5,47 @@
 }
 
 <a type="button" asp-area="Shifts" asp-controller="Home" asp-action="Create">Add Shift</a>
+<h1 class=""></h1>
 
-@if ( Model == null )
-{
-    <p>Loading...</p>
-} else
-{
-    <div class="tableBorder table-primary">
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Run #</th>
-                <th scope="col">Start Time</th>
-                <th scope="col">Finish Time</th>
+@* *@
+@* @if ( Model == null ) *@
+@* { *@
+@* <p>Loading...</p> *@
+@* } else *@
+@* { *@
+@* <div class="tableBorder table-primary"> *@
+@* <table class="table"> *@
+@* <thead> *@
+@* <tr> *@
+@* <th scope="col">Date</th> *@
+@* <th scope="col">Run #</th> *@
+@* <th scope="col">Start Time</th> *@
+@* <th scope="col">Finish Time</th> *@
+@* *@
+@* </tr> *@
+@* </thead> *@
+@* <tbody> *@
+@* @foreach ( var s in Model ) *@
+@* { *@
+@* <tr> *@
+@* <td>@s.Date.ToShortDateString()</td> *@
+@* <td>@s.Run.Number</td> *@
+@* <td>@s.StartTime.ToString( @"hh\:mm" )</td> *@
+@* <td>@s.EndTime.ToString( @"hh\:mm" )</td> *@
+@* <td class="updateDeleteButtons"> *@
+@* <a asp-page="/Edit" asp-route-id="@s.Id"> *@
+@* <i class="fa-regular fa-pen-to-square editBtn" style="display: none"></i> *@
+@* </a> *@
+@* <a asp-page="/Delete" asp-route-id="@s.Id"> *@
+@* <i class="fa-regular fa-trash-can deleteBtn" style="display: none"></i> *@
+@* </a> *@
+@* </td> *@
+@* </tr> *@
+@* } *@
+@* </tbody> *@
+@* </table> *@
+@* *@
+@* </div> *@
+@* } *@
 
-            </tr>
-            </thead>
-            <tbody>
-            @foreach ( var s in Model )
-            {
-                <tr>
-                    <td>@s.Date.ToShortDateString()</td>
-                    <td>@s.Run.Number</td>
-                    <td>@s.StartTime.ToString( @"hh\:mm" )</td>
-                    <td>@s.EndTime.ToString( @"hh\:mm" )</td>
-                    <td class="updateDeleteButtons">
-                        <a asp-page="/Edit" asp-route-id="@s.Id">
-                            <i class="fa-regular fa-pen-to-square editBtn" style="display: none"></i>
-                        </a>
-                        <a asp-page="/Delete" asp-route-id="@s.Id">
-                            <i class="fa-regular fa-trash-can deleteBtn" style="display: none"></i>
-                        </a>
-                    </td>
-                </tr>
-            }
-            </tbody>
-        </table>
-
-    </div>
-}
+<h1 class="text-3xl underline font-bold">Yeaaaaaaaa</h1>

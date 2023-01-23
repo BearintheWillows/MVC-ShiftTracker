@@ -1,10 +1,12 @@
 ﻿{
   "compilerOptions": {
+    "sourceMap": true,
     "noEmitOnError": true,
     "noImplicitAny": true,
     "target": "esnext",
     "module": "esnext",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true
   },
   "compileOnSave": true
 }

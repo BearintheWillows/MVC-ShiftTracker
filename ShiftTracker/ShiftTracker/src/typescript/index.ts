@@ -1,8 +1,12 @@
-﻿import {breakForm} from "./components/breakForm";
+﻿import _ from "lodash";
+import "../css/main.css";
 
-const breakFormComponent = new breakForm();
 
-document.addEventListener("DOMContentLoaded", () => {
-    breakFormComponent.displayAllRows();
-});
-   
+function component() {
+  const element = document.createElement("div");
+
+  // Lodash, currently included via a script, is required for this line to work
+  element.innerHTML = _.join(["Hello", "webpack"], " ");
+
+  return element;
+}

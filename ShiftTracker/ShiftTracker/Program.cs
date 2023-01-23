@@ -3,6 +3,9 @@ using Serilog;
 using ShiftTracker.Areas.Shifts.Data;
 using ShiftTracker.Areas.Shifts.Services;
 using ShiftTracker.Data;
+using Tailwind;
+
+
 
 var builder = WebApplication.CreateBuilder( args );
 
@@ -69,5 +72,9 @@ app.MapControllerRoute( "Default",
                         "{area=Shifts}/{controller=Home}/{action=Index}/{id?}"
 );
 
+if ( app.Environment.IsDevelopment() )
+{
+	app.RunTailwind( "tailwind", "./" );
+}
 app.MapRazorPages();
 app.Run();
