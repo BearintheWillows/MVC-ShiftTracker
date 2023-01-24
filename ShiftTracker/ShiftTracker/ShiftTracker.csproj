@@ -29,6 +29,9 @@
         <Folder Include="Areas\Shifts\Models\ViewModels" />
         <Folder Include="Areas\Shifts\Pages\Shared" />
         <Folder Include="Areas\Shifts\Views\Shared" />
+        <Folder Include="src\css\pages" />
+        <Folder Include="src\css\themes" />
+        <Folder Include="src\css\vendors" />
         <Folder Include="wwwroot\css" />
         <Folder Include="wwwroot\js" />
     </ItemGroup>
